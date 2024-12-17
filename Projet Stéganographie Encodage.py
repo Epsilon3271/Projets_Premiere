@@ -40,16 +40,19 @@ def hide_msg(user_input, img_origine_path):
         txt_bin_tot.append(int(el))
     for el in bin_to_list(txt_to_bin(txt_clair)):
         txt_bin_tot.append(int(el))
+    print(txt_to_bin(txt_clair))
     print(txt_bin_tot)
+
+
 
     img_init = Image.open(str(img_origine_path))
     L, H = img_init.size
 
-    size_txt_tot = len(txt_bin_tot)
+    size_txt_tot = len(bin_to_list(txt_to_bin(txt_clair)))
+    print(size_txt_tot)
 
     if size_txt_tot > L*H:
         return "La taille de l'image ne peut supporter le texte"
-
 
     img_encode = Image.new("RGB", (L, H))
 
@@ -58,37 +61,24 @@ def hide_msg(user_input, img_origine_path):
     for y in range(H):
         for x in range(L):
             pixel = img_init.getpixel((x, y))
-
             if indice >= size_txt_tot:
                 img_encode.putpixel((x, y), pixel)
             else:
                 if txt_bin_tot[indice] == 0:
                     if pixel[0] % 2 != 0:
-                        R = pixel[0] + 1
-                        G = pixel[1]
-                        B = pixel[2]
-                        pixel_new = (R, G, B)
-                        img_encode.putpixel((x, y), pixel_new)
+                        img_encode.putpixel((x, y), (pixel[0] + 1,pixel[1],pixel[2]))
                     else:
                         img_encode.putpixel((x, y), pixel)
 
                 else:
                     if pixel[0] % 2 != 0:
                         img_encode.putpixel((x, y), pixel)
-
                     else:
-                        R = pixel[0] + 1
-                        G = pixel[1]
-                        B = pixel[2]
-                        pixel_new = (R, G, B)
-                        img_encode.putpixel((x, y), pixel_new)
+                        img_encode.putpixel((x, y), (pixel[0] + 1,pixel[1],pixel[2]))
 
                 indice += 1
 
-    img_encode.save("Image_encode.png")
+    img_encode.save("Image_encode2.png")
 
 
-#txt = str(input("Entrez le message à cacher :"))
-#image_originale = str(input("Entrez le chemin d'accès à l'image originale :"))
-
-hide_msg("Voici mon texte a encoder", "Image.png")
+hide_msg("votre texte", "chemin vers l'image")

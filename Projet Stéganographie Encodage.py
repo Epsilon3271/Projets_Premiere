@@ -5,21 +5,16 @@ def txt_to_bin(txt_clair):
     for lettres in txt_clair:
         binaire = str(bin(ord(lettres)))
         txt_binaire += binaire[2:].zfill(8)
-    bin_to_list(txt_binaire)
     return txt_binaire
-
 def bin_to_list(txt_binaire):
     txt_bin_list = []
     for el in txt_binaire:
         txt_bin_list.append(int(el))
-    size_txt_bin(txt_bin_list)
     return txt_bin_list
-
 def size_txt_bin(txt_bin):
     size_txt = len(txt_bin)
     size_txt_binaire = str(bin(size_txt))[2:].zfill(16)
     return size_txt_binaire
-
 def hide_msg(user_input, img_origine_path):
 
     txt_clair = str(user_input)
@@ -64,4 +59,4 @@ def hide_msg(user_input, img_origine_path):
 
     img_encode.save("Image_encode2.png")
 
-hide_msg("votre texte", "chemin vers l'image")
+hide_msg("votre texte", "Image.png")

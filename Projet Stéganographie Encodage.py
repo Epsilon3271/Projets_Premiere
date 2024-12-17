@@ -11,8 +11,7 @@ def txt_to_bin(txt_clair):
         str: Une chaîne représentant le texte en binaire.
     """
     txt_binaire = ""
-    for lettres in txt_clair:
-        # Convertit chaque caractère en sa valeur binaire et le remplit pour faire 8 bits.
+    for lettres in txt_clair:   # Convertit chaque caractère en sa valeur binaire et le remplit pour faire 8 bits.
         binaire = str(bin(ord(lettres)))
         txt_binaire += binaire[2:].zfill(8)
     return txt_binaire
@@ -28,8 +27,7 @@ def bin_to_list(txt_binaire):
         list: Liste d'entiers (0 ou 1) correspondant à chaque bit.
     """
     txt_bin_list = []
-    for el in txt_binaire:
-        # Ajoute chaque bit sous forme d'entier à la liste.
+    for el in txt_binaire:  # Ajoute chaque bit sous forme d'entier à la liste.
         txt_bin_list.append(int(el))
     return txt_bin_list
 
@@ -43,8 +41,7 @@ def size_txt_bin(txt_bin):
     Returns:
         str: Taille de la chaîne binaire en représentation binaire sur 16 bits.
     """
-    size_txt = len(txt_bin)
-    # Convertit la taille en binaire sur 16 bits.
+    size_txt = len(txt_bin)   # Convertit la taille en binaire sur 16 bits.
     size_txt_binaire = str(bin(size_txt))[2:].zfill(16)
     return size_txt_binaire
 
@@ -98,7 +95,7 @@ def hide_msg(user_input, img_origine_path):
 
                 index += 1  # Passe au bit suivant.
 
-    
+
     img_encode.save("Image_encode2.png")    # Sauvegarde l'image encodée.
 
 

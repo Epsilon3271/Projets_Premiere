@@ -1,2 +1,3 @@
 Pour consulter les ressources en .html visiter les liens suivant :
-* https://epsilon3271.github.io/Projets_Premiere/Projet_NSI_Quiz_Histoire/Algorigramme.html
+* https://epsilon3271.github.io/Projets_Premiere/Projet_NSI_Quiz_Histoire/Algorigramme.html <br>
+* https://epsilon3271.github.io/Projets_Premiere/Projet_NSI_Quiz_Histoire/Review_code.html

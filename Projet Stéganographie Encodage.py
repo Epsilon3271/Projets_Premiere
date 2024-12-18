@@ -15,7 +15,6 @@ def txt_to_bin(txt_clair):
         binaire = str(bin(ord(lettres)))
         txt_binaire += binaire[2:].zfill(8)
     return txt_binaire
-
 def bin_to_list(txt_binaire):
     """
     Convertit une chaîne binaire en une liste d'entiers.
@@ -30,7 +29,6 @@ def bin_to_list(txt_binaire):
     for el in txt_binaire:  # Ajoute chaque bit sous forme d'entier à la liste.
         txt_bin_list.append(int(el))
     return txt_bin_list
-
 def size_txt_bin(txt_bin):
     """
     Calcule la taille en binaire (sur 16 bits) d'une chaîne binaire.
@@ -44,7 +42,6 @@ def size_txt_bin(txt_bin):
     size_txt = len(txt_bin)   # Convertit la taille en binaire sur 16 bits.
     size_txt_binaire = str(bin(size_txt))[2:].zfill(16)
     return size_txt_binaire
-
 def hide_msg(user_input, img_origine_path):
     """
     Cache un message texte dans une image via la méthode LSB (Least Significant Bit).
@@ -83,20 +80,23 @@ def hide_msg(user_input, img_origine_path):
                 img_encode.putpixel((x, y), pixel)
             else:
                 if txt_bin_tot[index] == 0:
-                    if pixel[0] % 2 != 0:   # Si le bit est 1, on s'assure que le LSB du canal rouge est impair.
+                    if pixel[0] % 2 != 0:   # Si le bit est 1, on s'assure que la valeur de la composante rouge est impair.
                         img_encode.putpixel((x, y), (pixel[0] + 1, pixel[1], pixel[2]))
                     else:
                         img_encode.putpixel((x, y), pixel)
                 else:
-                    if pixel[0] % 2 != 0:   # Si le bit est 1, on s'assure que le LSB du canal rouge est impair.
+                    if pixel[0] % 2 != 0:   # Si le bit est 1, on s'assure que la valeur de la composante rouge est impair.
                         img_encode.putpixel((x, y), pixel)
                     else:
                         img_encode.putpixel((x, y), (pixel[0] + 1, pixel[1], pixel[2]))
 
-                index += 1  # Passe au bit suivant.
+                index += 1  # Passe au pixel suivant.
+
+    img_encode.save("Image_encode.png")    # Sauvegarde l'image encodée.
 
 
-    img_encode.save("Image_encode2.png")    # Sauvegarde l'image encodée.
-
-
-hide_msg("votre texte", "Image.png")
+while True :
+    msg = str(input("Entrez le message à cacher :"))
+    path = str(input("Entrez le chemin d'accés à l'image originale :"))
+    hide_msg(msg, path)
+    break

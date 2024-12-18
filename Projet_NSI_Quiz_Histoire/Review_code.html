@@ -1,0 +1,213 @@
+<html>
+<head>
+<title>Projet NSI - Quiz Histoire.py</title>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<style type="text/css">
+.s0 { color: #cf8e6d;}
+.s1 { color: #bcbec4;}
+.s2 { color: #7a7e85;}
+.s3 { color: #bcbec4;}
+.s4 { color: #5f826b; font-style: italic;}
+.s5 { color: #6aab73;}
+.s6 { color: #2aacb8;}
+</style>
+</head>
+<body bgcolor="#1e1f22">
+<table CELLSPACING=0 CELLPADDING=5 COLS=1 WIDTH="100%" BGCOLOR="#606060" >
+<tr><td><center>
+<font face="Arial, Helvetica" color="#000000">
+Projet NSI - Quiz Histoire.py</font>
+</center></td></tr></table>
+<pre><span class="s0">import </span><span class="s1">random  </span><span class="s2"># Importation du module random pour générer des nombres aléatoires</span>
+
+<span class="s0">def </span><span class="s1">stockage</span><span class="s3">(</span><span class="s1">points</span><span class="s3">):</span>
+    <span class="s4">&quot;&quot;&quot; 
+    Enregistre le score d'une partie dans un fichier texte. 
+ 
+    Paramètres : 
+    - points (float) : Le score à enregistrer. 
+ 
+    Fonctionnement : 
+    - Ouvre (ou crée) le fichier 'score.txt' en mode ajout. 
+    - Écrit le score à la fin du fichier. 
+    - Gère les erreurs si le fichier est introuvable. 
+    &quot;&quot;&quot;</span>
+    <span class="s0">try</span><span class="s3">:</span>
+        <span class="s0">with </span><span class="s1">open</span><span class="s3">(</span><span class="s5">&quot;score.txt&quot;</span><span class="s3">, </span><span class="s5">&quot;a&quot;</span><span class="s3">) </span><span class="s0">as </span><span class="s1">fichier</span><span class="s3">:  </span><span class="s2"># Ouvre le fichier en mode ajout</span>
+            <span class="s1">fichier</span><span class="s3">.</span><span class="s1">write</span><span class="s3">(</span><span class="s5">&quot;</span><span class="s0">\n</span><span class="s5">&quot;</span><span class="s3">)  </span><span class="s2"># Ajoute une nouvelle ligne</span>
+            <span class="s1">fichier</span><span class="s3">.</span><span class="s1">write</span><span class="s3">(</span><span class="s1">str</span><span class="s3">(</span><span class="s1">points</span><span class="s3">))  </span><span class="s2"># Écrit le score</span>
+    <span class="s0">except </span><span class="s1">FileNotFoundError</span><span class="s3">:  </span><span class="s2"># Si le fichier n'existe pas</span>
+        <span class="s1">print</span><span class="s3">(</span><span class="s5">&quot;Erreur : le fichier 'score.txt' est introuvable. Contactez le développeur.&quot;</span><span class="s3">)</span>
+
+<span class="s0">def </span><span class="s1">tableau</span><span class="s3">():</span>
+    <span class="s4">&quot;&quot;&quot; 
+    Affiche un tableau contenant les scores enregistrés. 
+ 
+    Fonctionnement : 
+    - Ouvre le fichier 'score.txt'. 
+    - Lit et affiche chaque score avec son numéro de partie. 
+    - Gère les erreurs si le fichier est introuvable. 
+    &quot;&quot;&quot;</span>
+    <span class="s0">try</span><span class="s3">:</span>
+        <span class="s2"># Récupère les scores depuis le fichier</span>
+        <span class="s1">liste_scores </span><span class="s3">= </span><span class="s1">list</span><span class="s3">(</span><span class="s1">open</span><span class="s3">(</span><span class="s5">'score.txt'</span><span class="s3">))</span>
+        <span class="s1">print</span><span class="s3">(</span><span class="s5">&quot;---------------------------&quot;</span><span class="s3">)</span>
+        <span class="s2"># Affiche chaque score avec son numéro</span>
+        <span class="s0">for </span><span class="s1">i</span><span class="s3">, </span><span class="s1">score </span><span class="s0">in </span><span class="s1">enumerate</span><span class="s3">(</span><span class="s1">liste_scores</span><span class="s3">):</span>
+            <span class="s1">index </span><span class="s3">= </span><span class="s1">str</span><span class="s3">(</span><span class="s1">i </span><span class="s3">+ </span><span class="s6">1</span><span class="s3">)</span>
+            <span class="s1">print</span><span class="s3">(</span><span class="s5">f&quot;| Score partie </span><span class="s0">{</span><span class="s1">index</span><span class="s3">.</span><span class="s1">rjust</span><span class="s3">(</span><span class="s6">3</span><span class="s3">)</span><span class="s0">} </span><span class="s5">| </span><span class="s0">{</span><span class="s1">score</span><span class="s3">.</span><span class="s1">strip</span><span class="s3">().</span><span class="s1">rjust</span><span class="s3">(</span><span class="s6">4</span><span class="s3">)</span><span class="s0">} </span><span class="s5">|&quot;</span><span class="s3">)</span>
+        <span class="s1">print</span><span class="s3">(</span><span class="s5">&quot;---------------------------&quot;</span><span class="s3">)</span>
+    <span class="s0">except </span><span class="s1">FileNotFoundError</span><span class="s3">:  </span><span class="s2"># Si le fichier n'existe pas</span>
+        <span class="s1">print</span><span class="s3">(</span><span class="s5">&quot;Erreur : le fichier 'score.txt' est introuvable.&quot;</span><span class="s3">)</span>
+
+<span class="s0">def </span><span class="s1">Quiz</span><span class="s3">(</span><span class="s1">niveau</span><span class="s3">):</span>
+    <span class="s4">&quot;&quot;&quot; 
+    Lance le quiz en fonction du niveau choisi. 
+ 
+    Paramètres : 
+    - niveau (int) : Nombre de questions dans le quiz. 
+ 
+    Fonctionnement : 
+    - Charge aléatoirement des questions et réponses depuis des fichiers. 
+    - Permet à l'utilisateur de répondre avec un maximum de 5 essais par question. 
+    - Enregistre le score final et retourne au menu principal. 
+    &quot;&quot;&quot;</span>
+    <span class="s1">print</span><span class="s3">(</span><span class="s5">&quot;</span><span class="s0">\n</span><span class="s5">Pendant le quiz, écrivez 7700 à tout moment pour arrêter la partie.&quot;</span><span class="s3">)</span>
+    <span class="s1">points </span><span class="s3">= </span><span class="s6">0  </span><span class="s2"># Initialise le score</span>
+
+    <span class="s0">for </span><span class="s1">i </span><span class="s0">in </span><span class="s1">range</span><span class="s3">(</span><span class="s1">niveau</span><span class="s3">):  </span><span class="s2"># Itère sur le nombre de questions</span>
+        <span class="s0">try</span><span class="s3">:</span>
+            <span class="s2"># Ouvre le fichier des questions et sélectionne une question aléatoire</span>
+            <span class="s0">with </span><span class="s1">open</span><span class="s3">(</span><span class="s5">'questions.txt'</span><span class="s3">, </span><span class="s5">'r'</span><span class="s3">, </span><span class="s1">encoding</span><span class="s3">=</span><span class="s5">'utf-8'</span><span class="s3">) </span><span class="s0">as </span><span class="s1">fichier</span><span class="s3">:</span>
+                <span class="s1">lignes </span><span class="s3">= </span><span class="s1">fichier</span><span class="s3">.</span><span class="s1">readlines</span><span class="s3">()</span>
+                <span class="s1">rang_question </span><span class="s3">= </span><span class="s1">random</span><span class="s3">.</span><span class="s1">randint</span><span class="s3">(</span><span class="s6">1</span><span class="s3">, </span><span class="s1">len</span><span class="s3">(</span><span class="s1">lignes</span><span class="s3">) - </span><span class="s6">1</span><span class="s3">)  </span><span class="s2"># Numéro de la question</span>
+                <span class="s1">question </span><span class="s3">= </span><span class="s1">lignes</span><span class="s3">[</span><span class="s1">rang_question</span><span class="s3">].</span><span class="s1">strip</span><span class="s3">()  </span><span class="s2"># Récupère la question</span>
+        <span class="s0">except </span><span class="s1">FileNotFoundError</span><span class="s3">:</span>
+            <span class="s1">print</span><span class="s3">(</span><span class="s5">&quot;Erreur : le fichier 'questions.txt' est introuvable.&quot;</span><span class="s3">)</span>
+            <span class="s0">return</span>
+
+        <span class="s0">try</span><span class="s3">:</span>
+            <span class="s2"># Ouvre le fichier des réponses et récupère la réponse associée</span>
+            <span class="s0">with </span><span class="s1">open</span><span class="s3">(</span><span class="s5">&quot;reponses.txt&quot;</span><span class="s3">, </span><span class="s5">&quot;r&quot;</span><span class="s3">, </span><span class="s1">encoding</span><span class="s3">=</span><span class="s5">'utf-8'</span><span class="s3">) </span><span class="s0">as </span><span class="s1">fichier</span><span class="s3">:</span>
+                <span class="s1">lignes </span><span class="s3">= </span><span class="s1">fichier</span><span class="s3">.</span><span class="s1">readlines</span><span class="s3">()</span>
+                <span class="s1">reponse </span><span class="s3">= </span><span class="s1">lignes</span><span class="s3">[</span><span class="s1">rang_question</span><span class="s3">].</span><span class="s1">strip</span><span class="s3">()</span>
+        <span class="s0">except </span><span class="s1">FileNotFoundError</span><span class="s3">:</span>
+            <span class="s1">print</span><span class="s3">(</span><span class="s5">&quot;Erreur : le fichier 'reponses.txt' est introuvable.&quot;</span><span class="s3">)</span>
+            <span class="s0">return</span>
+
+        <span class="s1">essais </span><span class="s3">= </span><span class="s6">1  </span><span class="s2"># Initialise le compteur d'essais</span>
+
+        <span class="s0">while True</span><span class="s3">:</span>
+            <span class="s0">try</span><span class="s3">:</span>
+                <span class="s2"># Demande une réponse à l'utilisateur</span>
+                <span class="s1">rep_user </span><span class="s3">= </span><span class="s1">int</span><span class="s3">(</span><span class="s1">input</span><span class="s3">(</span><span class="s1">question </span><span class="s3">+ </span><span class="s5">&quot; &quot;</span><span class="s3">))</span>
+            <span class="s0">except </span><span class="s1">ValueError</span><span class="s3">:</span>
+                <span class="s1">print</span><span class="s3">(</span><span class="s5">&quot;Veuillez entrer une année valide (nombre).&quot;</span><span class="s3">)</span>
+                <span class="s0">continue</span>
+
+            <span class="s0">if </span><span class="s1">rep_user </span><span class="s3">== </span><span class="s6">7700</span><span class="s3">:  </span><span class="s2"># Code d'arrêt pour quitter la partie</span>
+                <span class="s1">print</span><span class="s3">(</span><span class="s5">&quot;Partie interrompue. Score enregistré.&quot;</span><span class="s3">)</span>
+                <span class="s1">stockage</span><span class="s3">(</span><span class="s1">points</span><span class="s3">)</span>
+                <span class="s1">Menu</span><span class="s3">()</span>
+                <span class="s0">return</span>
+
+            <span class="s0">if </span><span class="s1">rep_user </span><span class="s3">== </span><span class="s1">int</span><span class="s3">(</span><span class="s1">reponse</span><span class="s3">):  </span><span class="s2"># Vérifie si la réponse est correcte</span>
+                <span class="s1">print</span><span class="s3">(</span><span class="s5">f&quot;Bonne réponse ! Score gagné : </span><span class="s0">{</span><span class="s6">1 </span><span class="s3">/ </span><span class="s1">essais</span><span class="s0">:</span><span class="s5">.2f</span><span class="s0">}</span><span class="s5">&quot;</span><span class="s3">)</span>
+                <span class="s1">points </span><span class="s3">+= </span><span class="s6">1 </span><span class="s3">/ </span><span class="s1">essais  </span><span class="s2"># Ajoute le score en fonction des essais</span>
+                <span class="s0">break</span>
+            <span class="s0">else</span><span class="s3">:</span>
+                <span class="s0">if </span><span class="s1">essais </span><span class="s3">== </span><span class="s6">5</span><span class="s3">:  </span><span class="s2"># Si les essais sont épuisés</span>
+                    <span class="s1">print</span><span class="s3">(</span><span class="s5">&quot;Dommage, vous avez utilisé vos 5 essais.&quot;</span><span class="s3">)</span>
+                    <span class="s0">break</span>
+                <span class="s2"># Informe si la réponse est supérieure ou inférieure</span>
+                <span class="s0">if </span><span class="s1">rep_user </span><span class="s3">&gt; </span><span class="s1">int</span><span class="s3">(</span><span class="s1">reponse</span><span class="s3">):</span>
+                    <span class="s1">print</span><span class="s3">(</span><span class="s5">&quot;La bonne réponse est inférieure.&quot;</span><span class="s3">)</span>
+                <span class="s0">else</span><span class="s3">:</span>
+                    <span class="s1">print</span><span class="s3">(</span><span class="s5">&quot;La bonne réponse est supérieure.&quot;</span><span class="s3">)</span>
+                <span class="s1">essais </span><span class="s3">+= </span><span class="s6">1  </span><span class="s2"># Incrémente le nombre d'essais</span>
+
+    <span class="s1">print</span><span class="s3">(</span><span class="s5">f&quot;Fin du quiz ! Votre score : </span><span class="s0">{</span><span class="s1">points</span><span class="s0">:</span><span class="s5">.2f</span><span class="s0">}</span><span class="s5">&quot;</span><span class="s3">)</span>
+    <span class="s1">stockage</span><span class="s3">(</span><span class="s1">points</span><span class="s3">)  </span><span class="s2"># Enregistre le score</span>
+    <span class="s1">Menu</span><span class="s3">()  </span><span class="s2"># Retourne au menu principal</span>
+
+<span class="s0">def </span><span class="s1">Jeu</span><span class="s3">():</span>
+    <span class="s4">&quot;&quot;&quot; 
+    Permet de choisir le niveau de difficulté et lance le quiz. 
+ 
+    Fonctionnement : 
+    - Propose trois niveaux : Facile (5 questions), Moyen (10 questions), Difficile (20 questions). 
+    - Appelle la fonction Quiz avec le nombre de questions correspondant. 
+    &quot;&quot;&quot;</span>
+    <span class="s0">while True</span><span class="s3">:</span>
+        <span class="s0">try</span><span class="s3">:</span>
+            <span class="s2"># Demande le choix du niveau</span>
+            <span class="s1">chx </span><span class="s3">= </span><span class="s1">input</span><span class="s3">(</span><span class="s5">&quot;Choisissez un niveau : Facile, Moyen, Difficile : &quot;</span><span class="s3">)</span>
+            <span class="s0">assert </span><span class="s1">chx </span><span class="s0">in </span><span class="s3">[</span><span class="s5">&quot;Facile&quot;</span><span class="s3">, </span><span class="s5">&quot;Moyen&quot;</span><span class="s3">, </span><span class="s5">&quot;Difficile&quot;</span><span class="s3">]</span>
+            <span class="s0">break</span>
+        <span class="s0">except </span><span class="s1">AssertionError</span><span class="s3">:</span>
+            <span class="s1">print</span><span class="s3">(</span><span class="s5">&quot;Veuillez entrer un niveau valide (Facile, Moyen, Difficile).&quot;</span><span class="s3">)</span>
+
+    <span class="s0">if </span><span class="s1">chx </span><span class="s3">== </span><span class="s5">&quot;Facile&quot;</span><span class="s3">:</span>
+        <span class="s1">Quiz</span><span class="s3">(</span><span class="s6">5</span><span class="s3">)</span>
+    <span class="s0">elif </span><span class="s1">chx </span><span class="s3">== </span><span class="s5">&quot;Moyen&quot;</span><span class="s3">:</span>
+        <span class="s1">Quiz</span><span class="s3">(</span><span class="s6">10</span><span class="s3">)</span>
+    <span class="s0">elif </span><span class="s1">chx </span><span class="s3">== </span><span class="s5">&quot;Difficile&quot;</span><span class="s3">:</span>
+        <span class="s1">Quiz</span><span class="s3">(</span><span class="s6">20</span><span class="s3">)</span>
+
+<span class="s0">def </span><span class="s1">AddQ</span><span class="s3">():</span>
+    <span class="s4">&quot;&quot;&quot; 
+    Permet d'ajouter une nouvelle question et sa réponse. 
+ 
+    Fonctionnement : 
+    - Demande une question à l'utilisateur. 
+    - Demande la réponse associée. 
+    - Ajoute les deux dans les fichiers 'questions.txt' et 'reponses.txt'. 
+    &quot;&quot;&quot;</span>
+    <span class="s0">try</span><span class="s3">:</span>
+        <span class="s2"># Ajoute une question au fichier</span>
+        <span class="s0">with </span><span class="s1">open</span><span class="s3">(</span><span class="s5">'questions.txt'</span><span class="s3">, </span><span class="s5">'a'</span><span class="s3">, </span><span class="s1">encoding</span><span class="s3">=</span><span class="s5">'utf-8'</span><span class="s3">) </span><span class="s0">as </span><span class="s1">fichier</span><span class="s3">:</span>
+            <span class="s1">question </span><span class="s3">= </span><span class="s1">input</span><span class="s3">(</span><span class="s5">&quot;Entrez votre nouvelle question : &quot;</span><span class="s3">)</span>
+            <span class="s1">fichier</span><span class="s3">.</span><span class="s1">write</span><span class="s3">(</span><span class="s5">&quot;</span><span class="s0">\n</span><span class="s5">&quot; </span><span class="s3">+ </span><span class="s1">question</span><span class="s3">)</span>
+    <span class="s0">except </span><span class="s1">FileNotFoundError</span><span class="s3">:</span>
+        <span class="s1">print</span><span class="s3">(</span><span class="s5">&quot;Erreur : le fichier 'questions.txt' est introuvable.&quot;</span><span class="s3">)</span>
+
+    <span class="s0">try</span><span class="s3">:</span>
+        <span class="s2"># Ajoute une réponse au fichier</span>
+        <span class="s0">with </span><span class="s1">open</span><span class="s3">(</span><span class="s5">'reponses.txt'</span><span class="s3">, </span><span class="s5">'a'</span><span class="s3">, </span><span class="s1">encoding</span><span class="s3">=</span><span class="s5">'utf-8'</span><span class="s3">) </span><span class="s0">as </span><span class="s1">fichier</span><span class="s3">:</span>
+            <span class="s1">reponse </span><span class="s3">= </span><span class="s1">input</span><span class="s3">(</span><span class="s5">&quot;Entrez la réponse à cette question : &quot;</span><span class="s3">)</span>
+            <span class="s1">fichier</span><span class="s3">.</span><span class="s1">write</span><span class="s3">(</span><span class="s5">&quot;</span><span class="s0">\n</span><span class="s5">&quot; </span><span class="s3">+ </span><span class="s1">reponse</span><span class="s3">)</span>
+    <span class="s0">except </span><span class="s1">FileNotFoundError</span><span class="s3">:</span>
+        <span class="s1">print</span><span class="s3">(</span><span class="s5">&quot;Erreur : le fichier 'reponses.txt' est introuvable.&quot;</span><span class="s3">)</span>
+
+<span class="s0">def </span><span class="s1">Menu</span><span class="s3">():</span>
+    <span class="s4">&quot;&quot;&quot; 
+    Affiche le menu principal du programme. 
+ 
+    Fonctionnement : 
+    - Propose trois options : Quiz, Tableau des scores, Ajouter des questions. 
+    - Redirige vers la fonction correspondante. 
+    &quot;&quot;&quot;</span>
+    <span class="s1">print</span><span class="s3">(</span><span class="s5">&quot;Bienvenue dans le Quiz d'histoire !&quot;</span><span class="s3">)</span>
+    <span class="s0">while True</span><span class="s3">:</span>
+        <span class="s0">try</span><span class="s3">:</span>
+            <span class="s2"># Affiche les options du menu</span>
+            <span class="s1">chx </span><span class="s3">= </span><span class="s1">input</span><span class="s3">(</span><span class="s5">&quot;Options : Quiz, Scores, AddQ : &quot;</span><span class="s3">)</span>
+            <span class="s0">assert </span><span class="s1">chx </span><span class="s0">in </span><span class="s3">[</span><span class="s5">&quot;Quiz&quot;</span><span class="s3">, </span><span class="s5">&quot;Scores&quot;</span><span class="s3">, </span><span class="s5">&quot;AddQ&quot;</span><span class="s3">]</span>
+            <span class="s0">break</span>
+        <span class="s0">except </span><span class="s1">AssertionError</span><span class="s3">:</span>
+            <span class="s1">print</span><span class="s3">(</span><span class="s5">&quot;Veuillez entrer une option valide (Quiz, Scores, AddQ).&quot;</span><span class="s3">)</span>
+
+    <span class="s0">if </span><span class="s1">chx </span><span class="s3">== </span><span class="s5">&quot;Quiz&quot;</span><span class="s3">:</span>
+        <span class="s1">Jeu</span><span class="s3">()</span>
+    <span class="s0">elif </span><span class="s1">chx </span><span class="s3">== </span><span class="s5">&quot;Scores&quot;</span><span class="s3">:</span>
+        <span class="s1">tableau</span><span class="s3">()</span>
+        <span class="s1">Menu</span><span class="s3">()  </span><span class="s2"># Retourne au menu après affichage</span>
+    <span class="s0">elif </span><span class="s1">chx </span><span class="s3">== </span><span class="s5">&quot;AddQ&quot;</span><span class="s3">:</span>
+        <span class="s1">AddQ</span><span class="s3">()</span>
+        <span class="s1">Menu</span><span class="s3">()  </span><span class="s2"># Retourne au menu après ajout</span>
+
+<span class="s2"># Lancement du programme</span>
+<span class="s1">Menu</span><span class="s3">()</span>
+</pre>
+</body>
+</html>

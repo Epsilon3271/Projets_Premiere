@@ -1,4 +1,5 @@
 from PIL import Image
+import time
 
 def txt_to_bin(txt_clair):
     """
@@ -57,7 +58,7 @@ def hide_msg(user_input, img_origine_path):
         txt_bin = txt_to_bin(txt_clair)
         txt_size_bin = size_txt_bin(txt_bin)
 
-        
+
         txt_bin_tot = bin_to_list(txt_size_bin) + bin_to_list(txt_bin)  # Crée la liste totale binaire (16 bits pour la taille + texte).
 
         img_init = Image.open(img_origine_path)  # Charge l'image d'origine.
@@ -114,6 +115,20 @@ def hide_msg(user_input, img_origine_path):
 
 
 if __name__ == "__main__":
+
+    texte = """
+    ·········································
+    : ______   ______ ______   ______ _____ :
+    :|  _ \ \ / / ___|  _ \ \ / /  _ \_   _|:
+    :| |_) \ V / |   | |_) \ V /| |_) || |  :
+    :|  __/ | || |___|  _ < | | |  __/ | |  :
+    :|_|    |_| \____|_| \_\|_| |_|    |_|  :
+    ·········································
+    """
+    for char in texte:
+        print(char, end='', flush=True)  # Affiche un caractère sans retour à la ligne
+        time.sleep(0.025)  # Ajustez la durée pour contrôler la vitesse
+
     msg = input("Entrez le message à cacher : ")
     path = input("Entrez le chemin d'accès à l'image originale : ")
     result = hide_msg(msg, path)

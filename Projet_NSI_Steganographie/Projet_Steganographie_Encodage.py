@@ -1,4 +1,5 @@
 from PIL import Image
+import time
 
 def txt_to_bin(txt_clair):
     """
@@ -11,10 +12,11 @@ def txt_to_bin(txt_clair):
         str: Une chaîne représentant le texte en binaire.
     """
     txt_binaire = ""
-    for lettres in txt_clair:   # Convertit chaque caractère en sa valeur binaire et le remplit pour faire 8 bits.
+    for lettres in txt_clair:  # Convertit chaque caractère en sa valeur binaire sur 8 bits.
         binaire = str(bin(ord(lettres)))
         txt_binaire += binaire[2:].zfill(8)
     return txt_binaire
+
 def bin_to_list(txt_binaire):
     """
     Convertit une chaîne binaire en une liste d'entiers.
@@ -25,10 +27,8 @@ def bin_to_list(txt_binaire):
     Returns:
         list: Liste d'entiers (0 ou 1) correspondant à chaque bit.
     """
-    txt_bin_list = []
-    for el in txt_binaire:  # Ajoute chaque bit sous forme d'entier à la liste.
-        txt_bin_list.append(int(el))
-    return txt_bin_list
+    return [int(el) for el in txt_binaire]  # Conversion en liste du texte en binaire grâce à un tableau construit par compréhension.
+
 def size_txt_bin(txt_bin):
     """
     Calcule la taille en binaire (sur 16 bits) d'une chaîne binaire.
@@ -39,9 +39,9 @@ def size_txt_bin(txt_bin):
     Returns:
         str: Taille de la chaîne binaire en représentation binaire sur 16 bits.
     """
-    size_txt = len(txt_bin)   # Convertit la taille en binaire sur 16 bits.
-    size_txt_binaire = str(bin(size_txt))[2:].zfill(16)
-    return size_txt_binaire
+    size_txt = len(txt_bin)  # Mesure la taille du texte.
+    return str(bin(size_txt))[2:].zfill(16)  # Convertit la taille mesurée en binaire sur 16 bits.
+
 def hide_msg(user_input, img_origine_path):
     """
     Cache un message texte dans une image via la méthode LSB (Least Significant Bit).
@@ -53,50 +53,84 @@ def hide_msg(user_input, img_origine_path):
     Returns:
         str: Un message d'erreur si la taille de l'image est insuffisante, sinon rien.
     """
-    txt_clair = str(user_input)
-    txt_bin_tot = []
+    try:
+        txt_clair = str(user_input)
+        txt_bin = txt_to_bin(txt_clair)
+        txt_size_bin = size_txt_bin(txt_bin)
 
-    for el in bin_to_list(size_txt_bin(bin_to_list(txt_to_bin(txt_clair)))):    # Ajoute d'abord la taille du texte en binaire (16 bits), puis le texte en binaire.
-        txt_bin_tot.append(int(el))
-    for el in bin_to_list(txt_to_bin(txt_clair)):
-        txt_bin_tot.append(int(el))
 
-    img_init = Image.open(str(img_origine_path))  # Charge l'image d'origine.
-    L, H = img_init.size  # Dimensions de l'image.
+        txt_bin_tot = bin_to_list(txt_size_bin) + bin_to_list(txt_bin)  # Crée la liste totale binaire (16 bits pour la taille + texte).
 
-    size_txt_tot = len(bin_to_list(txt_to_bin(txt_clair)))  # Taille totale du texte en bits.
+        img_init = Image.open(img_origine_path)  # Charge l'image d'origine.
+        L, H = img_init.size  # Récupère les dimensions de l'image.
 
-    if size_txt_tot > L * H:    # Vérifie si l'image est assez grande pour contenir le texte.
-        return "La taille de l'image ne peut supporter le texte"
+        if len(txt_bin_tot) > L * H:  # Vérifie si l'image est assez grande pour contenir le texte.
+            return "La taille de l'image ne peut supporter le texte."
 
-    img_encode = Image.new("RGB", (L, H))  # Nouvelle image pour stocker les données.
+        img_encode = Image.new("RGB", (L, H))  # Nouvelle image pour stocker les données.
 
-    index = 0  # Indice pour parcourir les bits du message.
+        index = 0  # Indice pour parcourir les bits du message.
+        for y in range(H):
+            for x in range(L):
+                pixel = img_init.getpixel((x, y))  # Récupère le pixel d'origine.
 
-    for y in range(H):  # Parcourt chaque pixel de l'image.
-        for x in range(L):
-            pixel = img_init.getpixel((x, y))  # Récupère le pixel courant.
-            if index >= size_txt_tot:   # Si tous les bits sont encodés, copie le reste des pixels tels quels.
-                img_encode.putpixel((x, y), pixel)
-            else:
-                if txt_bin_tot[index] == 0:
-                    if pixel[0] % 2 != 0:   # Si le bit est 1, on s'assure que la valeur de la composante rouge est impair.
-                        img_encode.putpixel((x, y), (pixel[0] + 1, pixel[1], pixel[2]))
+                if index < 16:  # Encodage des 16 premiers bits pour la taille
+                    bit = int(txt_size_bin[index])
+                    red = pixel[0]
+
+                    if bit == 1:
+                        if red % 2 == 0:
+                            red += 1
                     else:
-                        img_encode.putpixel((x, y), pixel)
+                        if red % 2 == 1:
+                            red -= 1
+
+                    img_encode.putpixel((x, y), (red, pixel[1], pixel[2]))
+                    index += 1
+
+                elif index < len(txt_bin_tot):
+                    bit = txt_bin_tot[index]
+                    red = pixel[0]
+
+                    if bit == 1:
+                        if red % 2 == 0:
+                            red += 1
+                    else:
+                        if red % 2 == 1:
+                            red -= 1
+
+                    img_encode.putpixel((x, y), (red, pixel[1], pixel[2]))
+                    index += 1
+
                 else:
-                    if pixel[0] % 2 != 0:   # Si le bit est 1, on s'assure que la valeur de la composante rouge est impair.
-                        img_encode.putpixel((x, y), pixel)
-                    else:
-                        img_encode.putpixel((x, y), (pixel[0] + 1, pixel[1], pixel[2]))
+                    img_encode.putpixel((x, y), pixel)  # Copie le pixel d'origine si aucun bit n'est à encoder.
 
-                index += 1  # Passe au pixel suivant.
+        img_encode.save("Image_encode.png")  # Sauvegarde l'image encodée.
+        print("L'image a été encodée et sauvegardée sous le nom 'Image_encode.png'.")
 
-    img_encode.save("Image_encode.png")    # Sauvegarde l'image encodée.
+    except FileNotFoundError:
+        return "Erreur : Le fichier image spécifié est introuvable."
+    except Exception as e:
+        return f"Erreur inattendue : {e}"
 
 
-while True :
-    msg = str(input("Entrez le message à cacher :"))
-    path = str(input("Entrez le chemin d'accés à l'image originale :"))
-    hide_msg(msg, path)
-    break
+if __name__ == "__main__":
+
+    texte = """
+    ·········································
+    : ______   ______ ______   ______ _____ :
+    :|  _ \ \ / / ___|  _ \ \ / /  _ \_   _|:
+    :| |_) \ V / |   | |_) \ V /| |_) || |  :
+    :|  __/ | || |___|  _ < | | |  __/ | |  :
+    :|_|    |_| \____|_| \_\|_| |_|    |_|  :
+    ·········································
+    """
+    for char in texte:
+        print(char, end='', flush=True)  # Affiche un caractère sans retour à la ligne
+        time.sleep(0.025)  # Ajustez la durée pour contrôler la vitesse
+
+    msg = input("Entrez le message à cacher : ")
+    path = input("Entrez le chemin d'accès à l'image originale : ")
+    result = hide_msg(msg, path)
+    if result:
+        print(result)

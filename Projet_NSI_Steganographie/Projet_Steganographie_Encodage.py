@@ -42,7 +42,7 @@ def size_txt_bin(txt_bin):
     size_txt = len(txt_bin)  # Mesure la taille du texte.
     return str(bin(size_txt))[2:].zfill(16)  # Convertit la taille mesurée en binaire sur 16 bits.
 
-def hide_msg(user_input, img_origine_path):
+def hide_msg(user_input, img_origine_path, img_final_path="Image_encode.png"):
     """
     Cache un message texte dans une image via la méthode LSB (Least Significant Bit).
 
@@ -105,8 +105,8 @@ def hide_msg(user_input, img_origine_path):
                 else:
                     img_encode.putpixel((x, y), pixel)  # Copie le pixel d'origine si aucun bit n'est à encoder.
 
-        img_encode.save("Image_encode.png")  # Sauvegarde l'image encodée.
-        print("L'image a été encodée et sauvegardée sous le nom 'Image_encode.png'.")
+        img_encode.save(img_final_path)  # Sauvegarde l'image encodée.
+        return "L'image a été encodée et sauvegardée sous le nom 'Image_encode.png'."
 
     except FileNotFoundError:
         return "Erreur : Le fichier image spécifié est introuvable."
@@ -128,7 +128,6 @@ if __name__ == "__main__":
     for char in texte:
         print(char, end='', flush=True)  # Affiche un caractère sans retour à la ligne
         time.sleep(0.025)  # Ajustez la durée pour contrôler la vitesse
-
     msg = input("Entrez le message à cacher : ")
     path = input("Entrez le chemin d'accès à l'image originale : ")
     result = hide_msg(msg, path)

@@ -33,13 +33,9 @@ def decode(nom_image):
 
     taille = int(binaire, 2) + 16
 
-    print(taille)
-
     # Regarder la suite et extraire le binaire
     binaire = ""
     index = (x, y) # Index où reprendre
-    print(index)
-
     for y in range(0, image.height):
         if taille <= 0:
             break
@@ -87,10 +83,9 @@ def binaire_to_text(binaire):
         # Décimal -> ASCII
         texte += chr(dec)
 
-        print(car, dec, chr(dec))
-
         last = index
 
     return texte
 
-print(decode("bx60.png"))
+if __name__ == "__main__":
+    print(decode("image_encode.png"))

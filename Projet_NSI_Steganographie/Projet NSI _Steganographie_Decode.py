@@ -19,7 +19,7 @@ def decode(nom_image):
     try:
         image = Image.open(nom_image)
     except FileNotFoundError:
-        return "L'image n'existe pas."
+        return "Erreur : Le fichier image spécifié est introuvable."
 
     # Regarder la taille de l'image
     longueur = 17 # Nombre de bits définissant la taille du message

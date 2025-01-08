@@ -1,0 +1,116 @@
+<html>
+<head>
+<title>Projet NSI - Stéganographie.py</title>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<style type="text/css">
+.s0 { color: #cf8e6d;}
+.s1 { color: #bcbec4;}
+.s2 { color: #bcbec4;}
+.s3 { color: #5f826b; font-style: italic;}
+.s4 { color: #7a7e85;}
+.s5 { color: #6aab73;}
+.s6 { color: #2aacb8;}
+</style>
+</head>
+<body bgcolor="#1e1f22">
+<table CELLSPACING=0 CELLPADDING=5 COLS=1 WIDTH="100%" BGCOLOR="#606060" >
+<tr><td><center>
+<font face="Arial, Helvetica" color="#000000">
+Projet NSI - Stéganographie.py</font>
+</center></td></tr></table>
+<pre><span class="s0">from </span><span class="s1">PIL </span><span class="s0">import </span><span class="s1">Image</span>
+
+<span class="s0">def </span><span class="s1">decode</span><span class="s2">(</span><span class="s1">nom_image</span><span class="s2">):</span>
+    <span class="s3">&quot;&quot;&quot; 
+    Retourne le message dans l'image 
+ 
+    Inputs 
+    ------ 
+    image:nom de l'image 
+        Nom de l'image contenant le message 
+ 
+    Returns 
+    ------- 
+    str 
+        Message contenu dans l'image 
+    &quot;&quot;&quot;</span>
+
+    <span class="s4"># Ouvrir l'image</span>
+    <span class="s0">try</span><span class="s2">:</span>
+        <span class="s1">image </span><span class="s2">= </span><span class="s1">Image</span><span class="s2">.</span><span class="s1">open</span><span class="s2">(</span><span class="s1">nom_image</span><span class="s2">)</span>
+    <span class="s0">except </span><span class="s1">FileNotFoundError</span><span class="s2">:</span>
+        <span class="s0">return </span><span class="s5">&quot;Erreur : Le fichier image spécifié est introuvable.&quot;</span>
+
+    <span class="s4"># Regarder la taille de l'image</span>
+    <span class="s1">longueur </span><span class="s2">= </span><span class="s6">17 </span><span class="s4"># Nombre de bits définissant la taille du message</span>
+    <span class="s1">binaire </span><span class="s2">= </span><span class="s5">&quot;&quot;</span>
+
+    <span class="s0">for </span><span class="s1">y </span><span class="s0">in </span><span class="s1">range</span><span class="s2">(</span><span class="s1">longueur</span><span class="s2">):</span>
+        <span class="s0">if </span><span class="s1">longueur </span><span class="s2">== </span><span class="s6">0</span><span class="s2">:</span>
+            <span class="s0">break</span>
+        <span class="s0">for </span><span class="s1">x </span><span class="s0">in </span><span class="s1">range</span><span class="s2">(</span><span class="s1">longueur</span><span class="s2">):</span>
+            <span class="s1">longueur </span><span class="s2">-= </span><span class="s6">1</span>
+            <span class="s0">if </span><span class="s1">longueur </span><span class="s2">== </span><span class="s6">0</span><span class="s2">:</span>
+                <span class="s0">break</span>
+            <span class="s1">binaire </span><span class="s2">+= </span><span class="s1">str</span><span class="s2">(</span><span class="s1">int</span><span class="s2">(</span><span class="s1">image</span><span class="s2">.</span><span class="s1">getpixel</span><span class="s2">((</span><span class="s1">x</span><span class="s2">,</span><span class="s1">y</span><span class="s2">))[</span><span class="s6">0</span><span class="s2">] % </span><span class="s6">2 </span><span class="s2">!= </span><span class="s6">0</span><span class="s2">))</span>
+
+    <span class="s1">taille </span><span class="s2">= </span><span class="s1">int</span><span class="s2">(</span><span class="s1">binaire</span><span class="s2">, </span><span class="s6">2</span><span class="s2">) + </span><span class="s6">16</span>
+
+    <span class="s4"># Regarder la suite et extraire le binaire</span>
+    <span class="s1">binaire </span><span class="s2">= </span><span class="s5">&quot;&quot;</span>
+    <span class="s1">index </span><span class="s2">= (</span><span class="s1">x</span><span class="s2">, </span><span class="s1">y</span><span class="s2">) </span><span class="s4"># Index où reprendre</span>
+    <span class="s0">for </span><span class="s1">y </span><span class="s0">in </span><span class="s1">range</span><span class="s2">(</span><span class="s6">0</span><span class="s2">, </span><span class="s1">image</span><span class="s2">.</span><span class="s1">height</span><span class="s2">):</span>
+        <span class="s0">if </span><span class="s1">taille </span><span class="s2">&lt;= </span><span class="s6">0</span><span class="s2">:</span>
+            <span class="s0">break</span>
+        <span class="s0">for </span><span class="s1">x </span><span class="s0">in </span><span class="s1">range</span><span class="s2">(</span><span class="s6">0</span><span class="s2">, </span><span class="s1">image</span><span class="s2">.</span><span class="s1">width</span><span class="s2">):</span>
+            <span class="s0">if </span><span class="s1">taille </span><span class="s2">&lt;= </span><span class="s6">0</span><span class="s2">:</span>
+                <span class="s0">break</span>
+
+            <span class="s1">taille </span><span class="s2">-= </span><span class="s6">1</span>
+
+            <span class="s1">binaire </span><span class="s2">+= </span><span class="s1">str</span><span class="s2">(</span><span class="s1">int</span><span class="s2">(</span><span class="s1">image</span><span class="s2">.</span><span class="s1">getpixel</span><span class="s2">((</span><span class="s1">x</span><span class="s2">,</span><span class="s1">y</span><span class="s2">))[</span><span class="s6">0</span><span class="s2">] % </span><span class="s6">2 </span><span class="s2">!= </span><span class="s6">0</span><span class="s2">))</span>
+
+    <span class="s4"># Transformer le binaire en texte</span>
+    <span class="s1">res </span><span class="s2">= </span><span class="s1">binaire_to_text</span><span class="s2">(</span><span class="s1">binaire</span><span class="s2">[</span><span class="s6">16</span><span class="s2">:])</span>
+
+    <span class="s0">return </span><span class="s1">res</span>
+
+<span class="s0">def </span><span class="s1">binaire_to_text</span><span class="s2">(</span><span class="s1">binaire</span><span class="s2">):</span>
+    <span class="s3">&quot;&quot;&quot; 
+    Retournes le texte correspondant au code binaire 
+ 
+    Inputs 
+    ------ 
+    binaire:str 
+        Texte en binaire 
+ 
+    Return 
+    ------ 
+    str 
+        Texte normal 
+    &quot;&quot;&quot;</span>
+
+    <span class="s1">texte </span><span class="s2">= </span><span class="s5">&quot;&quot;</span>
+    <span class="s1">last </span><span class="s2">= </span><span class="s6">0</span>
+
+    <span class="s0">for </span><span class="s1">index </span><span class="s0">in </span><span class="s1">range</span><span class="s2">(</span><span class="s6">8</span><span class="s2">, </span><span class="s1">len</span><span class="s2">(</span><span class="s1">binaire</span><span class="s2">)+</span><span class="s6">1</span><span class="s2">, </span><span class="s6">8</span><span class="s2">):</span>
+        <span class="s1">car </span><span class="s2">= </span><span class="s1">binaire</span><span class="s2">[</span><span class="s1">last</span><span class="s2">:</span><span class="s1">index</span><span class="s2">]</span>
+
+
+        <span class="s4"># Binaire -&gt; Décimal</span>
+        <span class="s1">dec </span><span class="s2">= </span><span class="s6">0</span>
+
+        <span class="s0">for </span><span class="s1">i </span><span class="s0">in </span><span class="s1">range</span><span class="s2">(</span><span class="s1">len</span><span class="s2">(</span><span class="s1">car</span><span class="s2">)):</span>
+            <span class="s1">dec </span><span class="s2">+= </span><span class="s1">int</span><span class="s2">(</span><span class="s1">car</span><span class="s2">[</span><span class="s1">i</span><span class="s2">]) * </span><span class="s6">2</span><span class="s2">**(</span><span class="s1">len</span><span class="s2">(</span><span class="s1">car</span><span class="s2">)-</span><span class="s1">i</span><span class="s2">-</span><span class="s6">1</span><span class="s2">)</span>
+
+        <span class="s4"># Décimal -&gt; ASCII</span>
+        <span class="s1">texte </span><span class="s2">+= </span><span class="s1">chr</span><span class="s2">(</span><span class="s1">dec</span><span class="s2">)</span>
+
+        <span class="s1">last </span><span class="s2">= </span><span class="s1">index</span>
+
+    <span class="s0">return </span><span class="s1">texte</span>
+
+<span class="s0">if </span><span class="s1">__name__ </span><span class="s2">== </span><span class="s5">&quot;__main__&quot;</span><span class="s2">:</span>
+    <span class="s1">print</span><span class="s2">(</span><span class="s1">decode</span><span class="s2">(</span><span class="s5">&quot;image_encode.png&quot;</span><span class="s2">))</span></pre>
+</body>
+</html>

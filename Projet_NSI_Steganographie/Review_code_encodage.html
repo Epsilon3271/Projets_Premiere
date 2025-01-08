@@ -1,0 +1,157 @@
+<html>
+<head>
+<title>Projet NSI - Stéganographie.py</title>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<style type="text/css">
+.s0 { color: #cf8e6d;}
+.s1 { color: #bcbec4;}
+.s2 { color: #bcbec4;}
+.s3 { color: #5f826b; font-style: italic;}
+.s4 { color: #6aab73;}
+.s5 { color: #7a7e85;}
+.s6 { color: #2aacb8;}
+</style>
+</head>
+<body bgcolor="#1e1f22">
+<table CELLSPACING=0 CELLPADDING=5 COLS=1 WIDTH="100%" BGCOLOR="#606060" >
+<tr><td><center>
+<font face="Arial, Helvetica" color="#000000">
+Projet NSI - Stéganographie.py</font>
+</center></td></tr></table>
+<pre><span class="s0">from </span><span class="s1">PIL </span><span class="s0">import </span><span class="s1">Image</span>
+<span class="s0">import </span><span class="s1">time</span>
+
+<span class="s0">def </span><span class="s1">txt_to_bin</span><span class="s2">(</span><span class="s1">txt_clair</span><span class="s2">):</span>
+    <span class="s3">&quot;&quot;&quot; 
+    Convertit un texte clair en une chaîne binaire. 
+ 
+    Parametres: 
+        txt_clair (str): Le texte à convertir. 
+ 
+    Returns: 
+        str: Une chaîne représentant le texte en binaire. 
+    &quot;&quot;&quot;</span>
+    <span class="s1">txt_binaire </span><span class="s2">= </span><span class="s4">&quot;&quot;</span>
+    <span class="s0">for </span><span class="s1">lettres </span><span class="s0">in </span><span class="s1">txt_clair</span><span class="s2">:  </span><span class="s5"># Convertit chaque caractère en sa valeur binaire sur 8 bits.</span>
+        <span class="s1">binaire </span><span class="s2">= </span><span class="s1">str</span><span class="s2">(</span><span class="s1">bin</span><span class="s2">(</span><span class="s1">ord</span><span class="s2">(</span><span class="s1">lettres</span><span class="s2">)))</span>
+        <span class="s1">txt_binaire </span><span class="s2">+= </span><span class="s1">binaire</span><span class="s2">[</span><span class="s6">2</span><span class="s2">:].</span><span class="s1">zfill</span><span class="s2">(</span><span class="s6">8</span><span class="s2">)</span>
+    <span class="s0">return </span><span class="s1">txt_binaire</span>
+
+<span class="s0">def </span><span class="s1">bin_to_list</span><span class="s2">(</span><span class="s1">txt_binaire</span><span class="s2">):</span>
+    <span class="s3">&quot;&quot;&quot; 
+    Convertit une chaîne binaire en une liste d'entiers. 
+ 
+    Parametres: 
+        txt_binaire (str): Une chaîne binaire. 
+ 
+    Returns: 
+        list: Liste d'entiers (0 ou 1) correspondant à chaque bit. 
+    &quot;&quot;&quot;</span>
+    <span class="s0">return </span><span class="s2">[</span><span class="s1">int</span><span class="s2">(</span><span class="s1">el</span><span class="s2">) </span><span class="s0">for </span><span class="s1">el </span><span class="s0">in </span><span class="s1">txt_binaire</span><span class="s2">]  </span><span class="s5"># Conversion en liste du texte en binaire grâce à un tableau construit par compréhension.</span>
+
+<span class="s0">def </span><span class="s1">size_txt_bin</span><span class="s2">(</span><span class="s1">txt_bin</span><span class="s2">):</span>
+    <span class="s3">&quot;&quot;&quot; 
+    Calcule la taille en binaire (sur 16 bits) d'une chaîne binaire. 
+ 
+    Parametres: 
+        txt_bin (str): Une chaîne binaire. 
+ 
+    Returns: 
+        str: Taille de la chaîne binaire en représentation binaire sur 16 bits. 
+    &quot;&quot;&quot;</span>
+    <span class="s1">size_txt </span><span class="s2">= </span><span class="s1">len</span><span class="s2">(</span><span class="s1">txt_bin</span><span class="s2">)  </span><span class="s5"># Mesure la taille du texte.</span>
+    <span class="s0">return </span><span class="s1">str</span><span class="s2">(</span><span class="s1">bin</span><span class="s2">(</span><span class="s1">size_txt</span><span class="s2">))[</span><span class="s6">2</span><span class="s2">:].</span><span class="s1">zfill</span><span class="s2">(</span><span class="s6">16</span><span class="s2">)  </span><span class="s5"># Convertit la taille mesurée en binaire sur 16 bits.</span>
+
+<span class="s0">def </span><span class="s1">hide_msg</span><span class="s2">(</span><span class="s1">user_input</span><span class="s2">, </span><span class="s1">img_origine_path</span><span class="s2">, </span><span class="s1">img_final_path</span><span class="s2">=</span><span class="s4">&quot;Image_encode.png&quot;</span><span class="s2">):</span>
+    <span class="s3">&quot;&quot;&quot; 
+    Cache un message texte dans une image via la méthode LSB (Least Significant Bit). 
+ 
+    Parametres: 
+        user_input (str): Le texte à cacher. 
+        img_origine_path (str): Le chemin vers l'image d'origine. 
+ 
+    Returns: 
+        str: Un message d'erreur si la taille de l'image est insuffisante, sinon rien. 
+    &quot;&quot;&quot;</span>
+    <span class="s0">try</span><span class="s2">:</span>
+        <span class="s1">txt_clair </span><span class="s2">= </span><span class="s1">str</span><span class="s2">(</span><span class="s1">user_input</span><span class="s2">)</span>
+        <span class="s1">txt_bin </span><span class="s2">= </span><span class="s1">txt_to_bin</span><span class="s2">(</span><span class="s1">txt_clair</span><span class="s2">)</span>
+        <span class="s1">txt_size_bin </span><span class="s2">= </span><span class="s1">size_txt_bin</span><span class="s2">(</span><span class="s1">txt_bin</span><span class="s2">)</span>
+
+
+        <span class="s1">txt_bin_tot </span><span class="s2">= </span><span class="s1">bin_to_list</span><span class="s2">(</span><span class="s1">txt_size_bin</span><span class="s2">) + </span><span class="s1">bin_to_list</span><span class="s2">(</span><span class="s1">txt_bin</span><span class="s2">)  </span><span class="s5"># Crée la liste totale binaire (16 bits pour la taille + texte).</span>
+
+        <span class="s1">img_init </span><span class="s2">= </span><span class="s1">Image</span><span class="s2">.</span><span class="s1">open</span><span class="s2">(</span><span class="s1">img_origine_path</span><span class="s2">)  </span><span class="s5"># Charge l'image d'origine.</span>
+        <span class="s1">L</span><span class="s2">, </span><span class="s1">H </span><span class="s2">= </span><span class="s1">img_init</span><span class="s2">.</span><span class="s1">size  </span><span class="s5"># Récupère les dimensions de l'image.</span>
+
+        <span class="s0">if </span><span class="s1">len</span><span class="s2">(</span><span class="s1">txt_bin_tot</span><span class="s2">) &gt; </span><span class="s1">L </span><span class="s2">* </span><span class="s1">H</span><span class="s2">:  </span><span class="s5"># Vérifie si l'image est assez grande pour contenir le texte.</span>
+            <span class="s0">return </span><span class="s4">&quot;La taille de l'image ne peut supporter le texte.&quot;</span>
+
+        <span class="s1">img_encode </span><span class="s2">= </span><span class="s1">Image</span><span class="s2">.</span><span class="s1">new</span><span class="s2">(</span><span class="s4">&quot;RGB&quot;</span><span class="s2">, (</span><span class="s1">L</span><span class="s2">, </span><span class="s1">H</span><span class="s2">))  </span><span class="s5"># Nouvelle image pour stocker les données.</span>
+
+        <span class="s1">index </span><span class="s2">= </span><span class="s6">0  </span><span class="s5"># Indice pour parcourir les bits du message.</span>
+        <span class="s0">for </span><span class="s1">y </span><span class="s0">in </span><span class="s1">range</span><span class="s2">(</span><span class="s1">H</span><span class="s2">):</span>
+            <span class="s0">for </span><span class="s1">x </span><span class="s0">in </span><span class="s1">range</span><span class="s2">(</span><span class="s1">L</span><span class="s2">):</span>
+                <span class="s1">pixel </span><span class="s2">= </span><span class="s1">img_init</span><span class="s2">.</span><span class="s1">getpixel</span><span class="s2">((</span><span class="s1">x</span><span class="s2">, </span><span class="s1">y</span><span class="s2">))  </span><span class="s5"># Récupère le pixel d'origine.</span>
+
+                <span class="s0">if </span><span class="s1">index </span><span class="s2">&lt; </span><span class="s6">16</span><span class="s2">:  </span><span class="s5"># Encodage des 16 premiers bits pour la taille</span>
+                    <span class="s1">bit </span><span class="s2">= </span><span class="s1">int</span><span class="s2">(</span><span class="s1">txt_size_bin</span><span class="s2">[</span><span class="s1">index</span><span class="s2">])</span>
+                    <span class="s1">red </span><span class="s2">= </span><span class="s1">pixel</span><span class="s2">[</span><span class="s6">0</span><span class="s2">]</span>
+
+                    <span class="s0">if </span><span class="s1">bit </span><span class="s2">== </span><span class="s6">1</span><span class="s2">:</span>
+                        <span class="s0">if </span><span class="s1">red </span><span class="s2">% </span><span class="s6">2 </span><span class="s2">== </span><span class="s6">0</span><span class="s2">:</span>
+                            <span class="s1">red </span><span class="s2">+= </span><span class="s6">1</span>
+                    <span class="s0">else</span><span class="s2">:</span>
+                        <span class="s0">if </span><span class="s1">red </span><span class="s2">% </span><span class="s6">2 </span><span class="s2">== </span><span class="s6">1</span><span class="s2">:</span>
+                            <span class="s1">red </span><span class="s2">-= </span><span class="s6">1</span>
+
+                    <span class="s1">img_encode</span><span class="s2">.</span><span class="s1">putpixel</span><span class="s2">((</span><span class="s1">x</span><span class="s2">, </span><span class="s1">y</span><span class="s2">), (</span><span class="s1">red</span><span class="s2">, </span><span class="s1">pixel</span><span class="s2">[</span><span class="s6">1</span><span class="s2">], </span><span class="s1">pixel</span><span class="s2">[</span><span class="s6">2</span><span class="s2">]))</span>
+                    <span class="s1">index </span><span class="s2">+= </span><span class="s6">1</span>
+
+                <span class="s0">elif </span><span class="s1">index </span><span class="s2">&lt; </span><span class="s1">len</span><span class="s2">(</span><span class="s1">txt_bin_tot</span><span class="s2">):</span>
+                    <span class="s1">bit </span><span class="s2">= </span><span class="s1">txt_bin_tot</span><span class="s2">[</span><span class="s1">index</span><span class="s2">]</span>
+                    <span class="s1">red </span><span class="s2">= </span><span class="s1">pixel</span><span class="s2">[</span><span class="s6">0</span><span class="s2">]</span>
+
+                    <span class="s0">if </span><span class="s1">bit </span><span class="s2">== </span><span class="s6">1</span><span class="s2">:</span>
+                        <span class="s0">if </span><span class="s1">red </span><span class="s2">% </span><span class="s6">2 </span><span class="s2">== </span><span class="s6">0</span><span class="s2">:</span>
+                            <span class="s1">red </span><span class="s2">+= </span><span class="s6">1</span>
+                    <span class="s0">else</span><span class="s2">:</span>
+                        <span class="s0">if </span><span class="s1">red </span><span class="s2">% </span><span class="s6">2 </span><span class="s2">== </span><span class="s6">1</span><span class="s2">:</span>
+                            <span class="s1">red </span><span class="s2">-= </span><span class="s6">1</span>
+
+                    <span class="s1">img_encode</span><span class="s2">.</span><span class="s1">putpixel</span><span class="s2">((</span><span class="s1">x</span><span class="s2">, </span><span class="s1">y</span><span class="s2">), (</span><span class="s1">red</span><span class="s2">, </span><span class="s1">pixel</span><span class="s2">[</span><span class="s6">1</span><span class="s2">], </span><span class="s1">pixel</span><span class="s2">[</span><span class="s6">2</span><span class="s2">]))</span>
+                    <span class="s1">index </span><span class="s2">+= </span><span class="s6">1</span>
+
+                <span class="s0">else</span><span class="s2">:</span>
+                    <span class="s1">img_encode</span><span class="s2">.</span><span class="s1">putpixel</span><span class="s2">((</span><span class="s1">x</span><span class="s2">, </span><span class="s1">y</span><span class="s2">), </span><span class="s1">pixel</span><span class="s2">)  </span><span class="s5"># Copie le pixel d'origine si aucun bit n'est à encoder.</span>
+
+        <span class="s1">img_encode</span><span class="s2">.</span><span class="s1">save</span><span class="s2">(</span><span class="s1">img_final_path</span><span class="s2">)  </span><span class="s5"># Sauvegarde l'image encodée.</span>
+        <span class="s0">return </span><span class="s4">&quot;L'image a été encodée et sauvegardée sous le nom 'Image_encode.png'.&quot;</span>
+
+    <span class="s0">except </span><span class="s1">FileNotFoundError</span><span class="s2">:</span>
+        <span class="s0">return </span><span class="s4">&quot;Erreur : Le fichier image spécifié est introuvable.&quot;</span>
+    <span class="s0">except </span><span class="s1">Exception </span><span class="s0">as </span><span class="s1">e</span><span class="s2">:</span>
+        <span class="s0">return </span><span class="s4">f&quot;Erreur inattendue : </span><span class="s0">{</span><span class="s1">e</span><span class="s0">}</span><span class="s4">&quot;</span>
+
+
+<span class="s0">if </span><span class="s1">__name__ </span><span class="s2">== </span><span class="s4">&quot;__main__&quot;</span><span class="s2">:</span>
+
+    <span class="s1">texte </span><span class="s2">= </span><span class="s4">&quot;&quot;&quot; 
+    ········································· 
+    : ______   ______ ______   ______ _____ : 
+    :|  _ \ \ / / ___|  _ \ \ / /  _ \_   _|: 
+    :| |_) \ V / |   | |_) \ V /| |_) || |  : 
+    :|  __/ | || |___|  _ &lt; | | |  __/ | |  : 
+    :|_|    |_| \____|_| \_\|_| |_|    |_|  : 
+    ········································· 
+    &quot;&quot;&quot;</span>
+    <span class="s0">for </span><span class="s1">char </span><span class="s0">in </span><span class="s1">texte</span><span class="s2">:</span>
+        <span class="s1">print</span><span class="s2">(</span><span class="s1">char</span><span class="s2">, </span><span class="s1">end</span><span class="s2">=</span><span class="s4">''</span><span class="s2">, </span><span class="s1">flush</span><span class="s2">=</span><span class="s0">True</span><span class="s2">)  </span><span class="s5"># Affiche un caractère sans retour à la ligne</span>
+        <span class="s1">time</span><span class="s2">.</span><span class="s1">sleep</span><span class="s2">(</span><span class="s6">0.025</span><span class="s2">)  </span><span class="s5"># Ajustez la durée pour contrôler la vitesse</span>
+    <span class="s1">msg </span><span class="s2">= </span><span class="s1">input</span><span class="s2">(</span><span class="s4">&quot;Entrez le message à cacher : &quot;</span><span class="s2">)</span>
+    <span class="s1">path </span><span class="s2">= </span><span class="s1">input</span><span class="s2">(</span><span class="s4">&quot;Entrez le chemin d'accès à l'image originale : &quot;</span><span class="s2">)</span>
+    <span class="s1">result </span><span class="s2">= </span><span class="s1">hide_msg</span><span class="s2">(</span><span class="s1">msg</span><span class="s2">, </span><span class="s1">path</span><span class="s2">)</span>
+    <span class="s0">if </span><span class="s1">result</span><span class="s2">:</span>
+        <span class="s1">print</span><span class="s2">(</span><span class="s1">result</span><span class="s2">)</span></pre>
+</body>
+</html>

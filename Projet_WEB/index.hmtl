@@ -1,1 +1,85 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8"/>
+        <title>Des documents stockés sur ADN entrent aux Archives nationales</title>
+		<link rel="stylesheet" type="text/css" href="M:\NSI\WEB\site_intro\css\style.css"/>
+		<meta name="viewport" content="width=device-width, user-scalable=no">
+    </head>
 
+    <body>
+		<header>
+			<h1>Mon site</h1>
+			<nav>
+				<button id="close" href="#">×</button>
+				<ul>
+					<li><a href="index.html">Accueil</a></li>
+					<li><a href="tech.html">Tech</a></li>
+					<li><a href="science.html">Science</a></li>
+				</ul>
+			</nav>
+			<button id="open" href="#"><img src="images/menu.png"/></button>
+		</header>
+
+        <section>
+            <article>
+                <h2>Des documents stockés sur ADN entrent aux Archives nationales</h2>
+                <img src= "M:\NSI\WEB\site_intro\images\capsule_adn.jpg" alt="Capsule ADN"/>
+                
+		Par Vincent Glavieux le 30.11.2021
+
+
+		<p>La Déclaration des droits de l’homme et du citoyen de 1789 et la Déclaration des droits de la femme et de la citoyenne de 1791 ont été encodées sur ADN et entreposées aux Archives nationales, au milieu des documents les plus prestigieux de l’histoire de France. Une première symbolique.</p>
+
+		<p>Le moment est solennel, émouvant, et en même temps un peu désuet. Mardi 23 novembre, deux documents ont été ajoutés dans l’Armoire de fer, ce coffre-fort qui, aux Archives nationales, en plein cœur de Paris, renferme les documents les plus précieux de l’histoire de France. Les deux textes détonnent, non en raison de leur contenu – il s’agit de la Déclaration des droits de l’homme et du citoyen de 1789 et la Déclaration des droits de la femme et de la citoyenne de 1791 –, mais de leur format : ils ont été encodés sur de l’ADN synthétique et enfermés dans de minuscules capsules en acier inoxydable !</p>
+
+		<p>Des données informatiques transformées suivant le code de l’ADN</p>
+
+		<p>À l’initiative de ce projet intitulé "La Révolution de l’ADN", deux biologistes du laboratoire de biologie computationnelle et quantitative de Sorbonne Université, à Paris : Stéphane Lemaire, directeur de recherche CNRS, et Pierre Crozet, maître de conférences.</p>
+
+		<p>Le duo et son équipe ont, pour ce faire, mis au point une stratégie qui s’inspire, et même utilise, le vivant : leur algorithme transforme les données informatiques suivant le code de l’ADN ; ces données sont ensuite stockées sur de l’ADN de synthèse ressemblant à des molécules que l’on trouve dans le vivant. Enfin, elles sont dupliquées à l’aide de bactéries Escherichia coli, organisme modèle très étudié et très utilisé en biologie.</p>
+
+		<p>Cette stratégie a permis aux biologistes français d’obtenir plus de 100 milliards de copies de chaque Déclaration. L’ensemble de ces copies a été enfermé dans deux capsules (une par texte) où elles pourront être conservées intactes pendant plusieurs dizaines de milliers d’années, assurent Stéphane Lemaire et Pierre Crozet.</p>
+
+		<p>Un certain coût d'encodage</p>
+
+		<p>La stratégie de stockage sur ADN, dont l’idée vient du physicien américain Richard Feynman, prix Nobel en 1965, se veut bien plus durable, bien plus compacte et bien moins énergivore que les méthodes numériques de stockage utilisées actuellement (DVD, disques durs, mémoire flash…). Reste un certain nombre de difficultés à lever, dont la principale est celle du coût d’encodage des données. Il faudra donc encore attendre un peu pour que l’ADN, support de l’histoire de l’évolution… devienne celui de notre histoire tout court.</p>
+
+
+		<p>https://www.sciencesetavenir.fr/archeo-paleo/patrimoine/des-documents-stockes-sur-adn-entrent-aux-archives-nationales_159533</p>
+
+
+
+            </article>
+
+            <aside>
+                <ul>
+                    <li><a href="html/science/articles/covid19.html">Covid-19 : la protection des vaccins est plus durable qu’on ne le pensait</a></li>
+                    <li><a href="html/science/articles/terre-bulle.html">La Terre se trouve au beau milieu d’une bulle de vide géante</a></li>
+                    <li><a href="html/high-tech/articles/rancongiciel.html">Un comté américain désorganisé par un rançongiciel</a></li>
+                    <li><a href="html/high-tech/articles/kosovo-crypto.html">Au nom de l'électricité, le Kosovo interdit le minage de cryptomonnaies</a></li>
+                </ul>
+            </aside>
+        </section>
+
+        <footer>
+            <h3>Sites de référence</h3>
+            <ul>
+                <li><a href="https://www.lemonde.fr/">Le Monde</a></li>
+                <li><a href="https://fr.wikipedia.org/">Wikipedia</a></li>
+                <li><a href="https://www.futura-sciences.com">Futura-science</a></li>
+            </ul>
+            <address>
+                M. WALTER
+                <a href="mailto:monnom@mondomaine">Contactez-moi !</a>
+            </address>
+            <h3>Mentions légales</h3>
+            <ul>
+                <li><a href="html/legal/site.html">Mentions propres au site du particulier</a></li>
+                <li><a href="html/legal/cookies.html">Mentions relatives à l'utilisation de cookies</a></li>
+            <li><a href="html/legal/perso.html">Mentions relatives à l'utilisation de données personnelles</a></li>
+            </ul>
+        </footer>
+		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+    </body>
+</html>

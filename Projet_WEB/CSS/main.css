@@ -11,7 +11,7 @@ body {
 
 /* Header */
 header {
-    background-image: url('./images/banniere.svg'); /* Remplacez par le chemin de votre image */
+    background-image: url('https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSZTt3CBM5gB7pBlVOmA0J4-0SgGPeCrgRyvg&s'); /* Remplacez par le chemin de votre image */
     background-size: cover;  /* L'image couvre toute la surface du header */
     background-position: center; /* L'image est centrée dans le header */
     padding: 20px;

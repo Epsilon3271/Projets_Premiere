@@ -11,13 +11,17 @@ body {
 
 /* Header */
 header {
-    background-color: #fff;
+    background-image: url('./images/banniere.svg'); /* Remplacez par le chemin de votre image */
+    background-size: cover;  /* L'image couvre toute la surface du header */
+    background-position: center; /* L'image est centrée dans le header */
     padding: 20px;
     display: flex;
     justify-content: space-between;
     align-items: center;
     box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    color: white; /* Texte en blanc pour un meilleur contraste */
 }
+
 
 header .logo img {
     height: 190px; /* Taille du logo réduite */

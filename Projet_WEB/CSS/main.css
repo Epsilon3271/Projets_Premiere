@@ -9,7 +9,7 @@ body {
     min-height: 100vh;
 }
 
-/* Header cjharge fils de pute */
+/* Header */
 header {
     background-color: #fff;
     padding: 20px;
@@ -20,7 +20,7 @@ header {
 }
 
 header .logo img {
-    height: 30px; /* Taille du logo réduite */
+    height: 50px; /* Taille du logo réduite */
     width: auto;
 }
 

@@ -1,12 +1,53 @@
 <!DOCTYPE html>
-<html>
-    <head>
-        <meta charset="utf-8"/>
-        <title>Zento</title>
-        <link rel="stylesheet" type="text/css" href="./CSS/main.css"/>
-        <link rel="shortcut icon" type="image/svg+xml" href="./images/Logo.svg" sizes="64x64"/>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Zento</title>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&family=Open+Sans:wght@400;600&display=swap" rel="stylesheet">
+    <link rel="shortcut icon" type="image/svg" href="./images/Logo.svg"/>
+    <link rel="stylesheet" type="text/css" href="./CSS/main.css"/>
+</head>
+<body>
+    <header>
+        <div class="logo">Logo</div>
+        <nav>
+            <ul>
+                <li><a href="#">Accueil</a></li>
+                <li><a href="#">Menu</a></li>
+            </ul>
+        </nav>
+    </header>
 
-    </head>
-    <body>
-    </body>
+    <main>
+        <section class="reservation-container">
+            <h2>Réservez votre table</h2>
+            <div class="reservation-card">
+                <div class="reservation-info">
+                    <span class="day">Lundi</span>
+                    <span class="menu">Menu Spécial</span>
+                </div>
+                <div class="actions">
+                    <a href="#" class="details-link">Détails</a>
+                    <a href="#" class="reserve-link">Réserver</a>
+                </div>
+            </div>
+            <div class="reservation-card">
+                <div class="reservation-info">
+                    <span class="day">Mardi</span>
+                    <span class="menu">Menu Végétarien</span>
+                </div>
+                <div class="actions">
+                    <a href="#" class="details-link">Détails</a>
+                    <a href="#" class="reserve-link">Réserver</a>
+                </div>
+            </div>
+            <!-- Ajoutez plus de cartes ici -->
+        </section>
+    </main>
+
+    <footer>
+        <p>&copy; 2025 Réservation en ligne</p>
+    </footer>
+</body>
 </html>

@@ -11,7 +11,7 @@ body {
 
 /* Header */
 header {
-    background-image: url('https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSZTt3CBM5gB7pBlVOmA0J4-0SgGPeCrgRyvg&s'); /* Remplacez par le chemin de votre image */
+    background-image: url('https://raw.githubusercontent.com/Epsilon3271/Projets_Premiere/f09bc9446fe1a3874c83ded019db681d47a96c8d/Projet_WEB/images/banniere.svg'); /* Remplacez par le chemin de votre image */
     background-size: cover;  /* L'image couvre toute la surface du header */
     background-position: center; /* L'image est centrée dans le header */
     padding: 20px;

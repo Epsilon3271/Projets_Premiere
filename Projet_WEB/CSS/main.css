@@ -4,6 +4,9 @@ body {
     margin: 0;
     padding: 0;
     background-color: #f4f4f4;
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
 }
 
 /* Header */
@@ -16,11 +19,9 @@ header {
     box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
 }
 
-header .logo {
-    font-family: 'Montserrat', sans-serif;
-    font-size: 24px;
-    font-weight: 700;
-    color: #333;
+header .logo img {
+    height: 40px; /* Ajustez la taille du logo */
+    width: auto;
 }
 
 nav ul {
@@ -43,6 +44,7 @@ nav ul li a:hover {
 
 /* Main Section */
 main {
+    flex-grow: 1; /* Permet de prendre l'espace restant entre header et footer */
     padding: 50px 20px;
 }
 
@@ -104,3 +106,38 @@ footer {
     color: #777;
 }
 
+/* Styles Responsives */
+@media (max-width: 768px) {
+    header {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+
+    nav ul {
+        flex-direction: column;
+        gap: 10px;
+    }
+
+    .reservation-container {
+        padding: 20px;
+    }
+
+    .reservation-card {
+        padding: 15px;
+    }
+}
+
+@media (max-width: 480px) {
+    .reservation-card {
+        padding: 10px;
+    }
+
+    .reservation-info {
+        font-size: 14px;
+    }
+
+    .actions a {
+        font-size: 14px;
+        margin-right: 10px;
+    }
+}

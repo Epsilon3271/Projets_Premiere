@@ -12,8 +12,10 @@ body {
 /* Header */
 header {
     background-image: url('https://raw.githubusercontent.com/Epsilon3271/Projets_Premiere/f09bc9446fe1a3874c83ded019db681d47a96c8d/Projet_WEB/images/banniere.svg'); /* Remplacez par le chemin de votre image */
-    background-size: cover;  /* L'image couvre toute la surface du header */
-    background-position: center; /* L'image est centrée dans le header */
+    background-size: cover; /* Couvre toute la surface du header */
+    background-position: center top; /* Positionne l'image en haut et la centre horizontalement */
+    background-repeat: no-repeat; /* Empêche l'image de se répéter */
+    height: 200px; /* Ajuste la hauteur du header */
     padding: 20px;
     display: flex;
     justify-content: space-between;

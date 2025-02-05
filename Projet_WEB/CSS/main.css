@@ -1,7 +1,7 @@
 .click-button {
   width: 100px;
   height: 100px;
-  background: url('./images/bitcoin_img.svg') no-repeat center/contain;
+  background: url('https://raw.githubusercontent.com/Epsilon3271/Projets_Premiere/431964615506fca50e5bd247d199b70e7419de93/Projet_WEB/images/bitcoin_img.svg') no-repeat center/contain;
   border: none;
   background-color: transparent;
   cursor: pointer;

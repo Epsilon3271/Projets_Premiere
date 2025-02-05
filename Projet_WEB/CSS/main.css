@@ -1,3 +1,20 @@
+.click-button {
+  background: none;
+  border: none;
+  padding: 0;
+  cursor: pointer;
+}
+
+.click-button svg {
+  width: 100px; /* Ajuste la taille du bouton */
+  height: 100px;
+  transition: transform 0.2s ease-in-out;
+}
+
+.click-button:hover svg {
+  transform: scale(1.1); /* Effet zoom au survol */
+}
+
 footer {
     background-color: #fff;
     text-align: center;

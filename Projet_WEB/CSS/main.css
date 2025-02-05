@@ -6,6 +6,15 @@
   background-color: transparent;
   cursor: pointer;
 }
+header {
+    background-color: #faf;
+    text-align: center;
+    padding: 20px;
+    border-top: 1px solid #ddd;
+    font-size: 14px;
+    color: #777;
+}
+
 
 footer {
     background-color: #fff;

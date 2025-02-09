@@ -37,6 +37,19 @@ html, body {
     text-align: center; 
 }
 
+.btn{
+    background: none;
+    border: none;
+    padding: 0;
+    cursor: pointer;
+}
+
+.btn img {
+    width: 200px; /* Ajuste la taille selon tes besoins */
+    height: auto;
+}
+
+
 footer {
     background: #fafc;
     color: black;

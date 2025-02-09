@@ -6,10 +6,10 @@ document.addEventListener("DOMContentLoaded", function() {
 
     button.addEventListener("click", function() {
         score++;
+        scoreElement.textContent = score;
         if (score == bute) {
             alert(`Score de ${bute} atteint`);
             bute *= 2;
         }
-        scoreElement.textContent = score;
     });
 });

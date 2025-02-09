@@ -10,6 +10,7 @@ document.addEventListener("DOMContentLoaded", function() {
         if (score == bute) {
             alert(`Score de ${bute} atteint`);
             bute *= 2;
+
         }
     });
 });

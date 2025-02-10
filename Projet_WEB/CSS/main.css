@@ -8,7 +8,6 @@ header {
     box-shadow: 10px 10px 15px rgba(0, 0, 0, 0.5);
 }
 
-
 html, body {
     height: 100%;
     margin: 0;
@@ -23,18 +22,34 @@ html, body {
 .content {
     flex: 1;
     display: flex;
-    justify-content: center; 
-    align-items: center; 
+    flex-direction: column; /* Aligne les éléments en colonne */
+    justify-content: center;
+    align-items: center; /* Centre horizontalement */
 }
 
 .box {
-    background-color: white; /
+    background-color: white;
     padding: 30px;
     border-radius: 15px;
-    box-shadow: 10px 10px 15px rgba(0, 0, 0, 0.8); 
-    max-width: 500px; 
-    width: 80%; 
-    text-align: center; 
+    box-shadow: 10px 10px 15px rgba(0, 0, 0, 0.8);
+    max-width: 500px;
+    width: 80%;
+    text-align: center;
+    margin-bottom: 20px; /* Ajoute un espace sous .box */
+}
+
+.box_achats {
+    background-color: white;
+    padding: 30px;
+    border-radius: 15px;
+    box-shadow: 10px 10px 15px rgba(0, 0, 0, 0.8);
+    max-width: 500px;
+    width: 80%;
+    text-align: center;
+    margin-bottom: 20px;
+
+    text-align: left;
+
 }
 
 .btn{

@@ -4,19 +4,21 @@ html, body {
 }
 
 header {
-    background-image: url('.images/banniere.svg'); /* Remplace par le chemin de ton image */
-    background-size: cover; /* Ajuste l'image pour couvrir toute la bannière */
-    background-position: center; /* Centre l'image */
+    background-image: url('https://raw.githubusercontent.com/Epsilon3271/Projets_Premiere/b687fe69592523d3320904012f24b50121b4a269/Projet_WEB/images/banni%C3%A8re.svg');
+    background-size: cover;
+    background-position: bottom center;
     background-repeat: no-repeat;
+    background-attachment: fixed;
 
     background-color: #fafc;
     text-align: center;
-    padding: 20px;
+    padding: 50px;
     border-top: 1px solid #ddd;
     font-size: 20px;
     color: #b23cb2cc;
     box-shadow: 10px 10px 15px rgba(0, 0, 0, 0.5);
 }
+
 
 main {
     margin-top:20px;

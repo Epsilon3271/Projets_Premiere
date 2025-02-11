@@ -1,6 +1,11 @@
 html, body {
-    height: 100%;
+    height: 100%; /* Assure que le body prend toute la hauteur de la fenêtre */
     margin: 0;
+}
+
+body {
+    display: flex;
+    flex-direction: column; /* Dispose les éléments en colonne */
 }
 
 header {
@@ -13,64 +18,84 @@ header {
     box-shadow: 10px 10px 15px rgba(0, 0, 0, 0.5);
     position: relative;
 }
-/*
-.titre_header {
-    position: absolute;
-    top: 0;
-    left: 20;
-    font-size: 2em;
-    color: black;
-    text-align: right;
-    padding-bottom: 10px;
-    margin-right: 20px;
-    box-shadow: inset 0 -3px 0 0 rgba(178, 60, 178, 0.5);
-}
-*/
 
 .titre_header {
     position: absolute;
     top: 0;
     right: 20;
     font-size: 2em;
-    color: black; /* Couleur de la police */
+    font-family: 'Merriweather', serif;
+    color: black;
     text-align: right;
     padding-bottom: 10px;
     margin-right: 20px;
-    /*display: inline-block; /* Pour que le pseudo-élément soit aligné avec le texte */
 }
 
 .titre_header::after {
     content: "";
     display: block;
-    width: 150%; /* Ajuste la longueur du trait ici */
-    height: 3px; /* Taille du trait */
-    background-color: rgba(250, 250, 250, 0.5); /* Couleur du trait */
-    margin: 0 auto; /* Centrer le trait sous le texte */
+    width: 150%;
+    height: 3px;
+    background-color: rgba(134, 212, 69, 0.48);
+    margin: 0 auto;
+}
+
+.titre2_header {
+    position: absolute;
+    top: 15;
+    left: 20;
+    font-family: 'Merriweather', serif;
+    color: black;
+    text-align: right;
+    padding-bottom: 10px;
+    margin-right: 20px;
 }
 
 main {
     margin-top: 20px;
     margin-left: 20px;
     margin-right: 20px;
-    margin-bottom: 20px;
+    margin-bottom: 60px; /* Ajout d'un espace en bas pour éviter le chevauchement du footer */
     display: flex;
-    flex-direction: row; /* Correction de la valeur "linear" à "row" */
+    flex-wrap: wrap;
+    gap: 20px;
+    flex-grow: 1; /* Permet à main de prendre l'espace restant */
 }
 
-.box, .box_achats {
+.box_lundi, .box_mardi, .box_mercredi, .box_jeudi, .box_vendredi {
     background-color: white;
     padding: 30px;
     border-radius: 15px;
     box-shadow: 10px 10px 15px rgba(0, 0, 0, 0.8);
     max-width: 500px;
-    width: 80%;
+    width: 100%; /* Les boxes prennent toute la largeur de leur conteneur */
     text-align: center;
     margin-bottom: 20px;
+    position: relative; /* Nécessaire pour positionner des éléments à l'intérieur */
 }
 
-.box_achats {
-    text-align: left;
+.titre_box {
+    position: absolute; /* Position absolue pour placer le titre dans le coin */
+    top: 10px; /* Un petit écart du haut */
+    left: 10px; /* Un petit écart du côté gauche */
+    font-family: 'Lora', sans-serif;
+    font-size: 1.5em; /* Ajustez la taille du texte selon vos besoins */
+    margin: 0; /* Évite les marges par défaut */
+    text-align: left; /* Alignement à gauche du texte */
 }
+
+.titre_box::after {
+    content: "";
+    display: block;
+    position: absolute;
+    bottom: -5px; /* Place le trait juste en dessous du titre */
+    left: 0;
+    width: 102%; /* Le trait prend toute la largeur de la box */
+    height: 3px;
+    background-color: rgba(134, 212, 69, 0.48);
+}
+
+
 
 .btn {
     background: none;
@@ -85,15 +110,29 @@ main {
 }
 
 footer {
-    background: #fafc;
-    position: fixed;
-    bottom: 0;
-    left: 0;
-    right: 0;
+    background: rgba(134, 212, 69, 0.6);
     width: 100%;
     padding: 10px;
     box-sizing: border-box;
     text-align: center;
     color: black;
     font-size: 15px;
+    position: relative;
+    margin-top: auto; /* Pousse le footer vers le bas */
+}
+
+@media (min-width: 768px) {
+    main {
+        flex-direction: row; /* Les boxes se placent horizontalement sur les grands écrans */
+    }
+
+    .box, .box_achats {
+        width: calc(50% - 10px); /* Deux boxes par ligne avec un écart entre elles */
+    }
+}
+
+@media (min-width: 1024px) {
+    .box, .box_achats {
+        width: calc(33.33% - 13.33px); /* Trois boxes par ligne avec un écart entre elles */
+    }
 }

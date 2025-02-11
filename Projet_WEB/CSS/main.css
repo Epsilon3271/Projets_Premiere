@@ -1,4 +1,14 @@
+html, body {
+    height: 100%;
+    margin: 0;
+}
+
 header {
+    background-image: url('.images/banniere.svg'); /* Remplace par le chemin de ton image */
+    background-size: cover; /* Ajuste l'image pour couvrir toute la bannière */
+    background-position: center; /* Centre l'image */
+    background-repeat: no-repeat;
+
     background-color: #fafc;
     text-align: center;
     padding: 20px;
@@ -8,23 +18,13 @@ header {
     box-shadow: 10px 10px 15px rgba(0, 0, 0, 0.5);
 }
 
-html, body {
-    height: 100%;
-    margin: 0;
-}
-
-.container {
-    display: flex;
-    flex-direction: column;
-    min-height: 100vh;
-}
-
-.content {
-    flex: 1;
-    display: flex;
-    flex-direction: column; /* Aligne les éléments en colonne */
-    justify-content: center;
-    align-items: center; /* Centre horizontalement */
+main {
+    margin-top:20px;
+    margin-left:20px;
+    margin-rigth:20px;
+    margin-bottom:20px;
+    display :flex;
+    flex-direction : linear;
 }
 
 .box {
@@ -35,7 +35,7 @@ html, body {
     max-width: 500px;
     width: 80%;
     text-align: center;
-    margin-bottom: 20px; /* Ajoute un espace sous .box */
+    margin-bottom: 20px;
 }
 
 .box_achats {
@@ -47,9 +47,7 @@ html, body {
     width: 80%;
     text-align: center;
     margin-bottom: 20px;
-
     text-align: left;
-
 }
 
 .btn{
@@ -60,15 +58,23 @@ html, body {
 }
 
 .btn img {
-    width: 200px; /* Ajuste la taille selon tes besoins */
+    width: 200px;
     height: auto;
 }
 
 
 footer {
     background: #fafc;
-    color: black;
-    text-align: center;
+    position : fixed;
+    bottom: 0%;
+    left : 0%;
+    rigth : 0%;
+    width: 100%;
     padding: 10px;
+
+    box-sizing : border-box;
+    text-align: center;
+    color: black;
+
     font-size: 15px;
 }

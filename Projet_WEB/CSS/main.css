@@ -1,11 +1,12 @@
 html, body {
-    height: 100%; /* Assure que le body prend toute la hauteur de la fenêtre */
+    height: 100%;
     margin: 0;
 }
 
 body {
     display: flex;
-    flex-direction: column; /* Dispose les éléments en colonne */
+    flex-direction: column;
+    min-height: 100vh;
 }
 
 header {
@@ -22,19 +23,19 @@ header {
 .titre_header {
     position: absolute;
     top: 0;
-    right: 20;
+    left: 20px;
     font-size: 2em;
     font-family: 'Merriweather', serif;
     color: black;
-    text-align: right;
+    text-align: left;
     padding-bottom: 10px;
-    margin-right: 20px;
+    margin-left: 20px;
 }
 
 .titre_header::after {
     content: "";
     display: block;
-    width: 150%;
+    width: 110%;
     height: 3px;
     background-color: rgba(134, 212, 69, 0.48);
     margin: 0 auto;
@@ -42,24 +43,24 @@ header {
 
 .titre2_header {
     position: absolute;
-    top: 15;
-    left: 20;
+    top: 15px;
+    left: 20px;
     font-family: 'Merriweather', serif;
     color: black;
-    text-align: right;
+    text-align: left;
+    padding-top:40px;
     padding-bottom: 10px;
-    margin-right: 20px;
+    margin-left: 20px;
 }
 
 main {
-    margin-top: 20px;
-    margin-left: 20px;
-    margin-right: 20px;
-    margin-bottom: 60px; /* Ajout d'un espace en bas pour éviter le chevauchement du footer */
+    flex-grow: 1;
     display: flex;
     flex-wrap: wrap;
     gap: 20px;
-    flex-grow: 1; /* Permet à main de prendre l'espace restant */
+    justify-content: center;
+    align-items: center;
+    margin: 20px;
 }
 
 .box_lundi, .box_mardi, .box_mercredi, .box_jeudi, .box_vendredi {
@@ -68,34 +69,48 @@ main {
     border-radius: 15px;
     box-shadow: 10px 10px 15px rgba(0, 0, 0, 0.8);
     max-width: 500px;
-    width: 100%; /* Les boxes prennent toute la largeur de leur conteneur */
-    text-align: center;
+    width: 100%;
+    text-align: justify;
     margin-bottom: 20px;
-    position: relative; /* Nécessaire pour positionner des éléments à l'intérieur */
+    position: relative;
 }
 
 .titre_box {
-    position: absolute; /* Position absolue pour placer le titre dans le coin */
-    top: 10px; /* Un petit écart du haut */
-    left: 10px; /* Un petit écart du côté gauche */
+    position: absolute;
+    top: 10px;
+    left: 10px;
     font-family: 'Lora', sans-serif;
-    font-size: 1.5em; /* Ajustez la taille du texte selon vos besoins */
-    margin: 0; /* Évite les marges par défaut */
-    text-align: left; /* Alignement à gauche du texte */
+    font-size: 1.5em;
+    margin: 0;
+    text-align: left;
 }
 
 .titre_box::after {
     content: "";
     display: block;
     position: absolute;
-    bottom: -5px; /* Place le trait juste en dessous du titre */
+    bottom: -5px;
     left: 0;
-    width: 102%; /* Le trait prend toute la largeur de la box */
+    width: 102%;
     height: 3px;
     background-color: rgba(134, 212, 69, 0.48);
 }
 
+.titre2_box{
+    padding-top:5px;
+    font-style: italic;
+    font-weight: normal;
+}
 
+.titre3_box{
+    font-style: italic;
+    font-weight: normal;
+    text-align: center;
+}
+
+.classe{
+    font-weight: 800;
+}
 
 .btn {
     background: none;
@@ -118,21 +133,21 @@ footer {
     color: black;
     font-size: 15px;
     position: relative;
-    margin-top: auto; /* Pousse le footer vers le bas */
+    margin-top: auto;
 }
 
 @media (min-width: 768px) {
     main {
-        flex-direction: row; /* Les boxes se placent horizontalement sur les grands écrans */
+        flex-direction: row;
     }
 
-    .box, .box_achats {
-        width: calc(50% - 10px); /* Deux boxes par ligne avec un écart entre elles */
+    .box_lundi, .box_mardi, .box_mercredi, .box_jeudi, .box_vendredi {
+        width: calc(50% - 10px);
     }
 }
 
 @media (min-width: 1024px) {
-    .box, .box_achats {
-        width: calc(33.33% - 13.33px); /* Trois boxes par ligne avec un écart entre elles */
+    .box_lundi, .box_mardi, .box_mercredi, .box_jeudi, .box_vendredi {
+        width: calc(33.33% - 13.33px);
     }
 }

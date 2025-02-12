@@ -120,20 +120,54 @@ main {
     font-size:22px;
 }
 
-.btn {
-    background: none;
-    border: none;
-    padding: 0;
-    cursor: pointer;
+.box-achats {
+    display: flex;
+    flex-direction: column;
+    align-items: center; /* Centre horizontalement */
+    justify-content: center; /* Centre verticalement */
+    gap: 10px; /* Espace entre les éléments */
+    margin-top: 20px; /* Pour éviter qu'ils soient collés au texte */
 }
 
-.btn img {
-    width: 200px;
-    height: auto;
+.titre_portions{
+    font-weight: normal;
+    font-family: 'Arial', sans-serif;
+    font-size:14px;
+}
+.portions {
+    margin-top: 10px;
+    display: inline-flex; /* inline-flex permet à la div de s'adapter automatiquement à son contenu */
+    align-items: center;
+    justify-content: center;
+    background-color: rgba(134, 212, 69, 0.9);
+    color: white;
+    border-radius: 15px;
+    padding: 15px; /* Ajoute un espace de 10px autour du texte */
+    font-size: 16px;
+    text-align: center;
+    white-space: nowrap; /* Empêche le texte de passer à la ligne */
+}
+
+
+
+.bouton-achat {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: rgba(134, 212, 69, 0.9);
+    color: white;
+    border: none;
+    border-radius: 15px;
+    padding: 5px 10px;
+    font-size: 16px;
+    cursor: pointer;
+    width: 105px;
+    height: 50px;
+    text-align: center;
 }
 
 footer {
-    background: rgba(134, 212, 69, 0.6);
+    background: rgba(134, 212, 69, 0.8);
     width: 100%;
     padding: 10px;
     box-sizing: border-box;

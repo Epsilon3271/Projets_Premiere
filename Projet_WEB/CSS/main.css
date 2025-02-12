@@ -7,6 +7,7 @@ body {
     display: flex;
     flex-direction: column;
     min-height: 100vh;
+
 }
 
 header {
@@ -77,8 +78,9 @@ main {
 
 .titre_box {
     position: absolute;
+    padding-top:5px;
     top: 10px;
-    left: 10px;
+    left: 30px;
     font-family: 'Lora', sans-serif;
     font-size: 1.5em;
     margin: 0;
@@ -110,6 +112,12 @@ main {
 
 .classe{
     font-weight: 800;
+}
+
+.menu{
+    text-align:left;
+    padding-left:30px;
+    font-size:22px;
 }
 
 .btn {

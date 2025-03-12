@@ -147,7 +147,6 @@ main {
     text-align: center;
     white-space: nowrap; /* Empêche le texte de passer à la ligne */
 }
-
 .bouton-achat {
     display: flex;
     align-items: center;
@@ -162,7 +161,9 @@ main {
     width: 120px;
     height: 60px;
     text-align: center;
+    transition: background-color 0.3s, color 0.3s;
 }
+
 
 footer {
     background: rgba(134, 212, 69, 0.8);

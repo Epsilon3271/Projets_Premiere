@@ -9,12 +9,20 @@
     <script src="./JavaScript/main.js" defer></script>
 </head>
 <body>
+
     <header>
         <h1 class="titre_header">Le Restaurant à emporter</h1>
         <h2 class="titre2_header">Les productions de nos élèves à emporter.</h2>
     </header>
 
     <main>
+        <div class="overlay" id="popupOverlay">
+            <div class="popup">
+                <h1>Je passe ma commande</h1>
+                <p>Ceci est une pop-up.</p>
+                <button onclick="closePopup()">Fermer</button>
+            </div>
+        </div>
 
         <div class = "box_lundi">
             <h1 class="titre_box">Lundi :</h1>
@@ -31,7 +39,7 @@
             <h4 class="titre3_box">Production réalisé par la classe de <span class="classe">T-STHR</span> </h4>
 
             <div id="commande"class="box-achats">
-                <button class="bouton-achat">Passer ma commande</button>
+                <button class="bouton-achat" onclick="openPopup()">Passer ma commande</button>
 
                 <div class="portions">
                     <h3 class="titre_portions">Portions restantes : 15</h3>

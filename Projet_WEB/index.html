@@ -15,6 +15,24 @@
         <h2 class="titre2_header">Les productions de nos élèves à emporter.</h2>
     </header>
 
+    <div class="overlay" id="overlay">
+        <div class="popup">
+            <h1>Noter ce site</h1>
+            <form id="rating-form">
+                <label for="rating">Choisissez une note (0-5):</label>
+                <div class="rating-container">
+                    <input type="radio" id="rate-0" name="rating" value="0">
+                    <input type="radio" id="rate-1" name="rating" value="1">
+                    <input type="radio" id="rate-2" name="rating" value="2">
+                    <input type="radio" id="rate-3" name="rating" value="3">
+                    <input type="radio" id="rate-4" name="rating" value="4">
+                    <input type="radio" id="rate-5" name="rating" value="5">
+                </div>
+                <button type="submit" id="submit-btn" disabled>Confirmer</button>
+            </form>
+        </div>
+    </div>
+
     <div class="overlay" id="popupOverlay">
         <div class="popup">
             <h1>Je passe ma commande</h1>

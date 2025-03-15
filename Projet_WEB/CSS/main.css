@@ -164,7 +164,6 @@ main {
     transition: background-color 0.3s, color 0.3s;
 }
 
-
 footer {
     background: rgba(134, 212, 69, 0.8);
     width: 100%;
@@ -177,8 +176,9 @@ footer {
     margin-top: auto;
 }
 
+/* Style de l'overlay */
 .overlay {
-    display: none; /* Caché par défaut */
+    display: none;
     position: fixed;
     top: 0;
     left: 0;
@@ -187,22 +187,68 @@ footer {
     background: rgba(0, 0, 0, 0.5);
     justify-content: center;
     align-items: center;
-    z-index: 1000; /* Assure que la pop-up est au-dessus de tout */
+    z-index: 1000;
 }
 
 /* Style de la pop-up */
 .popup {
     background: white;
-    padding: 20px;
-    border-radius: 10px;
-    width: 300px;
+    padding: 25px;
+    border-radius: 15px;
+    width: 90%;
+    max-width: 400px;
     text-align: center;
-    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.3);
+    box-shadow: 0px 4px 15px rgba(0, 0, 0, 0.3);
     animation: fadeIn 0.3s ease-in-out;
-    position: relative; /* Ajouté pour éviter les conflits */
+    font-family: 'Merriweather', serif;
 }
 
-/* Animation d'apparition */
+.popup h1 {
+    font-size: 1.5em;
+    margin-bottom: 15px;
+    font-family: 'Lora', sans-serif;
+}
+
+.popup form {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.popup label {
+    font-size: 1em;
+    text-align: left;
+    display: block;
+    margin-bottom: 5px;
+}
+
+.popup input {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #86d445;
+    border-radius: 10px;
+    font-size: 1em;
+    font-family: 'Arial', sans-serif;
+}
+
+.popup button {
+    background-color: rgba(134, 212, 69, 0.9);
+    color: white;
+    border: none;
+    border-radius: 10px;
+    padding: 10px;
+    font-size: 1em;
+    cursor: pointer;
+    width: 100%;
+    transition: background-color 0.3s;
+}
+
+.popup button:hover {
+    background-color: white;
+    color: rgba(134, 212, 69, 0.9);
+    border: 2px solid rgba(134, 212, 69, 0.9);
+}
+
 @keyframes fadeIn {
     from {
         opacity: 0;

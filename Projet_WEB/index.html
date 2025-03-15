@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Le Restaurant</title>
     <link rel = "stylesheet" href = "./CSS/main.css">
-    <link rel="shortcut icon" type="image/svg" href="./images/LogoHeader.svg">
+    <link rel="shortcut icon" type="image/svg" href="./images/Logo_Restaurant.svg">
     <script src="./JavaScript/main.js" defer></script>
 </head>
 <body>
@@ -15,14 +15,26 @@
         <h2 class="titre2_header">Les productions de nos élèves à emporter.</h2>
     </header>
 
-    <main>
-        <div class="overlay" id="popupOverlay">
-            <div class="popup">
-                <h1>Je passe ma commande</h1>
-                <p>Ceci est une pop-up.</p>
-                <button onclick="closePopup()">Fermer</button>
-            </div>
+    <div class="overlay" id="popupOverlay">
+        <div class="popup">
+            <h1>Je passe ma commande</h1>
+            <form action = "http://localhost:5000/envoie" method = "POST">
+                <label for="nom">Nom</label>
+                <input type = "text" id="nom" name = "nom" oninput="this.value = this.value.toUpperCase();">
+                <br>
+                <label for="prenom">Prénom</label>
+                <input type = "text" id="prenom" name = "prenom" oninput="this.value = this.value.charAt(0).toUpperCase() + this.value.slice(1).toLowerCase();">
+                <br>
+                <label for="qte"> Nombre de portion</label>
+                <input type = "number" id ="qte" name="qte">
+                <br>
+                <button type = "submit" class="bouton-achat"> Valider ma commande</button>
+                <button class="bouton-achat" onclick="closePopup()" >Annuler</button>
+            </form>
         </div>
+    </div>
+
+    <main>
 
         <div class = "box_lundi">
             <h1 class="titre_box">Lundi :</h1>

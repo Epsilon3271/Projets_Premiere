@@ -34,7 +34,7 @@ function closePopup() {
 // Afficher la popup après 5 minutes
 setTimeout(() => {
     document.getElementById('overlay').style.display = 'flex';
-}, 300); // 5 minutes en millisecondes (300000 ms)
+}, 120000); // 5 minutes en millisecondes (300000 ms)
 
 // Fonction pour téléporter un élément à une position aléatoire sur la page
 function teleportElement(element) {

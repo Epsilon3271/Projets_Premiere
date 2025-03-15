@@ -213,6 +213,7 @@ footer {
     display: flex;
     flex-direction: column;
     gap: 10px;
+    align-items: center; /* Centrer les champs de saisie */
 }
 
 .popup label {
@@ -223,12 +224,13 @@ footer {
 }
 
 .popup input {
-    width: 100%;
+    width: 80%; /* Réduire la largeur pour un meilleur centrage */
     padding: 10px;
     border: 1px solid #86d445;
     border-radius: 10px;
     font-size: 1em;
     font-family: 'Arial', sans-serif;
+    margin: 0 auto; /* Centrer les champs */
 }
 
 .popup button {
@@ -249,6 +251,39 @@ footer {
     border: 2px solid rgba(134, 212, 69, 0.9);
 }
 
+/* Style spécifique pour le bouton "Annuler" */
+.popup .cancel-button {
+    font-size: 0.9em; /* Plus petit que le bouton "Achat" */
+    padding: 8px 12px; /* Réduire la taille */
+    width: auto; /* Ajuster la taille du bouton */
+}
+
+/* Media queries pour rendre la popup responsive */
+@media (max-width: 600px) {
+    .popup {
+        width: 95%;
+        padding: 15px;
+    }
+
+    .popup h1 {
+        font-size: 1.2em;
+    }
+
+    .popup input {
+        width: 90%;
+    }
+
+    .popup button {
+        padding: 12px;
+        font-size: 1.2em;
+    }
+
+    .popup .cancel-button {
+        font-size: 0.8em;
+        padding: 6px 10px;
+    }
+}
+
 @keyframes fadeIn {
     from {
         opacity: 0;
@@ -259,6 +294,7 @@ footer {
         transform: scale(1);
     }
 }
+
 
 @media (min-width: 768px) {
     main {

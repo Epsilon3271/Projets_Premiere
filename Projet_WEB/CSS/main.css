@@ -233,6 +233,18 @@ footer {
     margin: 0 auto; /* Centrer les champs */
 }
 
+.popup select {
+    width: 80%;
+    padding: 10px;
+    border: 1px solid #86d445;
+    border-radius: 10px;
+    font-size: 1em;
+    font-family: 'Arial', sans-serif;
+    margin: 0 auto;
+    text-align: center; /* Centre le texte horizontalement */
+    text-align-last: center; /* Pour certains navigateurs comme Firefox */
+}
+
 .popup button {
     background-color: rgba(134, 212, 69, 0.9);
     color: white;

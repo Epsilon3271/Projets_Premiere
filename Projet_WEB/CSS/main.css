@@ -317,20 +317,38 @@ footer {
     gap: 15px;
 }
 
-.rating-container input {
-    appearance: none;
-    width: 50px;
-    height: 50px;
-    border-radius: 50%;
-    background-color: #86d445;
-    cursor: pointer;
-    transition: all 0.3s ease;
+/* Masquer l'input radio de base */
+.rating-container input[type="radio"] {
+    display: none;
 }
 
-.rating-container input:checked {
+/* Style personnalisé pour le bouton radio */
+.rating-container input[type="radio"] + label {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 50px;
+    height: 50px;
+    background-color: #86d445;
+    border-radius: 50%;
+    text-align: center;
+    line-height: 50px; /* Centrer le texte verticalement */
+    font-size: 18px;
+    font-family: 'Arial', sans-serif;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    color: white;
+}
+
+.rating-container input[type="radio"]:checked + label {
     background-color: rgba(134, 212, 69, 0.9);
 }
 
+.rating-container input[type="radio"] + label:hover {
+    background-color: rgba(134, 212, 69, 0.9);
+}
+
+/* Ajout de transitions pour une meilleure interaction */
 button {
     background-color: rgba(134, 212, 69, 0.9);
     color: white;

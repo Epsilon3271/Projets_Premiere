@@ -34,7 +34,7 @@ function closePopup() {
 // Afficher la popup après 5 minutes
 setTimeout(() => {
     document.getElementById('overlay').style.display = 'flex';
-}, 120000); // 5 minutes en millisecondes (300000 ms)
+}, 300); // 5 minutes en millisecondes (300000 ms)
 
 // Fonction pour téléporter un élément à une position aléatoire sur la page
 function teleportElement(element) {
@@ -48,13 +48,14 @@ function teleportElement(element) {
     element.style.top = `${randomY}px`;
 }
 
-// Ajouter un événement de survol pour déplacer les ronds
-const ratingInputs = document.querySelectorAll('.rating-container input');
+// Ajouter un événement de survol pour déplacer les labels (ronds)
+const ratingLabels = document.querySelectorAll('.rating-container label');
 
-ratingInputs.forEach(input => {
-    input.addEventListener('mouseenter', function() {
-        if (this.value != '5') {
-            // Téléporter immédiatement le rond
+ratingLabels.forEach(label => {
+    label.addEventListener('mouseenter', function() {
+        const input = document.getElementById(this.getAttribute('for')); // Trouver l'input lié au label
+        if (input.value !== '5') {  // Ne pas déplacer le rond de la note 5
+            // Téléporter immédiatement le label
             teleportElement(this);
         }
     });
@@ -79,4 +80,6 @@ ratingForm.addEventListener('submit', function(event) {
         document.getElementById('overlay').style.display = 'none'; // Fermer la popup
     }
 });
+
+
 

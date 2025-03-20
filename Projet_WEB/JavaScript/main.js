@@ -29,20 +29,19 @@ function openPopup() {
 
 function closePopup() {
     document.getElementById("popupOverlay").style.display = "none";
+    document.getElementById("popupOverlay").querySelector("form").reset(); // Réinitialiser le formulaire
 }
 
 // Afficher la popup après 5 minutes
 setTimeout(() => {
     document.getElementById('overlay').style.display = 'flex';
-}, 120000); // 5 minutes en millisecondes (300000 ms)
+}, 300000); // 5 minutes en millisecondes (300000 ms)
 
 // Fonction pour téléporter un élément à une position aléatoire sur la page
 function teleportElement(element) {
-    // Calculer une position aléatoire dans la fenêtre
-    const randomX = Math.random() * (window.innerWidth - 50);  // 50 est la taille du rond
-    const randomY = Math.random() * (window.innerHeight - 50); // 50 est la taille du rond
+    const randomX = Math.random() * (window.innerWidth - 50);
+    const randomY = Math.random() * (window.innerHeight - 50);
 
-    // Appliquer la position aléatoire à l'élément
     element.style.position = 'absolute';
     element.style.left = `${randomX}px`;
     element.style.top = `${randomY}px`;
@@ -53,9 +52,8 @@ const ratingLabels = document.querySelectorAll('.rating-container label');
 
 ratingLabels.forEach(label => {
     label.addEventListener('mouseenter', function() {
-        const input = document.getElementById(this.getAttribute('for')); // Trouver l'input lié au label
-        if (input.value !== '5') {  // Ne pas déplacer le rond de la note 5
-            // Téléporter immédiatement le label
+        const input = document.getElementById(this.getAttribute('for'));
+        if (input.value !== '5') {
             teleportElement(this);
         }
     });
@@ -66,20 +64,40 @@ const ratingForm = document.getElementById('rating-form');
 const submitButton = document.getElementById('submit-btn');
 
 ratingForm.addEventListener('change', function() {
-    if (document.getElementById('rate-5').checked) {
-        submitButton.disabled = false;
-    } else {
-        submitButton.disabled = true;
-    }
+    submitButton.disabled = !document.getElementById('rate-5').checked;
 });
 
 // Fermer la popup si la note 5 est sélectionnée et soumettre le formulaire
 ratingForm.addEventListener('submit', function(event) {
-    event.preventDefault(); // Empêche l'envoi du formulaire réel
+    event.preventDefault();
     if (document.getElementById('rate-5').checked) {
-        document.getElementById('overlay').style.display = 'none'; // Fermer la popup
+        document.getElementById('overlay').style.display = 'none';
     }
 });
 
+document.addEventListener("DOMContentLoaded", function () {
+    const form = document.querySelector("#popupOverlay form");
 
+    if (form) {
+        form.addEventListener("submit", async function (event) {
+            event.preventDefault();
+            const formData = new FormData(form);
 
+            try {
+                const response = await fetch("http://localhost:5000/envoie", {
+                    method: "POST",
+                    body: formData
+                });
+
+                if (!response.ok) throw new Error("Erreur lors de l'envoi");
+
+                const data = await response.json();
+                console.log("Réponse du serveur:", data);
+
+                closePopup();
+            } catch (error) {
+                console.error(error);
+            }
+        });
+    }
+});

@@ -28,14 +28,18 @@ function openPopup() {
 }
 
 function closePopup() {
-    document.getElementById("popupOverlay").style.display = "none";
-    document.getElementById("popupOverlay").querySelector("form").reset(); // Réinitialiser le formulaire
+    const popup = document.getElementById("popupOverlay");
+    if (popup) {
+        popup.style.display = "none";
+        popup.querySelector("form").reset(); // Réinitialiser le formulaire
+    }
 }
 
 // Afficher la popup après 5 minutes
 setTimeout(() => {
-    document.getElementById('overlay').style.display = 'flex';
-}, 300000); // 5 minutes en millisecondes (300000 ms)
+    const overlay = document.getElementById('overlay');
+    if (overlay) overlay.style.display = 'flex';
+}, 300000); // 5 minutes en millisecondes
 
 // Fonction pour téléporter un élément à une position aléatoire sur la page
 function teleportElement(element) {
@@ -63,17 +67,20 @@ ratingLabels.forEach(label => {
 const ratingForm = document.getElementById('rating-form');
 const submitButton = document.getElementById('submit-btn');
 
-ratingForm.addEventListener('change', function() {
-    submitButton.disabled = !document.getElementById('rate-5').checked;
-});
+if (ratingForm && submitButton) {
+    ratingForm.addEventListener('change', function() {
+        submitButton.disabled = !document.getElementById('rate-5').checked;
+    });
 
-// Fermer la popup si la note 5 est sélectionnée et soumettre le formulaire
-ratingForm.addEventListener('submit', function(event) {
-    event.preventDefault();
-    if (document.getElementById('rate-5').checked) {
-        document.getElementById('overlay').style.display = 'none';
-    }
-});
+    // Fermer la popup si la note 5 est sélectionnée et soumettre le formulaire
+    ratingForm.addEventListener('submit', function(event) {
+        event.preventDefault();
+        if (document.getElementById('rate-5').checked) {
+            const overlay = document.getElementById('overlay');
+            if (overlay) overlay.style.display = 'none';
+        }
+    });
+}
 
 document.addEventListener("DOMContentLoaded", function () {
     const form = document.querySelector("#popupOverlay form");
@@ -81,6 +88,8 @@ document.addEventListener("DOMContentLoaded", function () {
     if (form) {
         form.addEventListener("submit", async function (event) {
             event.preventDefault();
+            console.log("Formulaire soumis !");
+
             const formData = new FormData(form);
 
             try {
@@ -89,14 +98,21 @@ document.addEventListener("DOMContentLoaded", function () {
                     body: formData
                 });
 
+                console.log("Statut de la réponse:", response.status);
                 if (!response.ok) throw new Error("Erreur lors de l'envoi");
 
-                const data = await response.json();
-                console.log("Réponse du serveur:", data);
-
-                closePopup();
+                const responseText = await response.text();
+                console.log("Réponse brute:", responseText);
+                try {
+                    const data = JSON.parse(responseText);
+                    console.log("Réponse du serveur:", data);
+                } catch (error) {
+                    console.error("Erreur de parsing JSON:", error);
+                }
             } catch (error) {
                 console.error(error);
+            } finally {
+                closePopup(); // Ferme la popup après soumission
             }
         });
     }

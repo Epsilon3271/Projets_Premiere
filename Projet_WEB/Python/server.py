@@ -6,8 +6,9 @@ def envoie():
     nom = request.form.get("nom")
     prenom = request.form.get("prenom")
     qte = request.form.get("qte")
+    day = request.form.get("menu")
 
-    print(f"Nom: {nom}, Prénom: {prenom}, Quantité: {qte}")
+    print(f"Nom: {nom}, Prénom: {prenom}, Quantité: {qte}, Jour:{day}")
 
     return jsonify({"message": "Données envoyées avec succès !"}), 200
 

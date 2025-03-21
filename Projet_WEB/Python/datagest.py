@@ -37,18 +37,22 @@ CREATE TABLE IF NOT EXISTS ventes (
 """)
 conn.commit()
 
-# Menu interactif
-chx = int(input(f"Quelle action voulez-vous faire sur la base de données ? \n 1: Supprimer l'ensemble des données \n 2: Ajouter des données \n 3: Afficher les données \n 4: Fermer le programme\n"))
+while True:
+    chx = int(input(f"Quelle action voulez-vous faire sur la base de données ? \n 1: Supprimer l'ensemble des données \n 2: Ajouter des données \n 3: Afficher les données \n 4: Fermer le programme\n"))
 
-if chx == 1:
-    cut()
-elif chx == 2:
-    jour = input("Entrez le jour : ")
-    qte = int(input("Entrez la quantité de portions : "))  # Conversion en int
-    add_qte(jour, qte)
-elif chx == 3:
-    print_data()
-else:
-    print("Fermeture du programme.")
+    if chx == 1:
+        cut()
+        continue
+    elif chx == 2:
+        jour = input("Entrez le jour : ")
+        qte = int(input("Entrez la quantité de portions : "))  # Conversion en int
+        add_qte(jour, qte)
+        continue
+    elif chx == 3:
+        print_data()
+        continue
+    else:
+        print("Fermeture du programme.")
+        break
 
 conn.close()  # Ferme la connexion seulement à la fin

@@ -1,6 +1,5 @@
 from flask import Flask, request, jsonify
 app = Flask(__name__)
-
 @app.route('/envoie', methods=["POST"])
 def envoie():
     nom = request.form.get("nom")

@@ -1,7 +1,6 @@
 // Sélectionner tous les boutons ayant la classe 'bouton-achat'
 var boutons = document.querySelectorAll('.bouton-achat');
 
-// Ajouter les écouteurs d'événements sur chaque bouton
 boutons.forEach(function(bouton) {
     bouton.addEventListener('mouseover', function() {
         changerCouleur(bouton, true);
@@ -39,7 +38,7 @@ function closePopup() {
 setTimeout(() => {
     const overlay = document.getElementById('overlay');
     if (overlay) overlay.style.display = 'flex';
-}, 300000); // 5 minutes en millisecondes
+}, 300000);
 
 // Fonction pour téléporter un élément à une position aléatoire sur la page
 function teleportElement(element) {
@@ -51,7 +50,6 @@ function teleportElement(element) {
     element.style.top = `${randomY}px`;
 }
 
-// Ajouter un événement de survol pour déplacer les labels (ronds)
 const ratingLabels = document.querySelectorAll('.rating-container label');
 
 ratingLabels.forEach(label => {
@@ -72,7 +70,7 @@ if (ratingForm && submitButton) {
         submitButton.disabled = !document.getElementById('rate-5').checked;
     });
 
-    // Fermer la popup si la note 5 est sélectionnée et soumettre le formulaire
+// Fermer la popup si la note 5 est sélectionnée et soumettre le formulaire
     ratingForm.addEventListener('submit', function(event) {
         event.preventDefault();
         if (document.getElementById('rate-5').checked) {

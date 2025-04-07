@@ -155,19 +155,15 @@ graph TD
 ### 3. **Fonctionnalités de l'application (vue modulaire)**
 
 ```mermaid
-  graph TD
-      App[Application Edu Data]
-      Carte[Carte interactive]
-      Fiche[Fiches établissements]
-      Stats[Statistiques par niveau]
-  
-      Stats --> Effectifs[Effectifs généraux]
-      Stats --> Genre[Répartition par genre]
-      Stats --> Spe[Choix des spécialités]
-  
-      App --> Carte
-      App --> Fiche
-      App --> Stats
+graph TD
+    A[Récupération & traitement des données]
+    B[Développement carte interactive]
+    C[Implémentation fiches + graphiques]
+    D[Tests et corrections]
+    E[Mise en ligne \(GitHub Pages\)]
+
+    A --> B --> C --> D --> E
+
 ```
 
 ---

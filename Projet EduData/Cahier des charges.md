@@ -126,60 +126,11 @@ Après sélection du **niveau souhaitée** (Première ou Terminale), les statist
 ## Annexe - Diagrammes structurels
 
 ### 1. Organisation des tâches
-```mermaid
-  flowchart TD
-      A[Données brutes (data.gouv.fr)]
-      B[Traitement des données<br>(nettoyage, structuration, agrégation)]
-      C[Backend (optionnel)<br>Python / API]
-      D[Frontend (React/Vue)<br>Carte, Graphiques, Fiches]
-      E[Interface Utilisateur (UI)<br>Responsive, intuitive]
-  
-      A --> B --> C --> D --> E
-```
----
-
-### 2. **Étapes du projet (planning prévisionnel)**
 
 ```mermaid
-graph TD
-      A[Récupération & traitement des données]
-      B[Développement carte interactive]
-      C[Implémentation fiches + graphiques]
-      D[Tests et corrections]
-      E[Mise en ligne (GitHub Pages)]
-  
-      A --> B --> C --> D --> E
-```
----
-
-### 3. **Fonctionnalités de l'application (vue modulaire)**
-
-```mermaid
-graph TD
-    A[Récupération & traitement des données]
-    B[Développement carte interactive]
-    C[Implémentation fiches + graphiques]
-    D[Tests et corrections]
-    E[Mise en ligne \(GitHub Pages\)]
-
-    A --> B --> C --> D --> E
-
-```
-
----
-
-### 4. **Parcours utilisateur (User Flow simplifié)**
-
-```mermaid
-  flowchart TD
-      Start[Utilisateur]
-      Accueil[Page d'accueil]
-      Carte[Carte interactive]
-      Fiche[Fiche établissement]
-      Stats[Statistiques niveau 1ère / Tle]
-      Filtre[Recherche / Filtrage]
-  
-      Start --> Accueil --> Carte
-      Carte --> Fiche --> Stats
-      Accueil --> Filtre --> Fiche
+  graph TD;
+      A[Début] --> B[Téléchargement des données];
+      B --> C[Nettoyage et structuration des données];
+      C --> D[Agrégation par établissement et année];
+      D --> E[Fin];
 ```

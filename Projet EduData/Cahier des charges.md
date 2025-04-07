@@ -166,3 +166,54 @@ Après sélection du **niveau souhaitée** (Première ou Terminale), les statist
       G --> H[Graphiques pour chaque spécialité];
       H --> I[Fin];
 ```
+
+### 5. Schéma global du projet
+
+```mermaid
+  graph TD;
+      A[Début] --> B[Entrée des données];
+      B --> B1[Jeux de données publics (CSV)];
+      B --> B2[API de géocodage (si nécessaire)];
+  
+      B1 --> C[Importation des données depuis data.gouv.fr];
+      B2 --> C;
+  
+      C --> D[Nettoyage et structuration des données];
+      D --> E[Agrégation par établissement, année, spécialités, genre et effectifs];
+  
+      E --> F[Traitement pour la carte interactive];
+      F --> F1[Extraction des coordonnées géographiques des lycées];
+      F1 --> G[Affichage de la carte interactive];
+  
+      G --> H[Interaction avec la carte];
+      H --> I[Affichage de la fiche établissement (popup)];
+  
+      I --> J[Nom de l’établissement];
+      I --> K[Filières proposées];
+      I --> L[Académie d’appartenance];
+      I --> M[Département d’implantation];
+      I --> N[Spécialités proposées];
+  
+      G --> O[Sélection du niveau (Première ou Terminale)];
+      O --> P[Affichage des statistiques détaillées];
+  
+      P --> Q[Effectifs généraux];
+      Q --> Q1[Effectif total et évolution];
+      P --> R[Répartition par genre];
+      R --> R1[Effectif total de filles];
+      R --> R2[Effectif total de garçons];
+      P --> S[Choix des spécialités];
+      S --> T[Graphiques des spécialités choisies];
+  
+      T --> U[Fin];
+      R1 --> U;
+      R2 --> U;
+      Q1 --> U;
+      N --> U;
+      M --> U;
+      L --> U;
+      K --> U;
+      J --> U;
+      I --> U;
+      G --> U;
+```

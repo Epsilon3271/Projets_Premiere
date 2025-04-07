@@ -172,8 +172,8 @@ Après sélection du **niveau souhaitée** (Première ou Terminale), les statist
 ```mermaid
   graph TD;
       A[Début] --> B[Entrée des données];
-      B --> B1[Jeux de données publics (CSV)];
-      B --> B2[API de géocodage (si nécessaire)];
+      B --> B1[Jeux de données publics CSV];
+      B --> B2[API de géocodage si nécessaire];
   
       B1 --> C[Importation des données depuis data.gouv.fr];
       B2 --> C;
@@ -186,7 +186,7 @@ Après sélection du **niveau souhaitée** (Première ou Terminale), les statist
       F1 --> G[Affichage de la carte interactive];
   
       G --> H[Interaction avec la carte];
-      H --> I[Affichage de la fiche établissement (popup)];
+      H --> I[Affichage de la fiche établissement popup];
   
       I --> J[Nom de l’établissement];
       I --> K[Filières proposées];
@@ -194,7 +194,7 @@ Après sélection du **niveau souhaitée** (Première ou Terminale), les statist
       I --> M[Département d’implantation];
       I --> N[Spécialités proposées];
   
-      G --> O[Sélection du niveau (Première ou Terminale)];
+      G --> O[Sélection du niveau Première ou Terminale];
       O --> P[Affichage des statistiques détaillées];
   
       P --> Q[Effectifs généraux];

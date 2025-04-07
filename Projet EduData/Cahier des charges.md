@@ -140,6 +140,17 @@ Après sélection du **niveau souhaitée** (Première ou Terminale), les statist
   graph TD;
       A[Affichage de la carte interactive] --> B[Affichage des lycées généraux];
       B --> C[Position géographique basée sur les données ou API];
-      C --> D[Affichage des "pins" interactifs];
+      C --> D[Affichage des pins interactifs];
       D --> E[Fin];
+```
+### 3. Fiche établissement (popup au click)
+```mermaid
+  graph TD;
+      A[Carte avec lycée sélectionné] --> B[Affichage de la fiche récapitulative];
+      B --> C[Nom de l'établissement];
+      B --> D[Filières proposées];
+      B --> E[Académie d'appartenance];
+      B --> F[Département d'implantation];
+      B --> G[Spécialités proposées];
+      G --> H[Fin];
 ```

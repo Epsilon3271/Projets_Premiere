@@ -154,3 +154,15 @@ Après sélection du **niveau souhaitée** (Première ou Terminale), les statist
       B --> G[Spécialités proposées];
       G --> H[Fin];
 ```
+### 4. Statistiques détaillées par niveau (Première ou Terminale)
+```mermaid
+  graph TD;
+      A[Sélection du niveau] --> B[Effectifs généraux];
+      B --> C[Effectif total et évolution];
+      A --> D[Répartition par genre];
+      D --> E[Effectif total de filles];
+      D --> F[Effectif total de garçons];
+      A --> G[Choix des spécialités];
+      G --> H[Graphiques pour chaque spécialité];
+      H --> I[Fin];
+```

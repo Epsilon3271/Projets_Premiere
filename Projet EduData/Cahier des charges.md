@@ -125,12 +125,21 @@ Après sélection du **niveau souhaitée** (Première ou Terminale), les statist
 ---
 ## Annexe - Diagrammes structurels
 
-### 1. Organisation des tâches
+### 1. Importation et traitement des données
 
 ```mermaid
   graph TD;
       A[Début] --> B[Téléchargement des données];
       B --> C[Nettoyage et structuration des données];
       C --> D[Agrégation par établissement et année];
+      D --> E[Fin];
+```
+
+### 2. Carte interactive des lycées
+```mermaid
+  graph TD;
+      A[Affichage de la carte interactive] --> B[Affichage des lycées généraux];
+      B --> C[Position géographique basée sur les données ou API];
+      C --> D[Affichage des "pins" interactifs];
       D --> E[Fin];
 ```

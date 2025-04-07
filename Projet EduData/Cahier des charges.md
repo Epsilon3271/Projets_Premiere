@@ -11,10 +11,10 @@ Développer une application web interactive permettant de visualiser, analyser e
 Les données seront récupérées à partir des jeux de données officiels disponibles sur [data.gouv.fr] :
 
 - **Données pour l'effectif total de chaque lycée** : <br>
-  [Effectif total de chaque lycée](https://www.data.gouv.fr/fr/datasets/effectifs-dans-les-enseignements-de-specialites-en-1ere-generale-par-specialites-et-selon-les-principales-triplettes/)
+  [Effectif total de chaque lycée](https://www.data.gouv.fr/fr/datasets/effectifs-deleves-par-niveau-sexe-langues-vivantes-1-et-2-les-plus-frequentes-par-lycee-denseignement-general-et-technologique-date-dobservation-au-debut-du-mois-doctobre-chaque-annee/)
 
 - **Données pour la localisation précise de chaque lycée** : <br>
-  [Données de localisations](https://www.data.gouv.fr/fr/datasets/effectifs-dans-les-enseignements-de-specialites-en-1ere-generale-par-specialites-et-selon-les-principales-triplettes/)
+  [Données de localisations](https://www.data.gouv.fr/en/datasets/adresse-et-geolocalisation-des-etablissements-denseignement-du-premier-et-second-degres-1/)
 
 - **Données pour les élèves de première** :  
   [Effectifs dans les enseignements de spécialités en 1ère générale](https://www.data.gouv.fr/fr/datasets/effectifs-dans-les-enseignements-de-specialites-en-1ere-generale-par-specialites-et-selon-les-principales-triplettes/)

@@ -1,0 +1,1122 @@
+<!DOCTYPE html>
+<html>
+<head>
+    
+    <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
+    
+        <script>
+            L_NO_TOUCH = false;
+            L_DISABLE_3D = false;
+        </script>
+    
+    <style>html, body {width: 100%;height: 100%;margin: 0;padding: 0;}</style>
+    <style>#map {position:absolute;top:0;bottom:0;right:0;left:0;}</style>
+    <script src="https://cdn.jsdelivr.net/npm/leaflet@1.9.3/dist/leaflet.js"></script>
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Leaflet.awesome-markers/2.0.2/leaflet.awesome-markers.js"></script>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/leaflet@1.9.3/dist/leaflet.css"/>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css"/>
+    <link rel="stylesheet" href="https://netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap-glyphicons.css"/>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.2.0/css/all.min.css"/>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/Leaflet.awesome-markers/2.0.2/leaflet.awesome-markers.css"/>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/python-visualization/folium/folium/templates/leaflet.awesome.rotate.min.css"/>
+    
+            <meta name="viewport" content="width=device-width,
+                initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+            <style>
+                #map_461dfedd02965a13e056e94390cc40db {
+                    position: relative;
+                    width: 100.0%;
+                    height: 100.0%;
+                    left: 0.0%;
+                    top: 0.0%;
+                }
+                .leaflet-container { font-size: 1rem; }
+            </style>
+        
+</head>
+<body>
+    
+    
+            <div class="folium-map" id="map_461dfedd02965a13e056e94390cc40db" ></div>
+        
+</body>
+<script>
+    
+    
+            var map_461dfedd02965a13e056e94390cc40db = L.map(
+                "map_461dfedd02965a13e056e94390cc40db",
+                {
+                    center: [48.8566, 2.3522],
+                    crs: L.CRS.EPSG3857,
+                    zoom: 13,
+                    zoomControl: true,
+                    preferCanvas: false,
+                }
+            );
+
+            
+
+        
+    
+            var tile_layer_d2e085987c9e4bafd4116164e3cc291a = L.tileLayer(
+                "https://tile.openstreetmap.org/{z}/{x}/{y}.png",
+                {"attribution": "\u0026copy; \u003ca href=\"https://www.openstreetmap.org/copyright\"\u003eOpenStreetMap\u003c/a\u003e contributors", "detectRetina": false, "maxNativeZoom": 19, "maxZoom": 19, "minZoom": 0, "noWrap": false, "opacity": 1, "subdomains": "abc", "tms": false}
+            );
+        
+    
+            tile_layer_d2e085987c9e4bafd4116164e3cc291a.addTo(map_461dfedd02965a13e056e94390cc40db);
+        
+    
+            var marker_3a9bbb4f687e1d8b2fbf3fa401a537c3 = L.marker(
+                [45.633226991639155, 0.1539004931016583],
+                {}
+            ).addTo(map_461dfedd02965a13e056e94390cc40db);
+        
+    
+        var popup_eeadd2dcb69f903400935dd4f2c2c3ff = L.popup({"maxWidth": "100%"});
+
+        
+            
+                var html_a054ef3d1224500a2ac5b44a65f30c7d = $(`<div id="html_a054ef3d1224500a2ac5b44a65f30c7d" style="width: 100.0%; height: 100.0%;">LYCEE GENERAL ET TECHNOLOGIQUE   IMAGE ET SON</div>`)[0];
+                popup_eeadd2dcb69f903400935dd4f2c2c3ff.setContent(html_a054ef3d1224500a2ac5b44a65f30c7d);
+            
+        
+
+        marker_3a9bbb4f687e1d8b2fbf3fa401a537c3.bindPopup(popup_eeadd2dcb69f903400935dd4f2c2c3ff)
+        ;
+
+        
+    
+    
+            var marker_454c5d4ea39f5c63574891750c073cf0 = L.marker(
+                [46.1775939773852, -1.1510104830182661],
+                {}
+            ).addTo(map_461dfedd02965a13e056e94390cc40db);
+        
+    
+        var popup_a91d0edbdd293ee51485bf22fa697a22 = L.popup({"maxWidth": "100%"});
+
+        
+            
+                var html_a259e1f3b79705408a9cba6560421a1c = $(`<div id="html_a259e1f3b79705408a9cba6560421a1c" style="width: 100.0%; height: 100.0%;">LYCEE POLYVALENT   LEONCE VIELJEUX</div>`)[0];
+                popup_a91d0edbdd293ee51485bf22fa697a22.setContent(html_a259e1f3b79705408a9cba6560421a1c);
+            
+        
+
+        marker_454c5d4ea39f5c63574891750c073cf0.bindPopup(popup_a91d0edbdd293ee51485bf22fa697a22)
+        ;
+
+        
+    
+    
+            var marker_44d7c15142fe3e35649a8c5b00f925f5 = L.marker(
+                [45.84674464949382, -1.1570495790048279],
+                {}
+            ).addTo(map_461dfedd02965a13e056e94390cc40db);
+        
+    
+        var popup_9fe79ceb25652df0de1204284112b76b = L.popup({"maxWidth": "100%"});
+
+        
+            
+                var html_d2ebb38e081ac0e35a010e9e48c39f22 = $(`<div id="html_d2ebb38e081ac0e35a010e9e48c39f22" style="width: 100.0%; height: 100.0%;">LYCEE TECHNOLOGIQUE   LYCEE DE LA MER ET DU LITTORAL</div>`)[0];
+                popup_9fe79ceb25652df0de1204284112b76b.setContent(html_d2ebb38e081ac0e35a010e9e48c39f22);
+            
+        
+
+        marker_44d7c15142fe3e35649a8c5b00f925f5.bindPopup(popup_9fe79ceb25652df0de1204284112b76b)
+        ;
+
+        
+    
+    
+            var marker_bc65f6949c95e9b7e1f9e7f6dcb2defd = L.marker(
+                [45.94751268627171, -0.9589993914788526],
+                {}
+            ).addTo(map_461dfedd02965a13e056e94390cc40db);
+        
+    
+        var popup_758f8867e0a658657cce28de7f798c58 = L.popup({"maxWidth": "100%"});
+
+        
+            
+                var html_1f2c2c631a0fdd8e432da1748ab263fc = $(`<div id="html_1f2c2c631a0fdd8e432da1748ab263fc" style="width: 100.0%; height: 100.0%;">LPO LYCEE DES METIERS   MARCEL DASSAULT</div>`)[0];
+                popup_758f8867e0a658657cce28de7f798c58.setContent(html_1f2c2c631a0fdd8e432da1748ab263fc);
+            
+        
+
+        marker_bc65f6949c95e9b7e1f9e7f6dcb2defd.bindPopup(popup_758f8867e0a658657cce28de7f798c58)
+        ;
+
+        
+    
+    
+            var marker_bacf29b86dae922aada75f8d5308f10d = L.marker(
+                [46.32772561851994, -0.44660276052661074],
+                {}
+            ).addTo(map_461dfedd02965a13e056e94390cc40db);
+        
+    
+        var popup_202cfbe7585c41b219bc0a046d4539ad = L.popup({"maxWidth": "100%"});
+
+        
+            
+                var html_19f0a9de6819aa01a5fea8c0b9afc745 = $(`<div id="html_19f0a9de6819aa01a5fea8c0b9afc745" style="width: 100.0%; height: 100.0%;">LYCEE POLYVALENT PRIVE   SAINT ANDRE</div>`)[0];
+                popup_202cfbe7585c41b219bc0a046d4539ad.setContent(html_19f0a9de6819aa01a5fea8c0b9afc745);
+            
+        
+
+        marker_bacf29b86dae922aada75f8d5308f10d.bindPopup(popup_202cfbe7585c41b219bc0a046d4539ad)
+        ;
+
+        
+    
+    
+            var marker_f95474908eb954141bb573477713acf2 = L.marker(
+                [46.80204197969595, 0.5433950448936284],
+                {}
+            ).addTo(map_461dfedd02965a13e056e94390cc40db);
+        
+    
+        var popup_c3b0fb82621edbae554b5e98ae5283ee = L.popup({"maxWidth": "100%"});
+
+        
+            
+                var html_2281fe36c907f55aaa133ccb9cb36418 = $(`<div id="html_2281fe36c907f55aaa133ccb9cb36418" style="width: 100.0%; height: 100.0%;">LYCEE GENERAL ET TECHNOLOGIQUE   CITE TECHNIQUE EDOUARD BRANLY</div>`)[0];
+                popup_c3b0fb82621edbae554b5e98ae5283ee.setContent(html_2281fe36c907f55aaa133ccb9cb36418);
+            
+        
+
+        marker_f95474908eb954141bb573477713acf2.bindPopup(popup_c3b0fb82621edbae554b5e98ae5283ee)
+        ;
+
+        
+    
+    
+            var marker_047cb447acd1831de3dd02f864c475c9 = L.marker(
+                [47.00576500924374, 0.08534237247239877],
+                {}
+            ).addTo(map_461dfedd02965a13e056e94390cc40db);
+        
+    
+        var popup_e581a9b6cb188d6e6314384f241414d5 = L.popup({"maxWidth": "100%"});
+
+        
+            
+                var html_cf543aebe607bfb86a731b1849f020f8 = $(`<div id="html_cf543aebe607bfb86a731b1849f020f8" style="width: 100.0%; height: 100.0%;">LYCEE GENERAL ET TECHNOLOGIQUE   GUY CHAUVET</div>`)[0];
+                popup_e581a9b6cb188d6e6314384f241414d5.setContent(html_cf543aebe607bfb86a731b1849f020f8);
+            
+        
+
+        marker_047cb447acd1831de3dd02f864c475c9.bindPopup(popup_e581a9b6cb188d6e6314384f241414d5)
+        ;
+
+        
+    
+    
+            var marker_900cfab248285579c9db39eb33b44d9c = L.marker(
+                [45.47415583822414, -0.15035533847464955],
+                {}
+            ).addTo(map_461dfedd02965a13e056e94390cc40db);
+        
+    
+        var popup_323882255c77f0436054a142aeaa9500 = L.popup({"maxWidth": "100%"});
+
+        
+            
+                var html_fba34ca10467d5a1d827bc3700023f19 = $(`<div id="html_fba34ca10467d5a1d827bc3700023f19" style="width: 100.0%; height: 100.0%;">LYCEE GENERAL ET TECHNOLOGIQUE   ELIE VINET</div>`)[0];
+                popup_323882255c77f0436054a142aeaa9500.setContent(html_fba34ca10467d5a1d827bc3700023f19);
+            
+        
+
+        marker_900cfab248285579c9db39eb33b44d9c.bindPopup(popup_323882255c77f0436054a142aeaa9500)
+        ;
+
+        
+    
+    
+            var marker_c07e9e9042242e1d6280149b6c8dfc86 = L.marker(
+                [45.649817242296976, 0.15043942253585954],
+                {}
+            ).addTo(map_461dfedd02965a13e056e94390cc40db);
+        
+    
+        var popup_aaf8e8092689d8ef2039a1013203afc1 = L.popup({"maxWidth": "100%"});
+
+        
+            
+                var html_4d364247a12254a0bc7f5b4888d8eef5 = $(`<div id="html_4d364247a12254a0bc7f5b4888d8eef5" style="width: 100.0%; height: 100.0%;">LYCEE GENERAL ET TECHNOL PRIVE   SAINTE MARTHE CHAVAGNES</div>`)[0];
+                popup_aaf8e8092689d8ef2039a1013203afc1.setContent(html_4d364247a12254a0bc7f5b4888d8eef5);
+            
+        
+
+        marker_c07e9e9042242e1d6280149b6c8dfc86.bindPopup(popup_aaf8e8092689d8ef2039a1013203afc1)
+        ;
+
+        
+    
+    
+            var marker_29633bb5678d5470fd06960abdfdaf05 = L.marker(
+                [45.57870587963632, -0.5514301339465127],
+                {}
+            ).addTo(map_461dfedd02965a13e056e94390cc40db);
+        
+    
+        var popup_6cdb72f8974abcde92e4d1601900ae11 = L.popup({"maxWidth": "100%"});
+
+        
+            
+                var html_73ab4f0b72b343802b1b6d93efbc0483 = $(`<div id="html_73ab4f0b72b343802b1b6d93efbc0483" style="width: 100.0%; height: 100.0%;">LPO LYCEE DES METIERS   EMILE COMBES</div>`)[0];
+                popup_6cdb72f8974abcde92e4d1601900ae11.setContent(html_73ab4f0b72b343802b1b6d93efbc0483);
+            
+        
+
+        marker_29633bb5678d5470fd06960abdfdaf05.bindPopup(popup_6cdb72f8974abcde92e4d1601900ae11)
+        ;
+
+        
+    
+    
+            var marker_8d07a9fff3bdbcbc58bd35a36a6d1853 = L.marker(
+                [45.73700107131033, -0.6434894944373473],
+                {}
+            ).addTo(map_461dfedd02965a13e056e94390cc40db);
+        
+    
+        var popup_64473b3b4fe7769b1988e90198d7378d = L.popup({"maxWidth": "100%"});
+
+        
+            
+                var html_57b0871fe1327a7e614c39f6b35e180a = $(`<div id="html_57b0871fe1327a7e614c39f6b35e180a" style="width: 100.0%; height: 100.0%;">LYCEE GENERAL ET TECHNOLOGIQUE   BELLEVUE</div>`)[0];
+                popup_64473b3b4fe7769b1988e90198d7378d.setContent(html_57b0871fe1327a7e614c39f6b35e180a);
+            
+        
+
+        marker_8d07a9fff3bdbcbc58bd35a36a6d1853.bindPopup(popup_64473b3b4fe7769b1988e90198d7378d)
+        ;
+
+        
+    
+    
+            var marker_76018cb23d17344255803af00f63cbfb = L.marker(
+                [46.10899579921577, -0.7485695907294311],
+                {}
+            ).addTo(map_461dfedd02965a13e056e94390cc40db);
+        
+    
+        var popup_f68835f46c264279d3eaac87cc6816e7 = L.popup({"maxWidth": "100%"});
+
+        
+            
+                var html_4c6c2246d3716ed4af7f1600576bb084 = $(`<div id="html_4c6c2246d3716ed4af7f1600576bb084" style="width: 100.0%; height: 100.0%;">LPO LYCEE DES METIERS   DU PAYS D'AUNIS</div>`)[0];
+                popup_f68835f46c264279d3eaac87cc6816e7.setContent(html_4c6c2246d3716ed4af7f1600576bb084);
+            
+        
+
+        marker_76018cb23d17344255803af00f63cbfb.bindPopup(popup_f68835f46c264279d3eaac87cc6816e7)
+        ;
+
+        
+    
+    
+            var marker_7a6125fcea9600679e558d48b89f343e = L.marker(
+                [45.441544358244826, -0.4324374334047962],
+                {}
+            ).addTo(map_461dfedd02965a13e056e94390cc40db);
+        
+    
+        var popup_c6b04a4fd7c967351514ec6633a85732 = L.popup({"maxWidth": "100%"});
+
+        
+            
+                var html_eb968f1f7178a09e772def1562cd3432 = $(`<div id="html_eb968f1f7178a09e772def1562cd3432" style="width: 100.0%; height: 100.0%;">LPO LYCEE DES METIERS   JEAN HYPPOLITE</div>`)[0];
+                popup_c6b04a4fd7c967351514ec6633a85732.setContent(html_eb968f1f7178a09e772def1562cd3432);
+            
+        
+
+        marker_7a6125fcea9600679e558d48b89f343e.bindPopup(popup_c6b04a4fd7c967351514ec6633a85732)
+        ;
+
+        
+    
+    
+            var marker_f40941f03f364e0e5f67fdec84def908 = L.marker(
+                [46.15695241418322, -1.1816503041638526],
+                {}
+            ).addTo(map_461dfedd02965a13e056e94390cc40db);
+        
+    
+        var popup_957393b33bb9558c73d4c8c95189d9d5 = L.popup({"maxWidth": "100%"});
+
+        
+            
+                var html_f936516be20b2b4b02d2fcf4e210b460 = $(`<div id="html_f936516be20b2b4b02d2fcf4e210b460" style="width: 100.0%; height: 100.0%;">LYCEE GENERAL ET TECHNOLOGIQUE   SAINT-EXUPERY</div>`)[0];
+                popup_957393b33bb9558c73d4c8c95189d9d5.setContent(html_f936516be20b2b4b02d2fcf4e210b460);
+            
+        
+
+        marker_f40941f03f364e0e5f67fdec84def908.bindPopup(popup_957393b33bb9558c73d4c8c95189d9d5)
+        ;
+
+        
+    
+    
+            var marker_f2f400b3c11f2585f78b53f5d2da0cad = L.marker(
+                [46.31473777014101, -0.4429861304142442],
+                {}
+            ).addTo(map_461dfedd02965a13e056e94390cc40db);
+        
+    
+        var popup_4e69b5c3db346243ada5a1fa0a2e961b = L.popup({"maxWidth": "100%"});
+
+        
+            
+                var html_b337a19b24bf7ae9350637d7092c882d = $(`<div id="html_b337a19b24bf7ae9350637d7092c882d" style="width: 100.0%; height: 100.0%;">LYCEE GENERAL ET TECHNOLOGIQUE   PAUL GUERIN</div>`)[0];
+                popup_4e69b5c3db346243ada5a1fa0a2e961b.setContent(html_b337a19b24bf7ae9350637d7092c882d);
+            
+        
+
+        marker_f2f400b3c11f2585f78b53f5d2da0cad.bindPopup(popup_4e69b5c3db346243ada5a1fa0a2e961b)
+        ;
+
+        
+    
+    
+            var marker_e732cee3d8caf3b3ae675cb19c54bcf0 = L.marker(
+                [45.650165640205316, 0.15117436981482055],
+                {}
+            ).addTo(map_461dfedd02965a13e056e94390cc40db);
+        
+    
+        var popup_9114714e668aa5e1bfd11bb9990eddad = L.popup({"maxWidth": "100%"});
+
+        
+            
+                var html_c7b1ce93f55e008a22447e9336b793fe = $(`<div id="html_c7b1ce93f55e008a22447e9336b793fe" style="width: 100.0%; height: 100.0%;">LYCEE GENERAL ET TECHNOLOGIQUE   GUEZ DE BALZAC</div>`)[0];
+                popup_9114714e668aa5e1bfd11bb9990eddad.setContent(html_c7b1ce93f55e008a22447e9336b793fe);
+            
+        
+
+        marker_e732cee3d8caf3b3ae675cb19c54bcf0.bindPopup(popup_9114714e668aa5e1bfd11bb9990eddad)
+        ;
+
+        
+    
+    
+            var marker_8595e0bd6427c0e301458a5e068adc29 = L.marker(
+                [46.00865487863699, 0.6719993885926403],
+                {}
+            ).addTo(map_461dfedd02965a13e056e94390cc40db);
+        
+    
+        var popup_036972ff3828d72095c9b5cccdf1bb38 = L.popup({"maxWidth": "100%"});
+
+        
+            
+                var html_c1e5a13ff0746975ca9ec4db00af1706 = $(`<div id="html_c1e5a13ff0746975ca9ec4db00af1706" style="width: 100.0%; height: 100.0%;">LYCEE POLYVALENT   EMILE ROUX</div>`)[0];
+                popup_036972ff3828d72095c9b5cccdf1bb38.setContent(html_c1e5a13ff0746975ca9ec4db00af1706);
+            
+        
+
+        marker_8595e0bd6427c0e301458a5e068adc29.bindPopup(popup_036972ff3828d72095c9b5cccdf1bb38)
+        ;
+
+        
+    
+    
+            var marker_cc87cb7a060db15e3f5667660fbef4e3 = L.marker(
+                [46.16449638564665, -1.1538198139000304],
+                {}
+            ).addTo(map_461dfedd02965a13e056e94390cc40db);
+        
+    
+        var popup_d7ae00c98d454a99c1b6b5d4ccfa7367 = L.popup({"maxWidth": "100%"});
+
+        
+            
+                var html_cfbaf77a818c151644b9496e816fc1fe = $(`<div id="html_cfbaf77a818c151644b9496e816fc1fe" style="width: 100.0%; height: 100.0%;">LYCEE GENERAL ET TECHNOLOGIQUE   JEAN DAUTET</div>`)[0];
+                popup_d7ae00c98d454a99c1b6b5d4ccfa7367.setContent(html_cfbaf77a818c151644b9496e816fc1fe);
+            
+        
+
+        marker_cc87cb7a060db15e3f5667660fbef4e3.bindPopup(popup_d7ae00c98d454a99c1b6b5d4ccfa7367)
+        ;
+
+        
+    
+    
+            var marker_50b1347221dabe085f36e841ef1b92c2 = L.marker(
+                [46.1652442222621, -1.15031015056318],
+                {}
+            ).addTo(map_461dfedd02965a13e056e94390cc40db);
+        
+    
+        var popup_892a4d2388a33862bac3b9dd861f363a = L.popup({"maxWidth": "100%"});
+
+        
+            
+                var html_19e3aed1521cfd55591473b3a44d6cbf = $(`<div id="html_19e3aed1521cfd55591473b3a44d6cbf" style="width: 100.0%; height: 100.0%;">LYCEE POLYVALENT PRIVE   FENELON NOTRE-DAME</div>`)[0];
+                popup_892a4d2388a33862bac3b9dd861f363a.setContent(html_19e3aed1521cfd55591473b3a44d6cbf);
+            
+        
+
+        marker_50b1347221dabe085f36e841ef1b92c2.bindPopup(popup_892a4d2388a33862bac3b9dd861f363a)
+        ;
+
+        
+    
+    
+            var marker_f02c3d2177f12d441934e8cf494ef10f = L.marker(
+                [46.22439363826209, -0.14390109401626577],
+                {}
+            ).addTo(map_461dfedd02965a13e056e94390cc40db);
+        
+    
+        var popup_b3e9b58c134dbef7bac3500838714990 = L.popup({"maxWidth": "100%"});
+
+        
+            
+                var html_d6b42bcff57b11a9be403ac58248c245 = $(`<div id="html_d6b42bcff57b11a9be403ac58248c245" style="width: 100.0%; height: 100.0%;">LYCEE GENERAL ET TECHNOLOGIQUE   JOSEPH DESFONTAINES</div>`)[0];
+                popup_b3e9b58c134dbef7bac3500838714990.setContent(html_d6b42bcff57b11a9be403ac58248c245);
+            
+        
+
+        marker_f02c3d2177f12d441934e8cf494ef10f.bindPopup(popup_b3e9b58c134dbef7bac3500838714990)
+        ;
+
+        
+    
+    
+            var marker_8535449bee2fe4caadfeef71f1b674cb = L.marker(
+                [46.41126022532, -0.21990448706545093],
+                {}
+            ).addTo(map_461dfedd02965a13e056e94390cc40db);
+        
+    
+        var popup_f8bd6b205449615d731d5f4ef213de4a = L.popup({"maxWidth": "100%"});
+
+        
+            
+                var html_2bf4de95bc64b542bfc3871586d72650 = $(`<div id="html_2bf4de95bc64b542bfc3871586d72650" style="width: 100.0%; height: 100.0%;">LPO LYCEE DES METIERS   DU HAUT VAL DE SEVRE</div>`)[0];
+                popup_f8bd6b205449615d731d5f4ef213de4a.setContent(html_2bf4de95bc64b542bfc3871586d72650);
+            
+        
+
+        marker_8535449bee2fe4caadfeef71f1b674cb.bindPopup(popup_f8bd6b205449615d731d5f4ef213de4a)
+        ;
+
+        
+    
+    
+            var marker_6fb36d1cf4ce889f1b7868c078d091ee = L.marker(
+                [46.68161934026639, 0.3677599050644731],
+                {}
+            ).addTo(map_461dfedd02965a13e056e94390cc40db);
+        
+    
+        var popup_8805cb33466f59dce0be5394153d09ff = L.popup({"maxWidth": "100%"});
+
+        
+            
+                var html_55c5f6135ff56c385721240c1f6be398 = $(`<div id="html_55c5f6135ff56c385721240c1f6be398" style="width: 100.0%; height: 100.0%;">LYCEE GENERAL ET TECHNOLOGIQUE   PILOTE INNOVANT INTERNATIONAL</div>`)[0];
+                popup_8805cb33466f59dce0be5394153d09ff.setContent(html_55c5f6135ff56c385721240c1f6be398);
+            
+        
+
+        marker_6fb36d1cf4ce889f1b7868c078d091ee.bindPopup(popup_8805cb33466f59dce0be5394153d09ff)
+        ;
+
+        
+    
+    
+            var marker_3c8b8798085407964270c1ca202062da = L.marker(
+                [45.6940344630659, -0.3309901232827472],
+                {}
+            ).addTo(map_461dfedd02965a13e056e94390cc40db);
+        
+    
+        var popup_3a1e5f9b69d1f323b53b1ce7c66b9d18 = L.popup({"maxWidth": "100%"});
+
+        
+            
+                var html_f22e20d8fe1210321fa88911ca31a7c4 = $(`<div id="html_f22e20d8fe1210321fa88911ca31a7c4" style="width: 100.0%; height: 100.0%;">LYCEE GENERAL PRIVE   DE BEAULIEU</div>`)[0];
+                popup_3a1e5f9b69d1f323b53b1ce7c66b9d18.setContent(html_f22e20d8fe1210321fa88911ca31a7c4);
+            
+        
+
+        marker_3c8b8798085407964270c1ca202062da.bindPopup(popup_3a1e5f9b69d1f323b53b1ce7c66b9d18)
+        ;
+
+        
+    
+    
+            var marker_c38788c1eeb2e4963da4ae21c030d4eb = L.marker(
+                [45.951150381572916, -0.9704303568465967],
+                {}
+            ).addTo(map_461dfedd02965a13e056e94390cc40db);
+        
+    
+        var popup_3c7ac27296afa6868d438aca8a76de02 = L.popup({"maxWidth": "100%"});
+
+        
+            
+                var html_f1f9e70fb2f47ed830711ad54d9bad42 = $(`<div id="html_f1f9e70fb2f47ed830711ad54d9bad42" style="width: 100.0%; height: 100.0%;">LYCEE GENERAL ET TECHNOLOGIQUE   MAURICE MERLEAU-PONTY</div>`)[0];
+                popup_3c7ac27296afa6868d438aca8a76de02.setContent(html_f1f9e70fb2f47ed830711ad54d9bad42);
+            
+        
+
+        marker_c38788c1eeb2e4963da4ae21c030d4eb.bindPopup(popup_3c7ac27296afa6868d438aca8a76de02)
+        ;
+
+        
+    
+    
+            var marker_d3a994c1e9a19e7bd86e76d4c5bbbbf5 = L.marker(
+                [45.620498689740415, -1.004709413065221],
+                {}
+            ).addTo(map_461dfedd02965a13e056e94390cc40db);
+        
+    
+        var popup_f70a4904be4f4a2c59ecb081bf7374c5 = L.popup({"maxWidth": "100%"});
+
+        
+            
+                var html_c84d8b2286e5a529b96dfd4aa73ae2a6 = $(`<div id="html_c84d8b2286e5a529b96dfd4aa73ae2a6" style="width: 100.0%; height: 100.0%;">LGT LYCEE DES METIERS   CORDOUAN</div>`)[0];
+                popup_f70a4904be4f4a2c59ecb081bf7374c5.setContent(html_c84d8b2286e5a529b96dfd4aa73ae2a6);
+            
+        
+
+        marker_d3a994c1e9a19e7bd86e76d4c5bbbbf5.bindPopup(popup_f70a4904be4f4a2c59ecb081bf7374c5)
+        ;
+
+        
+    
+    
+            var marker_91e8503aede1dfadc175fb8ecabc09b6 = L.marker(
+                [46.84117935106101, -0.4854853595248448],
+                {}
+            ).addTo(map_461dfedd02965a13e056e94390cc40db);
+        
+    
+        var popup_4ff02942971dd69e6f967e88bab1098a = L.popup({"maxWidth": "100%"});
+
+        
+            
+                var html_b5130af7efdb840cf96df9b6b6be93f7 = $(`<div id="html_b5130af7efdb840cf96df9b6b6be93f7" style="width: 100.0%; height: 100.0%;">LYCEE GENERAL ET TECHNOLOGIQUE   MAURICE GENEVOIX</div>`)[0];
+                popup_4ff02942971dd69e6f967e88bab1098a.setContent(html_b5130af7efdb840cf96df9b6b6be93f7);
+            
+        
+
+        marker_91e8503aede1dfadc175fb8ecabc09b6.bindPopup(popup_4ff02942971dd69e6f967e88bab1098a)
+        ;
+
+        
+    
+    
+            var marker_45b7d29fe7a6b038b58e5995f8f2c929 = L.marker(
+                [46.993444932319164, -0.21333764215906562],
+                {}
+            ).addTo(map_461dfedd02965a13e056e94390cc40db);
+        
+    
+        var popup_8b16dbd4538dcba83b3a0809b6d43a3b = L.popup({"maxWidth": "100%"});
+
+        
+            
+                var html_82dca4bfa41db1a82007e1ed09bbdd25 = $(`<div id="html_82dca4bfa41db1a82007e1ed09bbdd25" style="width: 100.0%; height: 100.0%;">LYCEE GENERAL ET TECHNOLOGIQUE   CITE SCOLAIRE JEAN MOULIN</div>`)[0];
+                popup_8b16dbd4538dcba83b3a0809b6d43a3b.setContent(html_82dca4bfa41db1a82007e1ed09bbdd25);
+            
+        
+
+        marker_45b7d29fe7a6b038b58e5995f8f2c929.bindPopup(popup_8b16dbd4538dcba83b3a0809b6d43a3b)
+        ;
+
+        
+    
+    
+            var marker_962a8a98e69822b3a651eedb6f5097d7 = L.marker(
+                [46.8370149634032, -0.48927818065733547],
+                {}
+            ).addTo(map_461dfedd02965a13e056e94390cc40db);
+        
+    
+        var popup_12442796c54acb651a5e1e4ad132736b = L.popup({"maxWidth": "100%"});
+
+        
+            
+                var html_9941254a2584bdbdc2a0735d0d317189 = $(`<div id="html_9941254a2584bdbdc2a0735d0d317189" style="width: 100.0%; height: 100.0%;">LPO PRIVE LYCEE DES METIERS   SAINT JOSEPH</div>`)[0];
+                popup_12442796c54acb651a5e1e4ad132736b.setContent(html_9941254a2584bdbdc2a0735d0d317189);
+            
+        
+
+        marker_962a8a98e69822b3a651eedb6f5097d7.bindPopup(popup_12442796c54acb651a5e1e4ad132736b)
+        ;
+
+        
+    
+    
+            var marker_340f67d4ff95b90c7deb5ba69e76e85e = L.marker(
+                [46.31686270488023, -0.48616871387734323],
+                {}
+            ).addTo(map_461dfedd02965a13e056e94390cc40db);
+        
+    
+        var popup_1b535b01cf3732acf8fb33784b84fdde = L.popup({"maxWidth": "100%"});
+
+        
+            
+                var html_7891e23b65f89e2270e4def59b93a5ed = $(`<div id="html_7891e23b65f89e2270e4def59b93a5ed" style="width: 100.0%; height: 100.0%;">LYCEE GENERAL ET TECHNOLOGIQUE   VENISE VERTE</div>`)[0];
+                popup_1b535b01cf3732acf8fb33784b84fdde.setContent(html_7891e23b65f89e2270e4def59b93a5ed);
+            
+        
+
+        marker_340f67d4ff95b90c7deb5ba69e76e85e.bindPopup(popup_1b535b01cf3732acf8fb33784b84fdde)
+        ;
+
+        
+    
+    
+            var marker_304c3565c218bde025fdffd888d71e6d = L.marker(
+                [46.55097460967239, 0.31004853568763546],
+                {}
+            ).addTo(map_461dfedd02965a13e056e94390cc40db);
+        
+    
+        var popup_c9ea7a6dcf696e9369cc20bae18c59d4 = L.popup({"maxWidth": "100%"});
+
+        
+            
+                var html_ddc78a817c8ebaba9ed4108aa18fec35 = $(`<div id="html_ddc78a817c8ebaba9ed4108aa18fec35" style="width: 100.0%; height: 100.0%;">LYCEE GENERAL ET TECHNOLOGIQUE   DU BOIS D'AMOUR</div>`)[0];
+                popup_c9ea7a6dcf696e9369cc20bae18c59d4.setContent(html_ddc78a817c8ebaba9ed4108aa18fec35);
+            
+        
+
+        marker_304c3565c218bde025fdffd888d71e6d.bindPopup(popup_c9ea7a6dcf696e9369cc20bae18c59d4)
+        ;
+
+        
+    
+    
+            var marker_77aab9756781ce6c77ce00854d7dcfbe = L.marker(
+                [46.156063027127914, -1.13777998241965],
+                {}
+            ).addTo(map_461dfedd02965a13e056e94390cc40db);
+        
+    
+        var popup_c4cf05544b66dc72d010437546960cde = L.popup({"maxWidth": "100%"});
+
+        
+            
+                var html_933cb4934956a4520da5dd6fe5d50136 = $(`<div id="html_933cb4934956a4520da5dd6fe5d50136" style="width: 100.0%; height: 100.0%;">LYCEE GENERAL ET TECHNOLOGIQUE   RENE JOSUE VALIN</div>`)[0];
+                popup_c4cf05544b66dc72d010437546960cde.setContent(html_933cb4934956a4520da5dd6fe5d50136);
+            
+        
+
+        marker_77aab9756781ce6c77ce00854d7dcfbe.bindPopup(popup_c4cf05544b66dc72d010437546960cde)
+        ;
+
+        
+    
+    
+            var marker_8f2ddb67e4fc5bd5f5d93ffbd818b3d4 = L.marker(
+                [46.81476405587301, 0.540221563492524],
+                {}
+            ).addTo(map_461dfedd02965a13e056e94390cc40db);
+        
+    
+        var popup_adacdbd6ee121188402357d1eec6a214 = L.popup({"maxWidth": "100%"});
+
+        
+            
+                var html_312ba50cb86905cc5954b67ecb9b9aa5 = $(`<div id="html_312ba50cb86905cc5954b67ecb9b9aa5" style="width: 100.0%; height: 100.0%;">LYCEE GENERAL ET TECHNOLOGIQUE   MARCELIN BERTHELOT</div>`)[0];
+                popup_adacdbd6ee121188402357d1eec6a214.setContent(html_312ba50cb86905cc5954b67ecb9b9aa5);
+            
+        
+
+        marker_8f2ddb67e4fc5bd5f5d93ffbd818b3d4.bindPopup(popup_adacdbd6ee121188402357d1eec6a214)
+        ;
+
+        
+    
+    
+            var marker_9db4d25b699bbb8673ab927d20abd885 = L.marker(
+                [46.588736052248294, 0.36547045877219764],
+                {}
+            ).addTo(map_461dfedd02965a13e056e94390cc40db);
+        
+    
+        var popup_0e06b39d6262fb91e6c7d15f24b6eea6 = L.popup({"maxWidth": "100%"});
+
+        
+            
+                var html_f0f22ffe0602b8404c2f7f16266d8afe = $(`<div id="html_f0f22ffe0602b8404c2f7f16266d8afe" style="width: 100.0%; height: 100.0%;">LYCEE GENERAL ET TECHNOLOGIQUE   ALIENOR D AQUITAINE</div>`)[0];
+                popup_0e06b39d6262fb91e6c7d15f24b6eea6.setContent(html_f0f22ffe0602b8404c2f7f16266d8afe);
+            
+        
+
+        marker_9db4d25b699bbb8673ab927d20abd885.bindPopup(popup_0e06b39d6262fb91e6c7d15f24b6eea6)
+        ;
+
+        
+    
+    
+            var marker_1bfe28c55dbb98018e8b62687612911e = L.marker(
+                [45.63020030226998, 0.15831998093155397],
+                {}
+            ).addTo(map_461dfedd02965a13e056e94390cc40db);
+        
+    
+        var popup_27bf146bb4f8e029765768352714b9fa = L.popup({"maxWidth": "100%"});
+
+        
+            
+                var html_554fd82acde8033067e586ce599d6e59 = $(`<div id="html_554fd82acde8033067e586ce599d6e59" style="width: 100.0%; height: 100.0%;">LYCEE GENERAL ET TECHNOLOGIQUE   CHARLES A. COULOMB</div>`)[0];
+                popup_27bf146bb4f8e029765768352714b9fa.setContent(html_554fd82acde8033067e586ce599d6e59);
+            
+        
+
+        marker_1bfe28c55dbb98018e8b62687612911e.bindPopup(popup_27bf146bb4f8e029765768352714b9fa)
+        ;
+
+        
+    
+    
+            var marker_44ec272369fec824899d55fb03d28043 = L.marker(
+                [46.57983124083789, 0.3496657029370314],
+                {}
+            ).addTo(map_461dfedd02965a13e056e94390cc40db);
+        
+    
+        var popup_3eca038ef238f325fc93d56f25758ea0 = L.popup({"maxWidth": "100%"});
+
+        
+            
+                var html_527a80b3e5d8fac345a015feecbc5cc1 = $(`<div id="html_527a80b3e5d8fac345a015feecbc5cc1" style="width: 100.0%; height: 100.0%;">LYCEE GENERAL PRIVE   UNION CHRETIENNE</div>`)[0];
+                popup_3eca038ef238f325fc93d56f25758ea0.setContent(html_527a80b3e5d8fac345a015feecbc5cc1);
+            
+        
+
+        marker_44ec272369fec824899d55fb03d28043.bindPopup(popup_3eca038ef238f325fc93d56f25758ea0)
+        ;
+
+        
+    
+    
+            var marker_76e452859e6f2a33c4e69a8ca1b9f5a7 = L.marker(
+                [45.65310785048051, 0.18163941043660567],
+                {}
+            ).addTo(map_461dfedd02965a13e056e94390cc40db);
+        
+    
+        var popup_c6fc773b6091b73d4bfa07937f36b2ba = L.popup({"maxWidth": "100%"});
+
+        
+            
+                var html_dbd8d3cd39716d9c862a4fc2cdf15720 = $(`<div id="html_dbd8d3cd39716d9c862a4fc2cdf15720" style="width: 100.0%; height: 100.0%;">LYCEE GENERAL ET TECHNOLOGIQUE   MARGUERITE DE VALOIS</div>`)[0];
+                popup_c6fc773b6091b73d4bfa07937f36b2ba.setContent(html_dbd8d3cd39716d9c862a4fc2cdf15720);
+            
+        
+
+        marker_76e452859e6f2a33c4e69a8ca1b9f5a7.bindPopup(popup_c6fc773b6091b73d4bfa07937f36b2ba)
+        ;
+
+        
+    
+    
+            var marker_d555427ce7ab42a8d88cc96ff054ff16 = L.marker(
+                [45.74994684204993, -0.6520099404587464],
+                {}
+            ).addTo(map_461dfedd02965a13e056e94390cc40db);
+        
+    
+        var popup_1587f5b92d108254e62919e7509892e7 = L.popup({"maxWidth": "100%"});
+
+        
+            
+                var html_52e1051acb83b96f46fee192033d7ef4 = $(`<div id="html_52e1051acb83b96f46fee192033d7ef4" style="width: 100.0%; height: 100.0%;">LYCEE GEN.ET TECHNOL.PRIVE   NOTRE DAME DE RECOUVRANCE</div>`)[0];
+                popup_1587f5b92d108254e62919e7509892e7.setContent(html_52e1051acb83b96f46fee192033d7ef4);
+            
+        
+
+        marker_d555427ce7ab42a8d88cc96ff054ff16.bindPopup(popup_1587f5b92d108254e62919e7509892e7)
+        ;
+
+        
+    
+    
+            var marker_b00006471bdd9bc7bdeab170ad988591 = L.marker(
+                [46.42808497391544, 0.8754176050019472],
+                {}
+            ).addTo(map_461dfedd02965a13e056e94390cc40db);
+        
+    
+        var popup_431f7d4230481b6d3a7ee7d6305719eb = L.popup({"maxWidth": "100%"});
+
+        
+            
+                var html_1c9c27e03bf27625eeb282ae03ceb7c0 = $(`<div id="html_1c9c27e03bf27625eeb282ae03ceb7c0" style="width: 100.0%; height: 100.0%;">LYCEE GENERAL ET TECHNOLOGIQUE   JEAN MOULIN</div>`)[0];
+                popup_431f7d4230481b6d3a7ee7d6305719eb.setContent(html_1c9c27e03bf27625eeb282ae03ceb7c0);
+            
+        
+
+        marker_b00006471bdd9bc7bdeab170ad988591.bindPopup(popup_431f7d4230481b6d3a7ee7d6305719eb)
+        ;
+
+        
+    
+    
+            var marker_b214b0a1989753ac0b3e19edccc9cdaa = L.marker(
+                [46.5805076903521, 0.3377777763074605],
+                {}
+            ).addTo(map_461dfedd02965a13e056e94390cc40db);
+        
+    
+        var popup_e3355de87327fe8896098d9c859de6f1 = L.popup({"maxWidth": "100%"});
+
+        
+            
+                var html_1fec5ceaa81eee4ee5e27e9f98baba82 = $(`<div id="html_1fec5ceaa81eee4ee5e27e9f98baba82" style="width: 100.0%; height: 100.0%;">LYCEE GENERAL ET TECHNOLOGIQUE   VICTOR HUGO</div>`)[0];
+                popup_e3355de87327fe8896098d9c859de6f1.setContent(html_1fec5ceaa81eee4ee5e27e9f98baba82);
+            
+        
+
+        marker_b214b0a1989753ac0b3e19edccc9cdaa.bindPopup(popup_e3355de87327fe8896098d9c859de6f1)
+        ;
+
+        
+    
+    
+            var marker_a3f9be40798deedd6bdda2c0931d9a5f = L.marker(
+                [46.567621103067914, 0.3657594611817887],
+                {}
+            ).addTo(map_461dfedd02965a13e056e94390cc40db);
+        
+    
+        var popup_53201ddeb56354f9580baa467a28258e = L.popup({"maxWidth": "100%"});
+
+        
+            
+                var html_cf479d86ee92cf03cdcc26947fee7cf8 = $(`<div id="html_cf479d86ee92cf03cdcc26947fee7cf8" style="width: 100.0%; height: 100.0%;">LYCEE GENERAL ET TECHNOLOGIQUE   CAMILLE GUERIN</div>`)[0];
+                popup_53201ddeb56354f9580baa467a28258e.setContent(html_cf479d86ee92cf03cdcc26947fee7cf8);
+            
+        
+
+        marker_a3f9be40798deedd6bdda2c0931d9a5f.bindPopup(popup_53201ddeb56354f9580baa467a28258e)
+        ;
+
+        
+    
+    
+            var marker_e9325891b699ab9da10209aeca1b4d9b = L.marker(
+                [45.95141409405907, -0.525909442089978],
+                {}
+            ).addTo(map_461dfedd02965a13e056e94390cc40db);
+        
+    
+        var popup_1be0bc0c338ded778bff20275f580f1d = L.popup({"maxWidth": "100%"});
+
+        
+            
+                var html_b32e16334641b0d190802d91a9deadf0 = $(`<div id="html_b32e16334641b0d190802d91a9deadf0" style="width: 100.0%; height: 100.0%;">LYCEE POLYVALENT   LOUIS AUDOUIN DUBREUIL</div>`)[0];
+                popup_1be0bc0c338ded778bff20275f580f1d.setContent(html_b32e16334641b0d190802d91a9deadf0);
+            
+        
+
+        marker_e9325891b699ab9da10209aeca1b4d9b.bindPopup(popup_1be0bc0c338ded778bff20275f580f1d)
+        ;
+
+        
+    
+    
+            var marker_84fa9b8bfa034a36fa5aea66e2ad47ee = L.marker(
+                [46.149004447432304, 0.29387533501092294],
+                {}
+            ).addTo(map_461dfedd02965a13e056e94390cc40db);
+        
+    
+        var popup_c8f0f9b0e561aa10c46b51397f6c355a = L.popup({"maxWidth": "100%"});
+
+        
+            
+                var html_cd3ec3260189b024c64f40bcb82ccf53 = $(`<div id="html_cd3ec3260189b024c64f40bcb82ccf53" style="width: 100.0%; height: 100.0%;">LYCEE GENERAL ET TECHNOLOGIQUE   ANDRE THEURIET</div>`)[0];
+                popup_c8f0f9b0e561aa10c46b51397f6c355a.setContent(html_cd3ec3260189b024c64f40bcb82ccf53);
+            
+        
+
+        marker_84fa9b8bfa034a36fa5aea66e2ad47ee.bindPopup(popup_c8f0f9b0e561aa10c46b51397f6c355a)
+        ;
+
+        
+    
+    
+            var marker_1ff34b41a91e642bca65be1732972e8d = L.marker(
+                [45.73503489068187, -0.6145802387898329],
+                {}
+            ).addTo(map_461dfedd02965a13e056e94390cc40db);
+        
+    
+        var popup_17182e97fa8cb9f94edc10327d89e14b = L.popup({"maxWidth": "100%"});
+
+        
+            
+                var html_94a2d4eb1ba5cb744f8dc535c5f8bd8f = $(`<div id="html_94a2d4eb1ba5cb744f8dc535c5f8bd8f" style="width: 100.0%; height: 100.0%;">LYCEE GENERAL ET TECHNOLOGIQUE   BERNARD PALISSY</div>`)[0];
+                popup_17182e97fa8cb9f94edc10327d89e14b.setContent(html_94a2d4eb1ba5cb744f8dc535c5f8bd8f);
+            
+        
+
+        marker_1ff34b41a91e642bca65be1732972e8d.bindPopup(popup_17182e97fa8cb9f94edc10327d89e14b)
+        ;
+
+        
+    
+    
+            var marker_2422dd851f24420e61ed20f7ed423ea8 = L.marker(
+                [46.64313398437427, -0.25159044972471134],
+                {}
+            ).addTo(map_461dfedd02965a13e056e94390cc40db);
+        
+    
+        var popup_05d3a91ac4d8db577c1646b2cf2201eb = L.popup({"maxWidth": "100%"});
+
+        
+            
+                var html_e8975dc7ae699646c97c8749766f3ff9 = $(`<div id="html_e8975dc7ae699646c97c8749766f3ff9" style="width: 100.0%; height: 100.0%;">LYCEE GENERAL ET TECHNOLOGIQUE   ERNEST PEROCHON</div>`)[0];
+                popup_05d3a91ac4d8db577c1646b2cf2201eb.setContent(html_e8975dc7ae699646c97c8749766f3ff9);
+            
+        
+
+        marker_2422dd851f24420e61ed20f7ed423ea8.bindPopup(popup_05d3a91ac4d8db577c1646b2cf2201eb)
+        ;
+
+        
+    
+    
+            var marker_78ae7b7a69fe126e9cf4f265a60d568c = L.marker(
+                [45.70132066254107, -0.318159855469971],
+                {}
+            ).addTo(map_461dfedd02965a13e056e94390cc40db);
+        
+    
+        var popup_e4bf27a8a50e653a1c2214b5cb850bd9 = L.popup({"maxWidth": "100%"});
+
+        
+            
+                var html_1a4670dfeb549267d352c46a313eb82d = $(`<div id="html_1a4670dfeb549267d352c46a313eb82d" style="width: 100.0%; height: 100.0%;">LYCEE POLYVALENT   JEAN MONNET</div>`)[0];
+                popup_e4bf27a8a50e653a1c2214b5cb850bd9.setContent(html_1a4670dfeb549267d352c46a313eb82d);
+            
+        
+
+        marker_78ae7b7a69fe126e9cf4f265a60d568c.bindPopup(popup_e4bf27a8a50e653a1c2214b5cb850bd9)
+        ;
+
+        
+    
+    
+            var marker_42c2d78bab8f5f0be9f9570e29c87c16 = L.marker(
+                [46.33099437629192, -0.4691526150518158],
+                {}
+            ).addTo(map_461dfedd02965a13e056e94390cc40db);
+        
+    
+        var popup_bca1dafa1b84289473c2db6bf3004b1e = L.popup({"maxWidth": "100%"});
+
+        
+            
+                var html_eaad12390afb10c18d39218c6b4e918f = $(`<div id="html_eaad12390afb10c18d39218c6b4e918f" style="width: 100.0%; height: 100.0%;">LYCEE GENERAL ET TECHNOLOGIQUE   JEAN MACE</div>`)[0];
+                popup_bca1dafa1b84289473c2db6bf3004b1e.setContent(html_eaad12390afb10c18d39218c6b4e918f);
+            
+        
+
+        marker_42c2d78bab8f5f0be9f9570e29c87c16.bindPopup(popup_bca1dafa1b84289473c2db6bf3004b1e)
+        ;
+
+        
+    
+    
+            var marker_a91525beba75edb9c4c33a50205f5a57 = L.marker(
+                [45.82987564654546, -0.8709198429769531],
+                {}
+            ).addTo(map_461dfedd02965a13e056e94390cc40db);
+        
+    
+        var popup_0122b9621866c448a76a8bc3ab13a7e9 = L.popup({"maxWidth": "100%"});
+
+        
+            
+                var html_06c694636b839285987d5fcb0b63b2bc = $(`<div id="html_06c694636b839285987d5fcb0b63b2bc" style="width: 100.0%; height: 100.0%;">LYCEE GEN.ET TECHNOL.PRIVE   LA SALLE SAINT LOUIS</div>`)[0];
+                popup_0122b9621866c448a76a8bc3ab13a7e9.setContent(html_06c694636b839285987d5fcb0b63b2bc);
+            
+        
+
+        marker_a91525beba75edb9c4c33a50205f5a57.bindPopup(popup_0122b9621866c448a76a8bc3ab13a7e9)
+        ;
+
+        
+    
+    
+            var marker_7804c169635e10d81fdce511be79fcca = L.marker(
+                [45.650447648345235, 0.1487894216769102],
+                {}
+            ).addTo(map_461dfedd02965a13e056e94390cc40db);
+        
+    
+        var popup_fafcb3d84dfd7ee28d8042abae2063a0 = L.popup({"maxWidth": "100%"});
+
+        
+            
+                var html_74f2564e61c6df8c58f84748d9891166 = $(`<div id="html_74f2564e61c6df8c58f84748d9891166" style="width: 100.0%; height: 100.0%;">LYCEE GEN.ET TECHNOL.PRIVE   SAINT PAUL</div>`)[0];
+                popup_fafcb3d84dfd7ee28d8042abae2063a0.setContent(html_74f2564e61c6df8c58f84748d9891166);
+            
+        
+
+        marker_7804c169635e10d81fdce511be79fcca.bindPopup(popup_fafcb3d84dfd7ee28d8042abae2063a0)
+        ;
+
+        
+    
+    
+            var marker_2fb2cc13fa906fe94d9b976b99e6f377 = L.marker(
+                [46.97855107045898, -0.21002905190835822],
+                {}
+            ).addTo(map_461dfedd02965a13e056e94390cc40db);
+        
+    
+        var popup_d114b57c989f10595c6870ec33d05ef3 = L.popup({"maxWidth": "100%"});
+
+        
+            
+                var html_cbd34ec4e1d344207248fb1cc0b9481f = $(`<div id="html_cbd34ec4e1d344207248fb1cc0b9481f" style="width: 100.0%; height: 100.0%;">LYCEE GEN.ET TECHNOL.PRIVE   SAINT CHARLES</div>`)[0];
+                popup_d114b57c989f10595c6870ec33d05ef3.setContent(html_cbd34ec4e1d344207248fb1cc0b9481f);
+            
+        
+
+        marker_2fb2cc13fa906fe94d9b976b99e6f377.bindPopup(popup_d114b57c989f10595c6870ec33d05ef3)
+        ;
+
+        
+    
+    
+            var marker_aa993731e854837fc9b6e434e20dbf4c = L.marker(
+                [46.598487253055346, 0.32974055893145904],
+                {}
+            ).addTo(map_461dfedd02965a13e056e94390cc40db);
+        
+    
+        var popup_bf9c7d9882cfa9bfec1a19d4520b6ff8 = L.popup({"maxWidth": "100%"});
+
+        
+            
+                var html_5c63afedf91d3a0bdbe01243c8f4b6d8 = $(`<div id="html_5c63afedf91d3a0bdbe01243c8f4b6d8" style="width: 100.0%; height: 100.0%;">LYCEE POLYVALENT   NELSON MANDELA</div>`)[0];
+                popup_bf9c7d9882cfa9bfec1a19d4520b6ff8.setContent(html_5c63afedf91d3a0bdbe01243c8f4b6d8);
+            
+        
+
+        marker_aa993731e854837fc9b6e434e20dbf4c.bindPopup(popup_bf9c7d9882cfa9bfec1a19d4520b6ff8)
+        ;
+
+        
+    
+</script>
+</html>

@@ -223,5 +223,13 @@ Après sélection du **niveau souhaitée** (Première ou Terminale), les statist
   graph TD;
       A[Données de géolocalisation] --> B[UAI];
       A --> C[Latitude LAT];
-      A --> D[Longitude LONG]
+      A --> D[Longitude LONG];
+```
+### 7. Structure de la table des effectifs
+
+```mermaid
+  graph TD;
+      A[Données des effectifs] --> B[UAI];
+      A --> C[ANNEE];
+      A --> D[Effectif total EFTOT];
 ```

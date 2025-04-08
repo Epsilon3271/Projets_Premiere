@@ -217,3 +217,11 @@ Après sélection du **niveau souhaitée** (Première ou Terminale), les statist
       I --> U;
       G --> U;
 ```
+### 6. Structure de la table de géolocalisation
+
+```mermaid
+  graph TD;
+      A[Données de géolocalisation] --> B[UAI];
+      A --> C[Latitude LAT];
+      A --> D[Longitude LONG]
+```

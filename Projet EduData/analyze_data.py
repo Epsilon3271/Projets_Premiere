@@ -4,11 +4,18 @@ from csv import DictReader
 import folium
 carte = folium.Map(location=[48.8566, 2.3522], zoom_start=13)
 def importation_data(fichier):
-    with open(fichier, encoding = "utf-8-sig") as f:
+    with open(fichier, encoding="utf-8-sig") as f:
+        lecteur = DictReader(f, delimiter=';')
+        keys = lecteur.fieldnames
         u = []
-        for dict in DictReader(f, delimiter=';'):
-            u.append(dict)
+        for ligne in lecteur:
+            u.append(ligne)
     return u
+def return_keys(fichier):
+    with open(fichier, encoding="utf-8-sig") as f:
+        lecteur = DictReader(f, delimiter=';')
+        keys = lecteur.fieldnames
+    return keys
 def table_geoloc():
     geoloc = []
     table_init = importation_data('geolocalisation.csv')
@@ -65,6 +72,14 @@ def carte_create(nom,type,ville, academie, departement):
                     print(f"Erreur de conversion pour les coordonnées ({lat_str}, {lon_str}): {e}")
             else:
                 print(f"Coordonnées manquantes pour UAI {etab[i]['UAI']}")
+
+def spe_1er():
+    spe1er = []
+    data = importation_data("data_spe_1er.csv")
+
+    for i in range(len(data)):
+        spe1er.append({"UAI": data[i]["UAI"], "ANNEE": data[i]["RENTREE SCOLAIRE"]})
+
 def find(UAI, table):
     result = []
     for i in range(len(table)):
@@ -72,10 +87,10 @@ def find(UAI, table):
             result.append(table[i])
     return result
 
-carte_create(None,None,None, "Poitiers", None)
-carte.save("carte.html")
+#carte_create(None,None,None, "Poitiers", None)
+#carte.save("carte.html")
 #table = table_fiche_etab()
 #print(find("0860037Y", table))
 #print(table_fiche_etab())
 
-
+print(return_keys("data_spe_1er.csv"))

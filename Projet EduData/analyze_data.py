@@ -44,21 +44,27 @@ def table_fiche_etab():
             fiche_etab.append({"UAI": uai,"DENO": e["DENOMINATION PRINCIPALE"],"NOM": e["PATRONYME"],"TYPE": e["SECTEUR"],"ACA": e["ACADEMIE"],"DEPA": e["DEPARTEMENT"],"VILLE": e["COMMUNE"],"LAT": geoc_dict[uai]["LAT"],"LONG": geoc_dict[uai]["LONG"],"EFTOT": effectif_dict.get(uai)})
 
     return fiche_etab
-def carte_create():
+def carte_create(nom,type,ville, academie, departement):
     etab = table_fiche_etab()
     for i in range(len(etab)):
-        lat_str = etab[i]["LAT"]
-        lon_str = etab[i]["LONG"]
+        if ((nom and nom.upper() == etab[i]["NOM"]) or
+                (type and type.upper() == etab[i]["TYPE"]) or
+                (ville and ville.upper() == etab[i]["VILLE"]) or
+                (academie and academie.upper() == etab[i]["ACA"]) or
+                (departement and departement.upper() == etab[i]["DEPA"])):
 
-        if lat_str and lon_str:  # Vérifie que les valeurs ne sont pas vides
-            try:
-                lat = float(lat_str)
-                lon = float(lon_str)
-                folium.Marker(location=[lat, lon], popup=f"{etab[i]['DENO']} \n {etab[i]['NOM']}").add_to(carte)
-            except ValueError as e:
-                print(f"Erreur de conversion pour les coordonnées ({lat_str}, {lon_str}): {e}")
-        else:
-            print(f"Coordonnées manquantes pour UAI {etab[i]['UAI']}")
+            lat_str = etab[i]["LAT"]
+            lon_str = etab[i]["LONG"]
+
+            if lat_str and lon_str:  # Vérifie que les valeurs ne sont pas vides
+                try:
+                    lat = float(lat_str)
+                    lon = float(lon_str)
+                    folium.Marker(location=[lat, lon], popup=f"{etab[i]['DENO']} \n {etab[i]['NOM']}").add_to(carte)
+                except ValueError as e:
+                    print(f"Erreur de conversion pour les coordonnées ({lat_str}, {lon_str}): {e}")
+            else:
+                print(f"Coordonnées manquantes pour UAI {etab[i]['UAI']}")
 def find(UAI, table):
     result = []
     for i in range(len(table)):
@@ -66,10 +72,10 @@ def find(UAI, table):
             result.append(table[i])
     return result
 
-#carte_create()
-#carte.save("carte.html")
-table = table_fiche_etab()
-print(find("0860037Y", table))
+carte_create(None,None,None, "Poitiers", None)
+carte.save("carte.html")
+#table = table_fiche_etab()
+#print(find("0860037Y", table))
 #print(table_fiche_etab())
 
 

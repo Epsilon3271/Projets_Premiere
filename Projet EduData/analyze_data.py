@@ -72,14 +72,50 @@ def carte_create(nom,type,ville, academie, departement):
                     print(f"Erreur de conversion pour les coordonnées ({lat_str}, {lon_str}): {e}")
             else:
                 print(f"Coordonnées manquantes pour UAI {etab[i]['UAI']}")
-
 def spe_1er():
     spe1er = []
     data = importation_data("data_spe_1er.csv")
+    keys = return_keys("data_spe_1er.csv")
 
     for i in range(len(data)):
-        spe1er.append({"UAI": data[i]["UAI"], "ANNEE": data[i]["RENTREE SCOLAIRE"]})
+        spe = {
+            "UAI": data[i]["UAI"],
+            "ANNEE": data[i]["RENTREE SCOLAIRE"],
+            "EFTOT": data[i]["EFFECTIF TOTAL"],
+            "EFTOTF": data[i]["EFFECTIF TOTAL FILLES"],
+            "EFTOTG": data[i]["EFFECTIF TOTAL GARCONS"]
+        }
 
+        for y in range(17, len(keys)):
+            val = data[i][keys[y]]
+            if val != "0" and val != "":
+                spe[keys[y]] = val
+
+        spe1er.append(spe)
+
+    return spe1er
+def spe_tle():
+    spetle = []
+    data = importation_data("data_spe_tle.csv")
+    keys = return_keys("data_spe_tle.csv")
+
+    for i in range(len(data)):
+        spe = {
+            "UAI": data[i]["UAI"],
+            "ANNEE": data[i]["Rentrée scolaire"],
+            "EFTOT": data[i]["Effectif total"],
+            "EFTOTF": data[i]["Effectif total filles"],
+            "EFTOTG": data[i]["Effectif total garçons"]
+        }
+
+        for y in range(17, len(keys)):
+            val = data[i][keys[y]]
+            if val != "0" and val != "":
+                spe[keys[y]] = val
+
+        spetle.append(spe)
+
+    return spetle
 def find(UAI, table):
     result = []
     for i in range(len(table)):
@@ -93,4 +129,6 @@ def find(UAI, table):
 #print(find("0860037Y", table))
 #print(table_fiche_etab())
 
-print(return_keys("data_spe_1er.csv"))
+
+table = spe_tle()
+print(find("0860037Y", table))

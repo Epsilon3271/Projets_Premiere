@@ -2,7 +2,8 @@
 import csv
 from csv import DictReader
 import folium
-carte = folium.Map(location=[48.8566, 2.3522], zoom_start=13)
+
+carte = folium.Map(location=[48.8566, 2.3522], zoom_start=13, tiles="CartoDB dark_matter") # Ou "CartoDB positron" pour meme fond de carte mais en blanc
 def importation_data(fichier):
     with open(fichier, encoding="utf-8-sig") as f:
         lecteur = DictReader(f, delimiter=';')
@@ -67,7 +68,7 @@ def carte_create(nom,type,ville, academie, departement):
                 try:
                     lat = float(lat_str)
                     lon = float(lon_str)
-                    folium.Marker(location=[lat, lon], popup=f"{etab[i]['DENO']} \n {etab[i]['NOM']}").add_to(carte)
+                    folium.Marker(location=[lat, lon], popup=f"{etab[i]['DENO']} \n {etab[i]['NOM']}",max_width=200,icon=folium.Icon(color="gray", icon="university", prefix="fa")).add_to(carte)
                 except ValueError as e:
                     print(f"Erreur de conversion pour les coordonnées ({lat_str}, {lon_str}): {e}")
             else:
@@ -122,13 +123,17 @@ def find(UAI, table):
         if UAI == table[i]['UAI']:
             result.append(table[i])
     return result
+def statistica(table, uai):
+    pass
 
-#carte_create(None,None,None, "Poitiers", None)
-#carte.save("carte.html")
+
+
+
+carte_create(None,None,None, "Poitiers", None)
+carte.save("carte.html")
 #table = table_fiche_etab()
 #print(find("0860037Y", table))
 #print(table_fiche_etab())
 
-
-table = spe_tle()
-print(find("0860037Y", table))
+#table = spe_1er()
+#print(find("0860037Y", table))

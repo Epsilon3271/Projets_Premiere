@@ -1,5 +1,6 @@
 # Table effectif total pr lycée [UAI, ANNEE, EFFECTIF TOTAL]
-import csv
+import plotly.express as px #pip install plotly pandas
+import pandas as pd
 from csv import DictReader
 import folium
 
@@ -123,17 +124,19 @@ def find(UAI, table):
         if UAI == table[i]['UAI']:
             result.append(table[i])
     return result
-def statistica(table, uai):
+def statistica(uai):
+    pr = spe_1er()
+    tle = spe_tle()
     pass
 
 
 
 
-carte_create(None,None,None, "Poitiers", None)
-carte.save("carte.html")
+#carte_create(None,None,"Poitiers", None, None)
+#carte.save("carte.html")
 #table = table_fiche_etab()
 #print(find("0860037Y", table))
 #print(table_fiche_etab())
 
-#table = spe_1er()
-#print(find("0860037Y", table))
+table = spe_1er()
+print(find("0860037Y", table))

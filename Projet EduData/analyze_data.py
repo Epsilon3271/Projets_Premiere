@@ -4,7 +4,6 @@ import folium
 import plotly.graph_objects as pg
 from plotly.subplots import make_subplots
 
-carte = folium.Map(location=[48.8566, 2.3522], zoom_start=13, tiles="CartoDB dark_matter") # Ou "CartoDB positron" pour meme fond de carte mais en blanc
 def importation_data(fichier):
     with open(fichier, encoding="utf-8-sig") as f:
         lecteur = DictReader(f, delimiter=';')
@@ -104,6 +103,7 @@ def find(UAI, table):
             result.append(table[i])
     return result
 def carte_create(nom,type,ville, academie, departement):
+    carte = folium.Map(location=[48.8566, 2.3522], zoom_start=13,tiles="CartoDB dark_matter")  # Ou "CartoDB positron" pour meme fond de carte mais en blanc
     etab = table_fiche_etab()
     for i in range(len(etab)):
         if ((nom and nom.upper() == etab[i]["NOM"]) or
@@ -141,8 +141,6 @@ def carte_create(nom,type,ville, academie, departement):
                     print(f"Erreur de conversion pour les coordonnées ({lat_str}, {lon_str}): {e}")
             else:
                 print(f"Coordonnées manquantes pour UAI {etab[i]['UAI']}")
-
-
 def statistica(uai):
     fiche_etab = table_fiche_etab()
     for i in range(len(fiche_etab)):
@@ -195,13 +193,11 @@ def statistica(uai):
     fig.write_html(f"graphiques_effectifs_{uai}.html", auto_open=False)
 
 
-carte_create(None,None,"Poitiers", None, None)
-carte.save("carte.html")
+#carte_create(None,None,"Poitiers", None, None)
+#carte.save("carte.html")
 #table = table_fiche_etab()
 #print(find("0860037Y", table))
 #print(table_fiche_etab())
-
 #table = spe_1er()
 #print(find("0860037Y", table))
-
 #statistica("0860037Y")

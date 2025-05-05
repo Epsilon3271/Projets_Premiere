@@ -1,6 +1,4 @@
 # Table effectif total pr lycée [UAI, ANNEE, EFFECTIF TOTAL]
-import plotly.express as px #pip install plotly pandas
-import pandas as pd
 from csv import DictReader
 import folium
 
@@ -125,18 +123,49 @@ def find(UAI, table):
             result.append(table[i])
     return result
 def statistica(uai):
+    import plotly.graph_objects as pg
+
     pr = spe_1er()
     tle = spe_tle()
-    pass
+    data_pr = find(uai, pr)
+    data_tle = find(uai, tle)
+    annees = [int(data_pr[i]["ANNEE"]) for i in range(len(data_pr))]
+
+    eftot = [int(data_pr[i]['EFTOT']) for i in range(len(data_pr))]
+    eftot_f = [int(data_pr[i]['EFTOTF']) for i in range(len(data_pr))]
+    eftot_g = [int(data_pr[i]['EFTOTG']) for i in range(len(data_pr))]
+
+    fig = pg.Figure()
+
+    fig.add_trace(pg.Scatter(
+        x=annees, y=eftot, mode='lines+markers',
+        name='Effectif total en première', line=dict(color='red')
+    ))
+    fig.add_trace(pg.Scatter(
+        x=annees, y=eftot_f, mode='lines+markers',
+        name='Effectif total de Filles en première', line=dict(color='hotpink')
+    ))
+    fig.add_trace(pg.Scatter(
+        x=annees, y=eftot_g, mode='lines+markers',
+        name='Effectif total de Garçons en première', line=dict(color='blue')
+    ))
+
+    fig.update_layout(
+        title='Évolution des effectifs de filles et de garçons en première dans le lycée',
+        xaxis_title='Année',
+        yaxis_title='Effectif'
+    )
+
+    fig.show()
 
 
-
-
-#carte_create(None,None,"Poitiers", None, None)
-#carte.save("carte.html")
+carte_create(None,None,"Poitiers", None, None)
+carte.save("carte.html")
 #table = table_fiche_etab()
 #print(find("0860037Y", table))
 #print(table_fiche_etab())
 
-table = spe_1er()
-print(find("0860037Y", table))
+#table = spe_1er()
+#print(find("0860037Y", table))
+
+#statistica("0860037Y")

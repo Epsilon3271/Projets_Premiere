@@ -53,27 +53,6 @@ def table_fiche_etab():
             fiche_etab.append({"UAI": uai,"DENO": e["DENOMINATION PRINCIPALE"],"NOM": e["PATRONYME"],"TYPE": e["SECTEUR"],"ACA": e["ACADEMIE"],"DEPA": e["DEPARTEMENT"],"VILLE": e["COMMUNE"],"LAT": geoc_dict[uai]["LAT"],"LONG": geoc_dict[uai]["LONG"],"EFTOT": effectif_dict.get(uai)})
 
     return fiche_etab
-def carte_create(nom,type,ville, academie, departement):
-    etab = table_fiche_etab()
-    for i in range(len(etab)):
-        if ((nom and nom.upper() == etab[i]["NOM"]) or
-                (type and type.upper() == etab[i]["TYPE"]) or
-                (ville and ville.upper() == etab[i]["VILLE"]) or
-                (academie and academie.upper() == etab[i]["ACA"]) or
-                (departement and departement.upper() == etab[i]["DEPA"])):
-
-            lat_str = etab[i]["LAT"]
-            lon_str = etab[i]["LONG"]
-
-            if lat_str and lon_str:  # Vérifie que les valeurs ne sont pas vides
-                try:
-                    lat = float(lat_str)
-                    lon = float(lon_str)
-                    folium.Marker(location=[lat, lon], popup=f"{etab[i]['DENO']} \n {etab[i]['NOM']}",max_width=200,icon=folium.Icon(color="gray", icon="university", prefix="fa")).add_to(carte)
-                except ValueError as e:
-                    print(f"Erreur de conversion pour les coordonnées ({lat_str}, {lon_str}): {e}")
-            else:
-                print(f"Coordonnées manquantes pour UAI {etab[i]['UAI']}")
 def spe_1er():
     spe1er = []
     data = importation_data("data_spe_1er.csv")
@@ -124,6 +103,45 @@ def find(UAI, table):
         if UAI == table[i]['UAI']:
             result.append(table[i])
     return result
+def carte_create(nom,type,ville, academie, departement):
+    etab = table_fiche_etab()
+    for i in range(len(etab)):
+        if ((nom and nom.upper() == etab[i]["NOM"]) or
+                (type and type.upper() == etab[i]["TYPE"]) or
+                (ville and ville.upper() == etab[i]["VILLE"]) or
+                (academie and academie.upper() == etab[i]["ACA"]) or
+                (departement and departement.upper() == etab[i]["DEPA"])):
+
+            lat_str = etab[i]["LAT"]
+            lon_str = etab[i]["LONG"]
+
+            if lat_str and lon_str:  # Vérifie que les valeurs ne sont pas vides
+                try:
+                    lat = float(lat_str)
+                    lon = float(lon_str)
+
+                    # Génère le fichier HTML pour les graphiques
+                    statistica(etab[i]["UAI"])
+
+                    # Contenu HTML du popup avec lien cliquable
+                    popup_html = f"""
+                    <b>{etab[i]['DENO']}</b><br>
+                    {etab[i]['NOM']}<br>
+                    <a href="graphiques_effectifs_{etab[i]['UAI']}.html" target="_blank">Voir les données</a>
+                    """
+
+                    # Ajout du marqueur avec popup adapté
+                    folium.Marker(
+                        location=[lat, lon],
+                        popup=folium.Popup(popup_html, max_width=300),
+                        icon=folium.Icon(color="gray", icon="university", prefix="fa")
+                    ).add_to(carte)
+
+                except ValueError as e:
+                    print(f"Erreur de conversion pour les coordonnées ({lat_str}, {lon_str}): {e}")
+            else:
+                print(f"Coordonnées manquantes pour UAI {etab[i]['UAI']}")
+
 
 def statistica(uai):
     fiche_etab = table_fiche_etab()
@@ -174,11 +192,11 @@ def statistica(uai):
         showlegend=True
     )
 
-    fig.write_html("graphiques_effectifs.html", auto_open=True)
+    fig.write_html(f"graphiques_effectifs_{uai}.html", auto_open=False)
 
 
-#carte_create(None,None,"Poitiers", None, None)
-#carte.save("carte.html")
+carte_create(None,None,"Poitiers", None, None)
+carte.save("carte.html")
 #table = table_fiche_etab()
 #print(find("0860037Y", table))
 #print(table_fiche_etab())
@@ -186,4 +204,4 @@ def statistica(uai):
 #table = spe_1er()
 #print(find("0860037Y", table))
 
-statistica("0860037Y")
+#statistica("0860037Y")

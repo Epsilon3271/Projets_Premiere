@@ -1,6 +1,8 @@
 # Table effectif total pr lycée [UAI, ANNEE, EFFECTIF TOTAL]
 from csv import DictReader
 import folium
+import plotly.graph_objects as pg
+from plotly.subplots import make_subplots
 
 carte = folium.Map(location=[48.8566, 2.3522], zoom_start=13, tiles="CartoDB dark_matter") # Ou "CartoDB positron" pour meme fond de carte mais en blanc
 def importation_data(fichier):
@@ -122,45 +124,61 @@ def find(UAI, table):
         if UAI == table[i]['UAI']:
             result.append(table[i])
     return result
+
 def statistica(uai):
-    import plotly.graph_objects as pg
+    fiche_etab = table_fiche_etab()
+    for i in range(len(fiche_etab)):
+        if fiche_etab[i]["UAI"] == uai:
+            nom = fiche_etab[i]["NOM"]
+            break
+
 
     pr = spe_1er()
     tle = spe_tle()
-    data_pr = find(uai, pr)
-    data_tle = find(uai, tle)
-    annees = [int(data_pr[i]["ANNEE"]) for i in range(len(data_pr))]
+    data_pr = sorted(find(uai, pr), key=lambda x: x["ANNEE"])
+    data_tle = sorted(find(uai, tle), key=lambda x: x["ANNEE"])
 
-    eftot = [int(data_pr[i]['EFTOT']) for i in range(len(data_pr))]
-    eftot_f = [int(data_pr[i]['EFTOTF']) for i in range(len(data_pr))]
-    eftot_g = [int(data_pr[i]['EFTOTG']) for i in range(len(data_pr))]
+    # Création des listes de données
+    annees_pr = [int(x["ANNEE"]) for x in data_pr]
+    eftot_pr = [int(x["EFTOT"]) for x in data_pr]
+    eftotf_pr = [int(x["EFTOTF"]) for x in data_pr]
+    eftotg_pr = [int(x["EFTOTG"]) for x in data_pr]
 
-    fig = pg.Figure()
+    annees_tle = [int(x["ANNEE"]) for x in data_tle]
+    eftot_tle = [int(x["EFTOT"]) for x in data_tle]
+    eftotf_tle = [int(x["EFTOTF"]) for x in data_tle]
+    eftotg_tle = [int(x["EFTOTG"]) for x in data_tle]
 
-    fig.add_trace(pg.Scatter(
-        x=annees, y=eftot, mode='lines+markers',
-        name='Effectif total en première', line=dict(color='red')
-    ))
-    fig.add_trace(pg.Scatter(
-        x=annees, y=eftot_f, mode='lines+markers',
-        name='Effectif total de Filles en première', line=dict(color='hotpink')
-    ))
-    fig.add_trace(pg.Scatter(
-        x=annees, y=eftot_g, mode='lines+markers',
-        name='Effectif total de Garçons en première', line=dict(color='blue')
-    ))
-
-    fig.update_layout(
-        title='Évolution des effectifs de filles et de garçons en première dans le lycée',
-        xaxis_title='Année',
-        yaxis_title='Effectif'
+    # Création des sous-graphes
+    fig = make_subplots(
+        rows=1, cols=2,
+        subplot_titles=("Première", "Terminale")
     )
 
-    fig.show()
+    # Ajout des courbes pour la première
+    fig.add_trace(pg.Scatter(x=annees_pr, y=eftot_pr, name='Total 1ère', line=dict(color='red')), row=1, col=1)
+    fig.add_trace(pg.Scatter(x=annees_pr, y=eftotf_pr, name='Filles 1ère', line=dict(color='hotpink')), row=1,
+                  col=1)
+    fig.add_trace(pg.Scatter(x=annees_pr, y=eftotg_pr, name='Garçons 1ère', line=dict(color='blue')), row=1, col=1)
+
+    # Ajout des courbes pour la terminale
+    fig.add_trace(pg.Scatter(x=annees_tle, y=eftot_tle, name='Total Tle', line=dict(color='red')), row=1, col=2)
+    fig.add_trace(pg.Scatter(x=annees_tle, y=eftotf_tle, name='Filles Tle', line=dict(color='hotpink')), row=1,
+                  col=2)
+    fig.add_trace(pg.Scatter(x=annees_tle, y=eftotg_tle, name='Garçons Tle', line=dict(color='blue')), row=1, col=2)
+
+    fig.update_layout(
+        title_text=f"Évolution des effectifs filles/garçons en première et terminale dans le lycée {nom}",
+        xaxis_title="Année",
+        yaxis_title="Effectif",
+        showlegend=True
+    )
+
+    fig.write_html("graphiques_effectifs.html", auto_open=True)
 
 
-carte_create(None,None,"Poitiers", None, None)
-carte.save("carte.html")
+#carte_create(None,None,"Poitiers", None, None)
+#carte.save("carte.html")
 #table = table_fiche_etab()
 #print(find("0860037Y", table))
 #print(table_fiche_etab())
@@ -168,4 +186,4 @@ carte.save("carte.html")
 #table = spe_1er()
 #print(find("0860037Y", table))
 
-#statistica("0860037Y")
+statistica("0860037Y")

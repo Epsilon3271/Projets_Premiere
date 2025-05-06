@@ -3,7 +3,7 @@ from csv import DictReader
 import folium
 import plotly.graph_objects as pg
 from plotly.subplots import make_subplots
-
+import math
 def importation_data(fichier):
     with open(fichier, encoding="utf-8-sig") as f:
         lecteur = DictReader(f, delimiter=';')
@@ -17,6 +17,8 @@ def return_keys(fichier):
         lecteur = DictReader(f, delimiter=';')
         keys = lecteur.fieldnames
     return keys
+def k(dictionnaire):
+    return list(dictionnaire.keys())
 def table_geoloc():
     geoloc = []
     table_init = importation_data('geolocalisation.csv')
@@ -141,13 +143,16 @@ def carte_create(nom,type,ville, academie, departement):
                     print(f"Erreur de conversion pour les coordonnées ({lat_str}, {lon_str}): {e}")
             else:
                 print(f"Coordonnées manquantes pour UAI {etab[i]['UAI']}")
+
 def statistica(uai):
+    titres = ["Première", "Terminale"]
+    fig = make_subplots(rows=1, cols=2,subplot_titles=titres)
+
     fiche_etab = table_fiche_etab()
     for i in range(len(fiche_etab)):
         if fiche_etab[i]["UAI"] == uai:
             nom = fiche_etab[i]["NOM"]
             break
-
 
     pr = spe_1er()
     tle = spe_tle()
@@ -160,28 +165,42 @@ def statistica(uai):
     eftotf_pr = [int(x["EFTOTF"]) for x in data_pr]
     eftotg_pr = [int(x["EFTOTG"]) for x in data_pr]
 
+    # Ajout des courbes pour la première
+    fig.add_trace(pg.Scatter(x=annees_pr, y=eftot_pr, name='Total 1ère', line=dict(color='red')), row=1, col=1)
+    fig.add_trace(pg.Scatter(x=annees_pr, y=eftotf_pr, name='Filles 1ère', line=dict(color='hotpink')), row=1,col=1)
+    fig.add_trace(pg.Scatter(x=annees_pr, y=eftotg_pr, name='Garçons 1ère', line=dict(color='blue')), row=1, col=1)
+
+    # Création des listes de données
     annees_tle = [int(x["ANNEE"]) for x in data_tle]
     eftot_tle = [int(x["EFTOT"]) for x in data_tle]
     eftotf_tle = [int(x["EFTOTF"]) for x in data_tle]
     eftotg_tle = [int(x["EFTOTG"]) for x in data_tle]
 
-    # Création des sous-graphes
-    fig = make_subplots(
-        rows=1, cols=2,
-        subplot_titles=("Première", "Terminale")
-    )
-
-    # Ajout des courbes pour la première
-    fig.add_trace(pg.Scatter(x=annees_pr, y=eftot_pr, name='Total 1ère', line=dict(color='red')), row=1, col=1)
-    fig.add_trace(pg.Scatter(x=annees_pr, y=eftotf_pr, name='Filles 1ère', line=dict(color='hotpink')), row=1,
-                  col=1)
-    fig.add_trace(pg.Scatter(x=annees_pr, y=eftotg_pr, name='Garçons 1ère', line=dict(color='blue')), row=1, col=1)
-
     # Ajout des courbes pour la terminale
     fig.add_trace(pg.Scatter(x=annees_tle, y=eftot_tle, name='Total Tle', line=dict(color='red')), row=1, col=2)
-    fig.add_trace(pg.Scatter(x=annees_tle, y=eftotf_tle, name='Filles Tle', line=dict(color='hotpink')), row=1,
-                  col=2)
+    fig.add_trace(pg.Scatter(x=annees_tle, y=eftotf_tle, name='Filles Tle', line=dict(color='hotpink')), row=1,col=2)
     fig.add_trace(pg.Scatter(x=annees_tle, y=eftotg_tle, name='Garçons Tle', line=dict(color='blue')), row=1, col=2)
+
+
+    # annees_pr_spe=[]
+    # eftotf_pr_spe=[]
+    # eftotg_pr_spe = []
+    #
+    # for i in range(len(data_pr)):
+    #     if data_pr[i]["UAI"] == uai:
+    #         keys = k(data_pr[i])
+    #         for y in range(4,len(keys) - 1):
+    #             if str(keys[y])[:4] == str(keys[y + 1])[:4]:
+    #                 annees_pr_spe.append(int(data_pr[i]["ANNEE"]))
+    #                 eftotf_pr_spe.append(int(data_pr[i][keys[y]]))
+    #                 eftotg_pr_spe.append(int(data_pr[i][keys[y + 1]]))
+    #                 break
+    # titres.append(str(keys[y][6:-10]))
+    #
+    # fig.add_trace(pg.Scatter(x=annees_pr_spe, y=eftotf_pr, name='Total Tle', line=dict(color='hotpink')), row=1, col=3)
+    # fig.add_trace(pg.Scatter(x=annees_pr_spe, y=eftotg_pr, name='Filles Tle', line=dict(color='blue')), row=1,col=3)
+
+
 
     fig.update_layout(
         title_text=f"Évolution des effectifs filles/garçons en première et terminale dans le lycée {nom}",

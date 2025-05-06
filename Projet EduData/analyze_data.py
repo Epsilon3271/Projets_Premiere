@@ -211,7 +211,6 @@ def statistica(uai):
 
     fig.write_html(f"graphiques_effectifs_{uai}.html", auto_open=False)
 
-
 #carte_create(None,None,"Poitiers", None, None)
 #carte.save("carte.html")
 #table = table_fiche_etab()

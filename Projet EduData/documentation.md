@@ -4,7 +4,7 @@ Ce programme permet de visualiser les effectifs par spécialité dans les lycée
 
 ---
 
-## 📌 Étapes du fonctionnement
+## Étapes du fonctionnement
 
 ### 1. Chargement des données
 - Données importées depuis 3 CSV :
@@ -23,7 +23,7 @@ Ce programme permet de visualiser les effectifs par spécialité dans les lycée
 
 ---
 
-## 📊 Diagramme de fonctionnement général
+## Diagramme de fonctionnement général
 
 ```mermaid
 flowchart TD
@@ -37,7 +37,7 @@ flowchart TD
 
 ---
 
-## 🧩 Algorigramme : `carte_create(...)`
+## Algorigramme : `carte_create(...)`
 
 ```mermaid
 graph TD
@@ -53,7 +53,7 @@ graph TD
 
 ---
 
-## 📈 Exemple de graphique généré
+## Exemple de graphique généré
 
 Un graphique HTML est généré automatiquement pour chaque établissement lorsqu'on clique sur son marqueur :
 
@@ -63,7 +63,7 @@ Un graphique HTML est généré automatiquement pour chaque établissement lorsq
 
 ---
 
-## 🗺️ Résultat final
+## Résultat final
 
 * Une carte interactive `carte.html`
 * Des fichiers HTML pour chaque établissement (`graphiques_effectifs_UAI.html`)

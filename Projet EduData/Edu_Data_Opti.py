@@ -99,6 +99,7 @@ def carte_create(nom, type, ville, academie, departement):
                 popup_html = f"""
                 <b>{e['DENO']}</b><br>
                 {e['NOM']}<br>
+                <i>{e['VILLE']}</i><br>
                 <a href="graphiques_effectifs_{e['UAI']}.html" target="_blank">Voir les données</a>
                 """
 

@@ -143,7 +143,6 @@ def carte_create(nom,type,ville, academie, departement):
                     print(f"Erreur de conversion pour les coordonnées ({lat_str}, {lon_str}): {e}")
             else:
                 print(f"Coordonnées manquantes pour UAI {etab[i]['UAI']}")
-
 def statistica(uai):
     titres = ["Première", "Terminale"]
     fig = make_subplots(rows=1, cols=2,subplot_titles=titres)

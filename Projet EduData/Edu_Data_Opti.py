@@ -2,6 +2,7 @@ from csv import DictReader
 import folium
 import plotly.graph_objects as pg
 from plotly.subplots import make_subplots
+import math
 
 def importation_data(fichier):
     with open(fichier, encoding="utf-8-sig") as f:
@@ -114,38 +115,103 @@ def carte_create(nom, type, ville, academie, departement):
     return carte
 
 def statistica(uai):
-    fig = make_subplots(rows=1, cols=2, subplot_titles=["Première", "Terminale"])
+    # Récupération du nom de l'établissement
     nom = next((e["NOM"] for e in table_fiche_etab() if e["UAI"] == uai), "")
 
     pr = sorted(find(uai, spe_1er()), key=lambda x: x["ANNEE"])
     tle = sorted(find(uai, spe_tle()), key=lambda x: x["ANNEE"])
 
-    def get_traces(data, col):
+    # --- Première figure : Total/Filles/Garçons en 1ère et Terminale ---
+    def get_traces(data):
         annees = [int(x["ANNEE"]) for x in data]
         tot = [int(x["EFTOT"]) for x in data]
         filles = [int(x["EFTOTF"]) for x in data]
         garcons = [int(x["EFTOTG"]) for x in data]
         return annees, tot, filles, garcons
 
-    a_pr, t_pr, f_pr, g_pr = get_traces(pr, 1)
-    a_tle, t_tle, f_tle, g_tle = get_traces(tle, 2)
+    a_pr, t_pr, f_pr, g_pr = get_traces(pr)
+    a_tle, t_tle, f_tle, g_tle = get_traces(tle)
 
-    fig.add_trace(pg.Scatter(x=a_pr, y=t_pr, name='Total 1ère', line=dict(color='red')), row=1, col=1)
-    fig.add_trace(pg.Scatter(x=a_pr, y=f_pr, name='Filles 1ère', line=dict(color='hotpink')), row=1, col=1)
-    fig.add_trace(pg.Scatter(x=a_pr, y=g_pr, name='Garçons 1ère', line=dict(color='blue')), row=1, col=1)
+    fig1 = make_subplots(rows=1, cols=2, subplot_titles=["Première", "Terminale"])
 
-    fig.add_trace(pg.Scatter(x=a_tle, y=t_tle, name='Total Tle', line=dict(color='red')), row=1, col=2)
-    fig.add_trace(pg.Scatter(x=a_tle, y=f_tle, name='Filles Tle', line=dict(color='hotpink')), row=1, col=2)
-    fig.add_trace(pg.Scatter(x=a_tle, y=g_tle, name='Garçons Tle', line=dict(color='blue')), row=1, col=2)
+    fig1.add_trace(pg.Scatter(x=a_pr, y=t_pr, name='Total 1ère', line=dict(color='red')), row=1, col=1)
+    fig1.add_trace(pg.Scatter(x=a_pr, y=f_pr, name='Filles 1ère', line=dict(color='hotpink')), row=1, col=1)
+    fig1.add_trace(pg.Scatter(x=a_pr, y=g_pr, name='Garçons 1ère', line=dict(color='blue')), row=1, col=1)
 
-    fig.update_layout(
+    fig1.add_trace(pg.Scatter(x=a_tle, y=t_tle, name='Total Tle', line=dict(color='red')), row=1, col=2)
+    fig1.add_trace(pg.Scatter(x=a_tle, y=f_tle, name='Filles Tle', line=dict(color='hotpink')), row=1, col=2)
+    fig1.add_trace(pg.Scatter(x=a_tle, y=g_tle, name='Garçons Tle', line=dict(color='blue')), row=1, col=2)
+
+    fig1.update_layout(
         title_text=f"Évolution des effectifs filles/garçons en première et terminale dans le lycée {nom}",
-        xaxis_title="Année",
-        yaxis_title="Effectif",
         showlegend=True
     )
 
-    fig.write_html(f"graphiques_effectifs_{uai}.html", auto_open=False)
+    # --- Deuxième figure : par spécialité et genre ---
+    specialites = sorted({
+        key.replace(" - filles", "")
+        for row in pr for key in row if key.endswith(" - filles")
+    })
+
+    n = len(specialites)
+    cols = 2
+    rows = math.ceil(n / cols)
+
+    def couper_titre(titre, max_len=20):
+        return "<br>".join([titre[i:i+max_len] for i in range(0, len(titre), max_len)])
+
+    fig2 = make_subplots(
+        rows=rows,
+        cols=cols,
+        subplot_titles=[couper_titre(sp) for sp in specialites]
+    )
+
+    for idx, specialite in enumerate(specialites):
+        annees, filles, garcons = [], [], []
+        for row in pr:
+            annees.append(row['ANNEE'])
+            filles.append(int(row.get(f"{specialite} - filles", 0)))
+            garcons.append(int(row.get(f"{specialite} - garçons", 0)))
+
+        row_i = idx // cols + 1
+        col_i = idx % cols + 1
+
+        fig2.add_trace(pg.Scatter(
+            x=annees, y=filles, mode='lines+markers', name='Filles',
+            line=dict(color='deeppink'), showlegend=(idx == 0)
+        ), row=row_i, col=col_i)
+
+        fig2.add_trace(pg.Scatter(
+            x=annees, y=garcons, mode='lines+markers', name='Garçons',
+            line=dict(color='blue', dash='dash'), showlegend=(idx == 0)
+        ), row=row_i, col=col_i)
+
+    fig2.update_layout(
+        height=300 * rows,
+        title_text= None,
+        template='plotly_white',
+        legend_title='Genre',
+        margin=dict(t=80),
+        font=dict(size=11),
+    )
+    fig2.update_annotations(font_size=10)
+
+    # --- Export HTML combiné ---
+    # On combine les deux figures dans un seul fichier HTML
+    html1 = fig1.to_html(full_html=False, include_plotlyjs='cdn')
+    html2 = fig2.to_html(full_html=False, include_plotlyjs=False)
+
+    with open(f"graphiques_effectifs_{uai}.html", "w", encoding="utf-8") as f:
+        f.write(f"""
+        <html>
+        <head><meta charset="utf-8"><title>Statistiques lycée {nom}</title></head>
+        <body>
+            {html1}
+            <hr>
+            {html2}
+        </body>
+        </html>
+        """)
 
 def UI_user():
     ascii_art = """
@@ -188,3 +254,7 @@ def UI_user():
 
 if __name__ == "__main__":
     UI_user()
+
+
+
+

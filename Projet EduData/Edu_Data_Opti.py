@@ -75,7 +75,6 @@ def spe_data(filename, col_annee, col_tot, col_f, col_g):
 
 def spe_1er():
     return spe_data("data_spe_1er.csv", "RENTREE SCOLAIRE", "EFFECTIF TOTAL", "EFFECTIF TOTAL FILLES", "EFFECTIF TOTAL GARCONS")
-
 def spe_tle():
     return spe_data("data_spe_tle.csv", "Rentrée scolaire", "Effectif total", "Effectif total filles", "Effectif total garçons")
 

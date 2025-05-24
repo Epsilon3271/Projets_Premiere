@@ -3,6 +3,7 @@ import folium
 import plotly.graph_objects as pg
 from plotly.subplots import make_subplots
 import math
+import re
 
 def importation_data(fichier):
     with open(fichier, encoding="utf-8-sig") as f:
@@ -146,26 +147,26 @@ def statistica(uai):
         showlegend=True
     )
 
-    # --- Deuxième figure : par spécialité et genre ---
-    specialites = sorted({
+    # --- Deuxième figure : par spécialité et genre en Première ---
+    specialites_pr = sorted({
         key.replace(" - filles", "")
         for row in pr for key in row if key.endswith(" - filles")
     })
 
-    n = len(specialites)
+    n_pr = len(specialites_pr)
     cols = 2
-    rows = math.ceil(n / cols)
+    rows_pr = math.ceil(n_pr / cols)
 
     def couper_titre(titre, max_len=20):
         return "<br>".join([titre[i:i+max_len] for i in range(0, len(titre), max_len)])
 
     fig2 = make_subplots(
-        rows=rows,
+        rows=rows_pr,
         cols=cols,
-        subplot_titles=[couper_titre(sp) for sp in specialites]
+        subplot_titles=[couper_titre(sp) for sp in specialites_pr]
     )
 
-    for idx, specialite in enumerate(specialites):
+    for idx, specialite in enumerate(specialites_pr):
         annees, filles, garcons = [], [], []
         for row in pr:
             annees.append(row['ANNEE'])
@@ -186,8 +187,8 @@ def statistica(uai):
         ), row=row_i, col=col_i)
 
     fig2.update_layout(
-        height=300 * rows,
-        title_text= None,
+        height=300 * rows_pr,
+        title_text="Spécialités en première",
         template='plotly_white',
         legend_title='Genre',
         margin=dict(t=80),
@@ -195,10 +196,62 @@ def statistica(uai):
     )
     fig2.update_annotations(font_size=10)
 
+    # --- Troisième figure : combinaisons de spécialités en Terminale ---
+    def nettoyer_specialite(code):
+        return re.sub(r"^\d+\s*-\s*", "", code)
+
+    specialites_tle = sorted({
+        nettoyer_specialite(key.replace(" - filles", ""))
+        for row in tle for key in row if key.endswith(" - filles")
+    })
+
+    n_tle = len(specialites_tle)
+    rows_tle = math.ceil(n_tle / cols)
+
+    fig3 = make_subplots(
+        rows=rows_tle,
+        cols=cols,
+        subplot_titles=[couper_titre(sp) for sp in specialites_tle]
+    )
+
+    for idx, specialite in enumerate(specialites_tle):
+        annees, filles, garcons = [], [], []
+        for row in tle:
+            annee = row['ANNEE']
+            key_f = next((k for k in row if k.endswith(" - filles") and nettoyer_specialite(k.replace(" - filles", "")) == specialite), None)
+            key_g = key_f.replace(" - filles", " - garcons") if key_f else None
+            if key_f and key_g:
+                filles.append(int(row.get(key_f, 0)))
+                garcons.append(int(row.get(key_g, 0)))
+                annees.append(annee)
+
+        row_i = idx // cols + 1
+        col_i = idx % cols + 1
+
+        fig3.add_trace(pg.Scatter(
+            x=annees, y=filles, mode='lines+markers', name='Filles',
+            line=dict(color='deeppink'), showlegend=(idx == 0)
+        ), row=row_i, col=col_i)
+
+        fig3.add_trace(pg.Scatter(
+            x=annees, y=garcons, mode='lines+markers', name='Garçons',
+            line=dict(color='blue', dash='dash'), showlegend=(idx == 0)
+        ), row=row_i, col=col_i)
+
+    fig3.update_layout(
+        height=300 * rows_tle,
+        title_text="Spécialités en terminale",
+        template='plotly_white',
+        legend_title='Genre',
+        margin=dict(t=80),
+        font=dict(size=11),
+    )
+    fig3.update_annotations(font_size=10)
+
     # --- Export HTML combiné ---
-    # On combine les deux figures dans un seul fichier HTML
     html1 = fig1.to_html(full_html=False, include_plotlyjs='cdn')
     html2 = fig2.to_html(full_html=False, include_plotlyjs=False)
+    html3 = fig3.to_html(full_html=False, include_plotlyjs=False)
 
     with open(f"graphiques_effectifs_{uai}.html", "w", encoding="utf-8") as f:
         f.write(f"""
@@ -208,6 +261,8 @@ def statistica(uai):
             {html1}
             <hr>
             {html2}
+            <hr>
+            {html3}
         </body>
         </html>
         """)

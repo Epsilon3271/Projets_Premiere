@@ -215,6 +215,6 @@ def statistica(uai):
 #table = table_fiche_etab()
 #print(find("0860037Y", table))
 #print(table_fiche_etab())
-#table = spe_1er()
-#print(find("0860037Y", table))
+table = spe_tle()
+print(find("0860037Y", table))
 #statistica("0860037Y")

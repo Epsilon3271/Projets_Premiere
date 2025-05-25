@@ -6,13 +6,13 @@ def importation_data(fichier):
         return list(DictReader(f, delimiter=','))
 
 def data():
-    table_init = importation_data("diabetes.csv")
+    table_init = importation_data("C:/Users/shcor/PycharmProjects/Projets_Premiere/KNN/diabetes.csv")
     n = math.ceil(len(table_init) * 0.75)
     data = table_init[:n]
     return data
 
 def test_data():
-    table_init = importation_data("diabetes.csv")
+    table_init = importation_data("C:/Users/shcor/PycharmProjects/Projets_Premiere/KNN/diabetes.csv")
     n = math.ceil(len(table_init) * 0.75)
     data = table_init[n:]
     return data
@@ -50,7 +50,7 @@ def knn(Pregnancies, Glucose, BloodPressure, SkinThickness, Insulin, BMI, Diabet
 
     return prediction,round(probabilite, 2),knn[:n]
 
-def evaluer_precision(epreuve, k_min=1, k_max=20):
+def evaluer_precision(epreuve, k_min, k_max):
     resultats = []
 
     for k in range(k_min, k_max + 1):
@@ -88,5 +88,5 @@ def evaluer_precision(epreuve, k_min=1, k_max=20):
 
     return resultats
 
-#evaluer_precision(test_data(), k_min=1, k_max=20)
-print(knn(3,198,66,32,274,41.3,0.869,50,17))
+evaluer_precision(test_data(),1, 100)
+#print(knn(1,90,70,20,85,22.5,0.201,25,17))

@@ -90,5 +90,5 @@ def evaluer_precision(epreuve, k_min, k_max):
     #return sorted(resultats, key=lambda x: x[1], reverse=True)
 
 
-print(evaluer_precision(test_data(),1, 10))
+print(evaluer_precision(test_data(),1, 20))
 #print(knn(1,90,70,20,85,22.5,0.201,25,17))

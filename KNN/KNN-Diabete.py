@@ -75,7 +75,7 @@ def evaluer_precision(epreuve, k_min, k_max):
         precision = (bonnes_reponses / len(epreuve)) * 100
         resultats.append((k, precision))
 
-    # Tracé du graphique
+    # # Tracé du graphique
     x = [r[0] for r in resultats]
     y = [r[1] for r in resultats]
 
@@ -87,6 +87,8 @@ def evaluer_precision(epreuve, k_min, k_max):
     plt.show()
 
     return resultats
+    #return sorted(resultats, key=lambda x: x[1], reverse=True)
 
-evaluer_precision(test_data(),1, 100)
+
+print(evaluer_precision(test_data(),1, 100))
 #print(knn(1,90,70,20,85,22.5,0.201,25,17))
